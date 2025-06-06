@@ -1,0 +1,43 @@
+{
+	"problems": [
+		{
+			"id": "regexp:.*",
+			"type": "ENERGY_SAVING_POWER_OFF",
+			"objects": [
+				{
+					"objectName": "4",
+					"objectType": "cell",
+					"cellName": "4"
+				},
+				{
+					"objectName": "5",
+					"objectType": "cell",
+					"cellName": "5"
+				}
+			],
+			"state": "FINISHED"
+		},
+		{
+			"id": "regexp:.*",
+			"type": "ENERGY_SAVING_POWER_OFF",
+			"objects": [
+				{
+					"objectName": "7",
+					"objectType": "cell",
+					"cellName": "7"
+				},
+				{
+					"objectName": "8",
+					"objectType": "cell",
+					"cellName": "8"
+				},
+				{
+					"objectName": "9",
+					"objectType": "cell",
+					"cellName": "9"
+				}
+			],
+			"state": "FINISHED"
+		}
+	]
+}

@@ -1,0 +1,28 @@
+<alias>
+# Name = Name of placeholder, i.e. <Top Offer>
+Name = NameER
+# Table = ER-table name
+Table = TableER
+# Columns = ER-table column name
+Colname = NameER
+# Filter=ER-table column name = Value
+Filter = FilterEqualER= 'equal'
+Filter = FilterNotEqualER <> 2
+Filter = FilterLessER > 11
+</alias>
+
+<check>
+# Name of this checking. For error reporting purposes only
+Name = Check#1
+# Table = ER-table name
+Table =TableER
+# Relation = AR-table column name = ER-table column name
+Relation = NameAR=NameER
+# Columns = AR-table column1 name = ER-table column1 name,
+Columns =FilterLikeAR=FilterEqualER,FilterUnlikAR=FilterNotEqualER,ColumnForEr=FilterLessER,FilterDataAR=ColumnForAr
+
+# Filter=AR-table column name = Value
+Filter=FilterLikeAR like 'equal'
+Filter=FilterUnlikAR unlike 2
+Filter=FilterDataAR <= 2022-01-20
+</check>

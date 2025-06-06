@@ -1,0 +1,6 @@
+{
+    "tool_url_path": "http://taprod_bv_ci:8080/comparator-api/",
+    "tool.accountName": "Test Automation",
+    "tool.projectName": "ProcessComparator",
+    "tool.gpCode": "NC.CA.TA"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "table",
+  "headers": [
+    "header1",
+    "header2"
+  ],
+  "rows": [
+    [
+      "any",
+      "s"
+    ],
+    [
+      "aaaaaaa",
+      "b"
+    ]
+  ]
+}

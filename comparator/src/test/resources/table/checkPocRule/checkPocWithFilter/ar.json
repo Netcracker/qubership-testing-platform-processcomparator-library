@@ -1,0 +1,45 @@
+{
+    "name": "TableAR",
+    "headers": [
+        "Row#",
+        "NameAR",
+        "FilterLikeAR",
+        "FilterUnlikAR",
+        "ColumnForEr",
+        "FilterDataAR"
+    ],
+    "rows": [
+        [
+            "2",
+            "Active",
+            "noTequal",
+            "1",
+            "21",
+            "2022-01-19"
+        ],
+        [
+            "3",
+            "Inactive",
+            "equal",
+            "1",
+            "22",
+            "2022-01-20"
+        ],
+        [
+            "4",
+            "Connected",
+            "equal",
+            "2",
+            "23",
+            "2022-01-21"
+        ],
+        [
+            "5",
+            "Disconnected",
+            "another",
+            "1",
+            "24",
+            "2022-01-22"
+        ]
+    ]
+}

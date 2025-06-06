@@ -1,0 +1,40 @@
+{
+	"problems": [
+		{
+			"id": "regexp:.*",
+			"type": "ENERGY_SAVING_POWER_OFF",
+			"objects": [
+				{
+					"objectName": "Cell:4",
+					"objectType": "cell",
+					"cellName": "Cell:8101004 S:1"
+				}
+			],
+			"state": "FINISHED"
+		},
+		{
+			"id": "regexp:.*",
+			"type": "ENERGY_SAVING_POWER_OFF",
+			"objects": [
+				{
+					"objectName": "Cell:7",
+					"objectType": "cell",
+					"cellName": "Cell:8101007 S:1"
+				}
+			],
+			"state": "FINISHED"
+		},
+		{
+			"id": "regexp:.*",
+			"type": "ENERGY_SAVING_POWER_OFF",
+			"objects": [
+				{
+					"objectName": "Cell:11",
+					"objectType": "cell",
+					"cellName": "Cell:81010011 S:1"
+				}
+			],
+			"state": "FINISHED"
+		}
+	]
+}

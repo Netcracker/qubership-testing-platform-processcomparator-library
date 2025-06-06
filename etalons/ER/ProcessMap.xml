@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<process name="Sample BIP BNG Test Case" source-id="813e2d2d-dd25-4552-a50a-563c36c54121" timestamp="11_02_00 06-15-2016" uid="9144840779613791566">
+    <steps>
+        <step name="1. AMK sends inquiry service" skip="false">
+            <parameters>
+                <parameter name="outgoingMessage">steps/step_1_outgoingMessage.txt</parameter>
+            </parameters>
+        </step>
+    </steps>
+</process>

@@ -1,0 +1,6 @@
+CaSe-iNsEnSiTiVe
+endswith@
+54321
+lowercase
+12345
+onemorelowercase

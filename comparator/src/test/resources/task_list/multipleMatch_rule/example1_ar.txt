@@ -1,0 +1,5 @@
+Any string
+12345
+lowercase
+endswith@
+CaSe-iNsEnSiTiVe

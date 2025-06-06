@@ -1,0 +1,25 @@
+{
+  "name": "AR",
+  "headers": [
+    "Key",
+    "Column",
+    "Status"
+  ],
+  "rows": [
+    {
+      "Key": "A",
+      "Column": "666",
+      "Status": "Activation Pending"
+    },
+    {
+      "Key": "B",
+      "Column": "456",
+      "Status": "Active"
+    },
+    {
+      "Key": "C",
+      "Column": "456",
+      "Status": "Failed"
+    }
+  ]
+}

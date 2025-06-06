@@ -1,0 +1,43 @@
+{
+	"problems": [
+		{
+			"id": "1681a2f2-8911-4419-904f-3ca4aedc6e04",
+			"type": "ENERGY_SAVING_POWER_OFF",
+			"objects": [
+				{
+					"objectName": "4",
+					"objectType": "cell",
+					"cellName": "7"
+				},
+				{
+					"objectName": "5",
+					"objectType": "cell",
+					"cellName": "8"
+				}
+			],
+			"state": "FINISHED"
+		},
+		{
+			"id": "c86f1b82-92e2-4b61-8804-6bc7928310db",
+			"type": "ENERGY_SAVING_POWER_OFF",
+			"objects": [
+				{
+					"objectName": "9",
+					"objectType": "cell1",
+					"cellName": "9"
+				},
+				{
+					"objectName": "7",
+					"objectType": "cell",
+					"cellName": "7"
+				},
+				{
+					"objectName": "8",
+					"objectType": "cell",
+					"cellName": "7"
+				}
+			],
+			"state": "FINISHED"
+		}
+	]
+}

@@ -1,0 +1,321 @@
+[
+    {
+        "content-type": "PRIMITIVES",
+        "documentation" : "",
+        "rules": [
+            {   "name" : "ignoreIdentical",
+                "description" : "If true, Comparator skip identical results",
+                "hints" : "true / false. Default value is false"
+            }
+        ]
+    },
+    {
+        "content-type": "FULL_TEXT",
+        "documentation" : "",
+        "rules": [
+            {   "name" : "ignoreIdentical",
+                "description" : "If true, Comparator skip identical results",
+                "hints" : "true / false. Default value is false"
+            },
+            {   "name" : "ignoreChanged",
+                "description" : "If true, Comparator skip changed results",
+                "hints" : "true / false. Default value is false"
+            },
+            {   "name" : "sortErAr",
+                "description" : "If true, sort AR and ER",
+                "hints" : "true / false. Default value is false"
+            },
+            {   "name" : "ignoreCase",
+                "description" : "If true, Comparator performs case-insensitive comparison",
+                "hints" : "true / false. Default value is false"
+            },
+            {   "name" : "excludeText",
+                "description" : "Replace each symbol in the block given with the 'Default Replace symbol' ('*') or with the symbol configured via 'replaceSymbol'-rule",
+                "hints" : "line:2-3,cursor:3-21"
+            },
+            {   "name" : "replaceSymbol",
+                "description" : "Configure symbol which will be used instead of 'Default Replace symbol' ('*') while 'excludeText'-rule processing",
+                "hints" : "Enter single character to replace each symbol in the block specified by 'excludeText'-rule"
+            },
+            {   "name" : "mappingRegexp",
+                "description" : "Each row of ER/AR is checked via regexps given. This rule is intended for extra format checking. If row is invalid, extra 'MODIFIED' difference is added",
+                "hints" : "Enter regexp(s) on the separate rows each"
+            },
+            {   "name" : "ignoreRegexp",
+                "description" : "Each row of ER/AR is checked via regexps given. This rule is intended for extra format checking. If row is valid, all differences in the row are SKIPPED",
+                "hints" : "Enter regexp(s) on the separate rows each"
+            },
+            {   "name" : "replaceRegexp",
+                "description" : "The rule is applied before comparison. Each match of regexp is replaced with replacement. Regexp applies line by line (separated by '\\n' delimiter).",
+                "hints" : "Enter pairs of {regexp, replacement} delimited with ==, on the separate row each"
+            },
+            {   "name" : "replaceRegexpFullText",
+                "description" : "The rule is applied before comparison. Each match of regexp is replaced with replacement. Regexp applies to whole text.",
+                "hints" : "Enter pairs of {regexp, replacement} delimited with ==, on the separate row each"
+            },
+            {   "name" : "successIfMatch",
+                "description" : "The whole values of ER/AR are checked via regexps instead of ER/AR comparison. If any regexp is found, IDENTICAL is returned (otherwise MODIFIED).",
+                "hints" : "Enter regexp(s) on the separate rows each"
+            },
+            {   "name" : "failIfMatch",
+                "description" : "The whole values of ER/AR are checked via regexps instead of ER/AR comparison. If any regexp is found, MODIFIED is returned (otherwise IDENTICAL).",
+                "hints" : "Enter regexp(s) on the separate rows each"
+            },
+            {   "name" : "singleRowMode",
+                "description" : "If true, 1st ER row is compared with 1st AR row, 2nd - 2nd and so on.",
+                "hints" : "true / false. Default value is false"
+            }
+        ]
+    },
+    {
+        "content-type": "PLAIN_TEXT",
+        "documentation" : "",
+        "rules": [
+            {   "name" : "ignoreIdentical",
+                "description" : "If true, Comparator skip identical results",
+                "hints" : "true / false. Default value is false"
+            },
+            {   "name" : "ignoreCase",
+                "description" : "If true, Comparator performs case-insensitive comparison",
+                "hints" : "true / false. Default value is false"
+            },
+            {   "name" : "excludeText",
+                "description" : "Replace each symbol in the block given with the 'Default Replace symbol' ('*') or with the symbol configured via 'replaceSymbol'-rule",
+                "hints" : "line:2-3,cursor:3-21"
+            },
+            {   "name" : "replaceSymbol",
+                "description" : "Configure symbol which will be used instead of 'Default Replace symbol' ('*') while 'excludeText'-rule processing",
+                "hints" : "Enter single character to replace each symbol in the block specified by 'excludeText'-rule"
+            },
+            {   "name" : "singleRowMode",
+                "description" : "If true, 1st ER row is compared with 1st AR row, 2nd - 2nd and so on.",
+                "hints" : "true / false. Default value is false"
+            }
+        ]
+    },
+    {
+        "content-type": "TASK_LIST",
+        "documentation" : "",
+        "rules": [
+            {   "name" : "ignoreIdentical",
+                "description" : "If true, Comparator skip identical results",
+                "hints" : "true / false. Default value is false"
+            },
+            {   "name" : "TaskAsRegexp",
+                "description" : "If true, then all ER rows are represented as regular expressions.",
+                "hints" : "true / false. Default value is false"
+            },
+            {   "name" : "multipleMatch",
+                "description" : "If true, then each AR row matches or equals (depending on TaskAsRegexp value) each ER row. If no one matches, AR row is marked as MODIFIED.",
+                "hints" : "true / false. Default value is false"
+            }
+        ]
+    },
+    {
+        "content-type": "JSON",
+        "documentation" : "",
+        "rules": [
+            {   "name" : "ignoreArraysOrder",
+                "description" : "By default, JSON-comparator compares 1st array element of ER with 1st array element of AR, 2nd element - with 2nd element and so on. This rule turns IGNORE_ORDER = ON",
+                "hints" : "true / false. Default value is false"
+            },
+            {   "name" : "objectPrimaryKey",
+                "description" : "This rule provides comparator with the way of identifying array elements if they are objects",
+                "hints" : "Value is like /contactMethods/type, where '/contactMethods' - xpath to object, 'type' - primary key property of the object"
+            },
+            {   "name": "objectPrimaryKeyV2",
+                "description": "This rule provides comparator with the way of identifying array elements if they are objects. Allows PK to be located in children objects",
+                "hints": "Value is like /contactMethods[innerObject/id], where '/contactMethods' - xpath to object, 'innerObject/id' - path to primary key (may be located in child object)"
+            },
+            {   "name" : "ignoreProperties",
+                "description" : "Ignore differences of named object/property, or all 'object'-nodes, or 'property' in all nodes",
+                "hints" : "Syntax variants: 1) object/property, 2) object, 3) /property"
+            },
+            {   "name": "ignorePropertiesV2",
+                "description": "Ignore differences of nodes corresponding to JsonPath",
+                "hints": "Syntax is a plain JsonPath"
+            },
+            {   "name": "ignoreExtra",
+                "description": "This rule is intended to ignore EXTRA compare result",
+                "hints": "true / false. Default value is false"
+            },
+            {   "name": "mandatoryAttribute",
+                "description": "Ignore differences of all nodes except the specified one",
+                "hints": "Syntax is a plain JsonPath"
+            },
+            {   "name" : "checkArray",
+                "description" : "checks that there is at least 1 element in the array",
+                "hints" : "Syntax variants: 1) /arrayName"
+            },
+            {   "name" : "readByPath",
+                "description" : "Json-path expression to read nodes from source json",
+                "hints" : "Examples: \"$.store.book[*].author\" or \"$.store.book[?(@.price > 22)].title\" or \"$.store\""
+            },
+            {   "name" : "validateSchema",
+                "description" : "Json-schema to validate AR",
+                "hints" : "Very simple starting example: { \"required\" : [\"prop\"] }"
+            },
+            {   "name" : "validateAsSimpleSchema",
+                "description" : "Simple json-schema to validate AR",
+                "hints" : "Very simple starting example: { \"prop\" : \"type=string;regex=\\d*\\s*GB\" }"
+            },
+            {   "name": "changeDiffResultJson",
+                "description": "If difference is at one of nodes specified by JsonPaths given AND result of the difference is <OLD_RESULT>, it is changed to <NEW_RESULT>",
+                "hints": "Value example is: SIMILAR=IDENTICAL=$.contactMethods.type"
+            },
+            {   "name": "ignoreValue",
+                "description": "Allows to ignore the value and type of the node specified by JsonPath",
+                "hint": "Syntax is a plain JsonPath. Example: \"$..minValue\""
+            },
+            {   "name": "keysCaseInsensitive",
+                "description": "Allows to ignore case of keys in json objects. The system changes all keys in JSON to lowercase when keysCaseInsensitive = true.",
+                "hint": "true / false. Default value is false"
+            }
+        ]
+    },
+    {
+        "content-type": "XML",
+        "documentation" : "",
+        "rules": [
+            {   "name" : "excludeXpath",
+                "description" : "Nodes at these xpathes are excluded from ER/AR before comparison",
+                "hints" : "Value consists of xpathes on separate row each. XSLT-expressions are allowed."
+            },
+            {   "name" : "SortBy",
+                "description" : "This template is applied for ER/AR after 'excludeXpath' before comparison",
+                "hints" : "XSLT-template for sorting or any other transformation of ER/AR"
+            },
+            {   "name" : "abcSort",
+                "description" : "If true, Comparator performs predefined alphabetical sorting of ER/AR nodes and attributes before comparison",
+                "hints" : "true / false. Default value is false"
+            },
+            {   "name" : "changeDiffResult",
+                "description" : "If difference is at one of nodes specified by xpathes given AND result of the difference is <OLD_RESULT>, it is changed to <NEW_RESULT>",
+                "hints" : "Value example is: SIMILAR=MODIFIED=//*[local-name()='productionPlan']"
+            },
+            {   "name" : "similar2modified",
+                "description" : "If difference is at one of nodes specified by xpathes given AND result of the difference is SIMILAR, it is changed to MODIFIED",
+                "hints" : "Value consists of xpathes on separate row each. XSLT-expressions are allowed."
+            },
+            {   "name" : "excludeDiffWithStatus",
+                "description" : "If xml node has a difference with the status that pointed in the rule value then such difference is excluded and the node is not highlighted",
+                "hints" : "Format of rule value: status, for example EXTRA or SIMILAR"
+            },
+            {   "name" : "mappingXpath",
+                "description" : "This rule and 'mappingRegexp' are pair-rules. They are applied only together and there are some restrictions for their values. These rules are involved to perform extra separate checking of ER/AR.",
+                "hints" : "Value consists of xpathes on separate row each. XSLT-expressions are allowed."
+            },
+            {   "name" : "mappingRegexp",
+                "description" : "This rule and 'mappingXpath' are pair-rules. They are applied only together and there are some restrictions for their values. These rules are involved to perform extra separate checking of ER/AR.",
+                "hints" : "Value consists of regexps on separate row each."
+            },
+            {   "name" : "mappingXR",
+                "description" : "This rule is replacement of mappingXpath/mappingRegexp pair of rules. Node(s) specified by xpath are checked via regexp.",
+                "hints" : "Format of the value: xpath==regexp"
+            },
+            {   "name" : "keyChild",
+                "description" : "This rule provides comparator with the way of identifying nodes with the same name if they have children and/or attributes",
+                "hints" : "Format of rule value: nodename/childNodename or nodename/@attributeName"
+            }
+        ]
+    },
+    {
+        "content-type": "MASKED_XML",
+        "documentation" : "",
+        "rules": [
+            {   "name" : "mappingXpath",
+                "description" : "This rule and 'mappingRegexp' are pair-rules. They are applied only together and there are some restrictions for their values. These rules are involved to perform extra separate checking of ER/AR.",
+                "hints" : "Value consists of xpathes on separate row each. XSLT-expressions are allowed."
+            },
+            {   "name" : "mappingRegexp",
+                "description" : "This rule and 'mappingXpath' are pair-rules. They are applied only together and there are some restrictions for their values. These rules are involved to perform extra separate checking of ER/AR.",
+                "hints" : "Value consists of regexps on separate row each."
+            }
+        ]
+    },
+    {
+        "content-type": "CSV",
+        "documentation" : "",
+        "rules": [
+            {   "name" : "delimiter",
+                "description" : "character separating values in a line. Default comma \",\"",
+                "hints" : "character separating values in a line. Default comma \",\""
+            },
+            {   "name" : "firstRowIsColumns",
+                "description" : "if true, then no headers are generated, but the first line is used as headers. Headers are not validated.",
+                "hints" : "true or false. Default true."
+            },
+            {   "name" : "checkPOC",
+                "description" : "It's better to read documentation page carefully...",
+                "hints" : "Enter rules for like-M-Net specific table comparison"
+            },
+            {   "name" : "ignoreCase",
+                "description" : "If true, Comparator performs case-insensitive comparison",
+                "hints" : "true / false. Default value is false"
+            },
+            {   "name" : "ignoreColumnCase",
+                "description" : "If true, Comparator performs case-insensitive comparison of column names",
+                "hints" : "true / false. Default value is false"
+            },
+            {   "name" : "cellAsRegexp",
+                "description" : "If true, all values in ER are represented as regular expressions.",
+                "hints" : "true / false. Default value is false"
+            },
+            {   "name" : "ignoreMissed",
+                "description" : "If true, missed differences are not displayed",
+                "hints" : "true / false. Default value is false"
+            },
+            {   "name" : "ignoreExtra",
+                "description" : "If true, extra differences are not displayed",
+                "hints" : "true / false. Default value is false"
+            }
+        ]
+    },
+    {
+        "content-type": "TABLE",
+        "documentation" : "",
+        "rules": [
+            {   "name" : "checkPOC",
+                "description" : "It's better to read documentation page carefully...",
+                "hints" : "Enter rules for like-M-Net specific table comparison"
+            },
+            {   "name" : "ignoreCase",
+                "description" : "If true, Comparator performs case-insensitive comparison",
+                "hints" : "true / false. Default value is false"
+            },
+            {   "name" : "ignoreColumnCase",
+                "description" : "If true, Comparator performs case-insensitive comparison of column names",
+                "hints" : "true / false. Default value is false"
+            },
+            {   "name" : "cellAsRegexp",
+                "description" : "If true, all cells in ER are represented as regular expressions.",
+                "hints" : "true / false. Default value is false"
+            },
+            {   "name" : "ignoreMissed",
+                "description" : "If true, missed differences are not displayed",
+                "hints" : "true / false. Default value is false"
+            },
+            {   "name" : "ignoreExtra",
+                "description" : "If true, extra differences are not displayed",
+                "hints" : "true / false. Default value is false"
+            }
+        ]
+    },
+    {
+        "content-type": "XSD",
+        "documentation" : "",
+        "rules": [
+            {   "name" : "xsdFile",
+                "description" : "This rule is intended to validate XML structure of ER & AR via particular XSD-schema, instead of comparison of ER/AR.",
+                "hints" : "Value is XSD-schema to validate ER & AR"
+            },
+            {
+                "name": "skipER",
+                "description": "This rule is intended to skip XSD validations for ER.",
+                "hints": "true / false. Default value is false"
+            }
+        ]
+    }
+
+]
+

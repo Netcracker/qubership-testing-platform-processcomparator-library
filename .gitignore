@@ -1,0 +1,13 @@
+
+**/target
+*.log
+
+# IDEA files
+
+*.iml
+**/.idea
+
+# Eclipse files
+.classpath
+.project
+.settings

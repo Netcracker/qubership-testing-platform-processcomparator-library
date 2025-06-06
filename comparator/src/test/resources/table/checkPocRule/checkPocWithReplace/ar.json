@@ -1,0 +1,29 @@
+{
+    "name": "TableAR",
+    "headers": [
+        "Row#",
+        "TextAR",
+        "BooleanAR",
+        "ReplaceColAR"
+    ],
+    "rows": [
+        [
+            "1",
+            "Disconnected",
+            "Yes",
+            "0"
+        ],
+        [
+            "2",
+            "Invalid",
+            "Yes",
+            "1"
+        ],
+        [
+            "3",
+            "Active",
+            "Yes",
+            "2"
+        ]
+    ]
+}

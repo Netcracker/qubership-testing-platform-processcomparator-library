@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<activationResponse xmlns="http://www.evolving.com/xml/SwisscomMobile/NPS_EAI" xmlns:v1="http://www.swisscom.ch/ns/EAI/common/service/v1-0" result="success">
+	<trackingInfo>
+		<v1:trackingInformation>
+			<v1:eventGlobalID />
+			<v1:eventLocalID />
+			<v1:applicationID>SIEBEL</v1:applicationID>
+			<v1:dataApplicationID>QSTP</v1:dataApplicationID>
+			<v1:applicationData>
+				<v1:name>MWFCaseNumber</v1:name>
+				<v1:value>8921816</v1:value>
+			</v1:applicationData>
+			<v1:applicationData>
+				<v1:name>orchestrationEngine</v1:name>
+				<v1:value>AFF</v1:value>
+			</v1:applicationData>
+			<v1:applicationData>
+				<v1:name>OrderSendQueue</v1:name>
+				<v1:value>org.qubership.solutions.swisscom.integration.nps.request.QubershipToNPSQueue</v1:value>
+			</v1:applicationData>
+			<v1:originEventLocalID />
+			<v1:originApplicationID>SIEBEL</v1:originApplicationID>
+			<v1:replyTo>org.qubership.solutions.swisscom.integration.nps.response.NPSToQubershipQueue</v1:replyTo>
+			<v1:requestID>2012-06-11_MOBILE_CONNECTIVITY_001</v1:requestID>
+		</v1:trackingInformation>
+	</trackingInfo>
+	<orderHeader>
+		<orderDetails>
+			<serviceOrderType>CRM_ADOPT_COMBOX</serviceOrderType>
+			<orderID />
+			<transactionID><span data-block-id="pc-highlight-block" data-compare-result="CHANGED">9144881790413642536</span></transactionID>
+			<priority>8</priority>
+			<requestTimestamp>2012-06-13T15:15:00.000+04:00</requestTimestamp>
+			<originApplicationID>SIEBEL</originApplicationID>
+		</orderDetails>
+		<clientDetails>
+			<clientSystem>OX NPS MACHINE HOSTNAME</clientSystem>
+			<clientType>QSTP.NPS.OX</clientType>
+			<clientUser>tibco</clientUser>
+		</clientDetails>
+	</orderHeader>
+	<subscription>
+		<baseKeys>
+			<cfsID><span data-block-id="pc-highlight-block" data-compare-result="CHANGED">SE0.001.141.919</span></cfsID>
+			<msisdn>41797771000</msisdn>
+			<imsi>228017220690000</imsi>
+		</baseKeys>
+	</subscription>
+	<orderItems>
+		<orderItem>
+			<orderItemID><span data-block-id="pc-highlight-block" data-compare-result="CHANGED">9144881790413642520</span></orderItemID>
+			<service name="MOBILE COMBOX" operation="create" result="success" version="1.0">
+				<parameters />
+			</service>
+		</orderItem>
+	</orderItems>
+</activationResponse>

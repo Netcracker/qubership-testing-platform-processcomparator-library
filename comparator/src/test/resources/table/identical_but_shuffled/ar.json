@@ -1,0 +1,32 @@
+{
+  "name": "Prices",
+  "headers": [
+    "Value",
+    "Row#",
+    "Status",
+    "parent Product Offering",
+    "parent Offer Price Component Name",
+    "Parent Entity",
+    "Start Date"
+  ],
+  "rows": [
+    [
+      "41.1765",
+      "3",
+      "PASSED",
+      "2. Anfahrt (Geb?hr)",
+      "",
+      "2. Anfahrt (Geb?hr)",
+      "01/01/1970"
+    ],
+    [
+      "41.1765",
+      "4",
+      "PASSED",
+      "2. Anfahrt (Geb?hr)",
+      "NRC for 2. Anfahrt",
+      "NRC for 2. Anfahrt",
+      "01/01/1970"
+    ]
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "name": "Prices",
+  "headers": [
+    {
+      "index": 0,
+      "name": "Row#"
+    },
+    {
+      "index": 1,
+      "name": "parent Product Offering"
+    },
+    {
+      "index": 2,
+      "name": "parent Offer Price Component Name"
+    },
+    {
+      "index": 3,
+      "name": "Parent Entity"
+    },
+    {
+      "index": 4,
+      "name": "Value"
+    },
+    {
+      "index": 5,
+      "name": "Status"
+    },
+    {
+      "index": 6,
+      "name": "Start Date"
+    }
+  ],
+  "rows": [
+    {
+      "index": 0,
+      "cells": [
+        {
+          "row": 0,
+          "column": 0,
+          "value": "3"
+        },
+        {
+          "row": 0,
+          "column": 1,
+          "value": "2. Anfahrt (Geb?hr)"
+        },
+        {
+          "row": 0,
+          "column": 2,
+          "value": ""
+        },
+        {
+          "row": 0,
+          "column": 3,
+          "value": "2. Anfahrt (Geb?hr)"
+        },
+        {
+          "row": 0,
+          "column": 4,
+          "value": "41.1765"
+        },
+        {
+          "row": 0,
+          "column": 5,
+          "value": "PASSED"
+        },
+        {
+          "row": 0,
+          "column": 6,
+          "value": "01/01/1970"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "value": "4"
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "value": "2. Anfahrt (Geb?hr)"
+        },
+        {
+          "row": 1,
+          "column": 2,
+          "value": "NRC for 2. Anfahrt"
+        },
+        {
+          "row": 1,
+          "column": 3,
+          "value": "NRC for 2. Anfahrt"
+        },
+        {
+          "row": 1,
+          "column": 4,
+          "value": "41.1765"
+        },
+        {
+          "row": 1,
+          "column": 5,
+          "value": "FAILED"
+        },
+        {
+          "row": 1,
+          "column": 6,
+          "value": "01/01/1970"
+        }
+      ]
+    }
+  ]
+}

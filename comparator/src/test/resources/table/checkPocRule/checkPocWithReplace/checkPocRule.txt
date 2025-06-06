@@ -1,0 +1,26 @@
+<alias>
+# Name = Name of placeholder, i.e. <Top Offer>
+Name = any
+# Table = ER-table name
+Table = TableER
+# Columns = ER-table column name
+Colname = TextER
+</alias>
+  
+<check>
+# Name of this checking. For error reporting purposes only
+Name = Check#1
+# Table = ER-table name
+Table =TableER
+# Relation = AR-table column name = ER-table column name
+Relation = TextAR=TextER
+# Columns = AR-table column1 name = ER-table column1 name, ...
+Columns = BooleanAR=BooleanER,ReplaceColAR=ReplaceColER
+</check>
+ 
+<replace>
+Colname = ReplaceColAR
+# Replace substring in AR to this substring 
+'0'='3'
+'2'='3'
+</replace>

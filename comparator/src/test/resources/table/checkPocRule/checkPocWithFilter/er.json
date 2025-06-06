@@ -1,0 +1,45 @@
+{
+    "name": "TableER",
+    "headers": [
+        "Row#",
+        "NameER",
+        "FilterEqualER",
+        "FilterNotEqualER",
+        "FilterLessER",
+        "ColumnForAr"
+    ],
+    "rows": [
+        [
+            "2",
+            "Active",
+            "equal",
+            "1",
+            "11",
+            "2022-01-19"
+        ],
+        [
+            "3",
+            "Inactive",
+            "equal",
+            "1",
+            "12",
+            "2022-01-20"
+        ],
+        [
+            "4",
+            "Connected",
+            "equal",
+            "2",
+            "13",
+            "2022-01-21"
+        ],
+        [
+            "5",
+            "Disconnected",
+            "notEqual",
+            "1",
+            "14",
+            "2022-01-22"
+        ]
+    ]
+}

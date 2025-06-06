@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!-- sort of complicated bubble sort algorithm ... --><!-- Smth. like hoodoo (see below) but I couldn't make indents more elegant way - Kapustin Aleksandr, 2016-08-29  -->
+<stx:transform xmlns:stx="http://stx.sourceforge.net/2002/ns" version="1.0"
+               pass-through="all" output-method ="xml" strip-space = "no">
+    <stx:variable name="level" select="0"/>
+    <stx:variable name="text_node" select="1"/>
+    <stx:variable name="indent" select="0"/>
+    <stx:template match="/">
+        <pre>
+            <stx:value-of select="builder:spaces(0,name(.),1)" xmlns:builder="java:org.qubership.automation.pc.core.helpers.BuildColoredXML"/>
+            <stx:process-children/>
+        </pre>
+    </stx:template>
+    <stx:template match="node()">
+        <stx:if test="node-kind(.) = 'processing-instruction'">
+            <stx:process-children/>
+        </stx:if>
+        <stx:else>
+        <stx:if test="name(.) = 'span'">
+            <stx:start-element name="span"/>
+                <stx:attribute name = "data-block-id" select ="@data-block-id"/>
+                <stx:attribute name = "class">
+                    <stx:value-of select="@data-compare-result"/>
+                </stx:attribute> 
+                <stx:attribute name = "id" select ="@id"/>               
+                <stx:attribute name = "data-diff-name" select ="@data-diff-name"/>                
+                <stx:attribute name = "data-toggle" select ="@data-toggle"/>
+                <stx:attribute name = "title" select ="@title"/>
+       </stx:if>
+        <stx:else>
+            <stx:if test="$level > 0"><br/></stx:if>
+            <stx:assign name="level" select="$level+1"/>
+            <stx:value-of select="builder:spaces($level,name(.),1)" xmlns:builder="java:org.qubership.automation.pc.core.helpers.BuildColoredXML"/>
+	    <span class="NORMAL">&lt;<stx:value-of select="name(.)"/><stx:for-each-item name="p" select="@*"><stx:text> </stx:text><stx:if test="starts-with($p,'$MODIFIED$')"><stx:start-element name="span"/><stx:start-element name="font"/><stx:attribute name = "color"><stx:value-of select="'red'"/></stx:attribute><stx:value-of select="name($p)"/>="<stx:value-of select="substring-after($p,'$MODIFIED$')"/>"<stx:end-element name="font"/><stx:end-element name="span"/></stx:if><stx:else><stx:if test="starts-with($p,'$SIMILAR$')"><stx:start-element name="span"/><stx:start-element name="font"/><stx:attribute name = "color"><stx:value-of select="'orange'"/></stx:attribute><stx:value-of select="name($p)"/>="<stx:value-of select="substring-after($p,'$SIMILAR$')"/>"<stx:end-element name="font"/><stx:end-element name="span"/></stx:if><stx:else><stx:value-of select="name($p)"/>="<stx:value-of select="$p"/>"</stx:else></stx:else></stx:for-each-item>&gt;</span>
+        </stx:else>
+        <stx:process-children/>
+        <stx:assign name="indent" select="$indent + 1"/>
+        <stx:if test="name(.) = 'span'">
+            <stx:end-element name="span"/>
+        </stx:if>
+        <stx:else>
+            <stx:if test="$text_node = 0 or $indent = 111 or $indent = 122 or $indent = 133">
+                <br/>
+                <stx:value-of select="builder:spaces($level,name(.),0)" xmlns:builder="java:org.qubership.automation.pc.core.helpers.BuildColoredXML"/>
+            </stx:if>
+            <stx:else><stx:value-of select="builder:spaces(0,name(.),2)" xmlns:builder="java:org.qubership.automation.pc.core.helpers.BuildColoredXML"/></stx:else>
+            <span class="NORMAL">&lt;/<stx:value-of select="name(.)"/>&gt;</span>
+            <stx:assign name="level" select="$level - 1"/>
+            <stx:assign name="text_node" select="0"/>
+            <stx:assign name="indent" select="100"/>
+        </stx:else>
+        </stx:else>
+    </stx:template>
+    <stx:template match="*/text()">
+        <stx:assign name="text_node" select="1"/>
+        <stx:assign name="indent" select="$indent+10"/>
+        <stx:value-of select="normalize-space(.)"/>
+    </stx:template>
+</stx:transform> 

@@ -1,0 +1,36 @@
+{
+  "name": "Prices",
+  "newField": "bla",
+  "topics": [
+    "Row#",
+    "Status",
+    "parent Product Offering",
+    "parent Offer Price Component Name",
+    "Parent Entity",
+    "Value",
+    "Start Date",
+    "New Column"
+  ],
+  "rows": {
+    "1": [
+      "3",
+      "PASSED",
+      "2. Anfahrt (Geb?hr)",
+      "",
+      "2. Anfahrt (Geb?hr)",
+      "41.1765",
+      "01/01/1970",
+      "NONE"
+    ],
+    "2": [
+      "4",
+      "FAILED",
+      "2. Anfahrt (Geb?hr)",
+      "NRC for 2. Anfahrt",
+      "NRC for 2. Anfahrt",
+      "41.1765",
+      "01/01/1971",
+      "NONE"
+    ]
+  }
+}

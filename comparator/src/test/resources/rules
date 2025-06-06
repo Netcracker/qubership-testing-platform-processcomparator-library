@@ -1,0 +1,5 @@
+rule.step.2.parameter.data.configuration.1.comparator = JmsComparator
+rule.step.3.parameter.data.configuration.1.comparator = JmsComparator
+
+source.er.loader = XmlFileLoader
+source.ar.loader = DBLoader

@@ -1,0 +1,15 @@
+{
+  "name": "Prices",
+  "headers": [
+    "PK",
+    "Status",
+    "State"
+  ],
+  "rows": [
+    [
+      "1",
+      "PASSED",
+      "FINISHED"
+    ]
+  ]
+}

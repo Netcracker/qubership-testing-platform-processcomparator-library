@@ -1,0 +1,167 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap:Body>
+		<getProductDetails xmlns="http://warehouse.example.com/ws">
+			<businessInteractionItem>
+				<entityKey>
+					<keyA>9144940136313253761</keyA>
+				</entityKey>
+				<state>
+					<value>incomplete</value>
+				</state>
+				<specification>
+					<specificationName>Workforce Auftrag Planen</specificationName>
+					<specificationID>Workforce Auftrag Planen</specificationID>
+					<characteristic>
+						<characteristicID>ENNI_Service</characteristicID>
+						<characteristic>
+							<characteristicID>EntityReference</characteristicID>
+							<characteristic>
+								<characteristicID>keyA</characteristicID>
+								<characteristicValue />
+							</characteristic>
+							<characteristic>
+								<characteristicID>keyB</characteristicID>
+								<characteristicValue />
+							</characteristic>
+						</characteristic>
+					</characteristic>
+					<characteristic>
+						<characteristicID>WF_Network</characteristicID>
+						<characteristic>
+							<characteristicID>EntityReference</characteristicID>
+							<characteristic>
+								<characteristicID>keyA</characteristicID>
+								<characteristicValue>f131fda4-bb5e-4a4b-9580-2772d7e60361</characteristicValue>
+							</characteristic>
+							<characteristic>
+								<characteristicID>keyB</characteristicID>
+								<characteristicValue />
+							</characteristic>
+						</characteristic>
+					</characteristic>
+					<characteristic>
+						<characteristicID>WF_Product</characteristicID>
+						<characteristic>
+							<characteristicID>EntityReference</characteristicID>
+							<characteristic>
+								<characteristicID>keyA</characteristicID>
+								<characteristicValue>3e9bca26-aa9a-4b19-b322-27f05623a9b9</characteristicValue>
+							</characteristic>
+							<characteristic>
+								<characteristicID>keyB</characteristicID>
+								<characteristicValue />
+							</characteristic>
+						</characteristic>
+					</characteristic>
+					<characteristic>
+						<characteristicID>UNI_Service</characteristicID>
+						<characteristic>
+							<characteristicID>EntityReference</characteristicID>
+							<characteristic>
+								<characteristicID>keyA</characteristicID>
+								<characteristicValue>69765414-1e72-472e-aeaa-5a6805aa5e0a</characteristicValue>
+							</characteristic>
+							<characteristic>
+								<characteristicID>keyB</characteristicID>
+								<characteristicValue />
+							</characteristic>
+						</characteristic>
+						<characteristic>
+							<characteristicID>EntityReference</characteristicID>
+							<characteristic>
+								<characteristicID>keyA</characteristicID>
+								<characteristicValue>8d13b6d9-7f7e-4051-82ec-a89f24ced9a7</characteristicValue>
+							</characteristic>
+							<characteristic>
+								<characteristicID>keyB</characteristicID>
+								<characteristicValue />
+							</characteristic>
+						</characteristic>
+					</characteristic>
+					<characteristic>
+						<characteristicID>Remote_Device</characteristicID>
+						<characteristic>
+							<characteristicID>EntityReference</characteristicID>
+							<characteristic>
+								<characteristicID>keyA</characteristicID>
+								<characteristicValue>f27d5b53-c181-4265-bb3e-77ff0a6cce06</characteristicValue>
+							</characteristic>
+							<characteristic>
+								<characteristicID>keyB</characteristicID>
+								<characteristicValue />
+							</characteristic>
+						</characteristic>
+					</characteristic>
+				</specification>
+			</businessInteractionItem>
+			<businessInteractionItem>
+				<entityKey>
+					<keyA>9144940136313253756</keyA>
+				</entityKey>
+				<state>
+					<value>incomplete</value>
+				</state>
+				<specification>
+					<specificationName>ManRech beauftragen</specificationName>
+					<specificationID>ManRech beauftragen</specificationID>
+					<characteristic>
+						<characteristicID>WF_Network</characteristicID>
+						<characteristic>
+							<characteristicID>EntityReference</characteristicID>
+							<characteristic>
+								<characteristicID>keyA</characteristicID>
+								<characteristicValue>f131fda4-bb5e-4a4b-9580-2772d7e60361</characteristicValue>
+							</characteristic>
+							<characteristic>
+								<characteristicID>keyB</characteristicID>
+								<characteristicValue />
+							</characteristic>
+						</characteristic>
+					</characteristic>
+					<characteristic>
+						<characteristicID>Access_Line</characteristicID>
+						<characteristic>
+							<characteristicID>EntityReference</characteristicID>
+							<characteristic>
+								<characteristicID>keyA</characteristicID>
+								<characteristicValue>8cc87328-9409-47a6-909a-36ee242e794e</characteristicValue>
+							</characteristic>
+							<characteristic>
+								<characteristicID>keyB</characteristicID>
+								<characteristicValue />
+							</characteristic>
+						</characteristic>
+					</characteristic>
+					<characteristic>
+						<characteristicID>Workforce_Recherche</characteristicID>
+						<characteristic>
+							<characteristicID>EntityReference</characteristicID>
+							<characteristic>
+								<characteristicID>keyA</characteristicID>
+								<characteristicValue>f388eb98-a554-46b4-94e3-92c97582c09d</characteristicValue>
+							</characteristic>
+							<characteristic>
+								<characteristicID>keyB</characteristicID>
+								<characteristicValue />
+							</characteristic>
+						</characteristic>
+					</characteristic>
+					<characteristic>
+						<characteristicID>Remote_Device</characteristicID>
+						<characteristic>
+							<characteristicID>EntityReference</characteristicID>
+							<characteristic>
+								<characteristicID>keyA</characteristicID>
+								<characteristicValue>f27d5b53-c181-4265-bb3e-77ff0a6cce06</characteristicValue>
+							</characteristic>
+							<characteristic>
+								<characteristicID>keyB</characteristicID>
+								<characteristicValue />
+							</characteristic>
+						</characteristic>
+					</characteristic>
+				</specification>
+			</businessInteractionItem>
+		</getProductDetails>
+	</soap:Body>
+</soap:Envelope>

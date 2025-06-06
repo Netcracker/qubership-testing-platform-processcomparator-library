@@ -1,0 +1,30 @@
+{
+    "name": "TableER",
+    "headers": [
+        "Row#",
+        "TextER",
+        "BooleanER",
+        "ReplaceColER"
+    ],
+    "rows": [
+        [
+            "1",
+            "Active",
+            "No",
+            "3"
+        ],
+        [
+            "2",
+            "Disconnected",
+            "No",
+            "3"
+        ],
+        [
+            "3",
+            "Invalid",
+            "Yes",
+            "3"
+        ]
+        
+    ]
+}  

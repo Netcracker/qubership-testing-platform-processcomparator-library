@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <parameters>
+    </parameters>
+    <dataCollection>
+        <arCollection>            
+            <item>
+                <timestamp></timestamp>
+                <uid>123456</uid>
+                <name>asdf</name>
+                <steps>
+                    <step>
+                        <objects>
+                            <object name="object_name">object_value</object>
+                        </objects>
+                    </step>
+                    <step>
+                        <objects>
+                            <object name="object_name_step2">object_value_step2</object>
+                        </objects>
+                    </step>                        
+                </steps>
+            </item>                        
+            <item>
+                <timestamp></timestamp>
+                <uid>123456</uid>
+                <name>asdf</name>
+                <steps>
+                    <step>
+                        <objects>
+                            <object name="object_name">object_value</object>
+                        </objects>
+                    </step>
+                    <step>
+                        <objects>
+                            <object name="object_name_step2">object_value_step2</object>
+                        </objects>
+                    </step>                        
+                </steps>
+            </item>            
+        </arCollection>        
+        <erCollection>
+            <items>
+                <item>
+                    <timestamp></timestamp>
+                    <uid>123456</uid>
+                    <name>asdf</name>
+                    <steps>
+                        <step>
+                            <objects>
+                                <object name="object_name">object_value</object>
+                            </objects>
+                        </step>
+                        <step>
+                            <objects>
+                                <object name="object_name_step2">object_value_step2</object>
+                            </objects>
+                        </step>                        
+                    </steps>
+                </item>
+            </items>
+        </erCollection>
+    </dataCollection>
+    <compareConfigurations>
+        <configuration uid="123456">
+            <rule>
+                <comparator name="comparatorName" order="1">
+                    <parameters>
+                        <parameter name="param_Name" value="param_Value" />
+                    </parameters>
+                </comparator>                
+            </rule>
+        </configuration>        
+    </compareConfigurations>
+</configuration>
