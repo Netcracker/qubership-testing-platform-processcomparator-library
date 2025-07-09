@@ -32,48 +32,48 @@ public interface ISVNProperty {
     /**
      * mime type of the entry, used to flag binary files.
      */
-    public static final String MIME_TYPE = "svn:mime-type";
+    String MIME_TYPE = "svn:mime-type";
     /**
      * list of filenames with wildcards which should be ignored by add and
      * status.
      */
-    public static final String IGNORE = "svn:ignore";
+    String IGNORE = "svn:ignore";
     /**
      * how the end of line code should be treated during retrieval.
      */
-    public static final String EOL_STYLE = "svn:eol-style";
+    String EOL_STYLE = "svn:eol-style";
     /**
      * list of keywords to be expanded during retrieval.
      */
-    public static final String KEYWORDS = "svn:keywords";
+    String KEYWORDS = "svn:keywords";
     /**
      * flag if the file should be made excutable during retrieval.
      */
-    public static final String EXECUTABLE = "svn:executable";
+    String EXECUTABLE = "svn:executable";
     /**
      * value for svn:executable.
      */
-    public static final String EXECUTABLE_VALUE = "*";
+    String EXECUTABLE_VALUE = "*";
     /**
      * list of directory managed outside of this working copy.
      */
-    public static final String EXTERNALS = "svn:externals";
+    String EXTERNALS = "svn:externals";
     /**
      * the author of the revision.
      */
-    public static final String REV_AUTHOR = "svn:author";
+    String REV_AUTHOR = "svn:author";
     /**
      * the log message of the revision.
      */
-    public static final String REV_LOG = "svn:log";
+    String REV_LOG = "svn:log";
     /**
      * the date of the revision.
      */
-    public static final String REV_DATE = "svn:date";
+    String REV_DATE = "svn:date";
     /**
      * the original date of the revision.
      */
-    public static final String REV_ORIGINAL_DATE = "svn:original-date";
+    String REV_ORIGINAL_DATE = "svn:original-date";
 
     /**
      * Get the name of the property.

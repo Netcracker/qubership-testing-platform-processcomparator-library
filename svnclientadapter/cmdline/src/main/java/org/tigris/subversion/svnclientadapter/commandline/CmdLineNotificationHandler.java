@@ -19,7 +19,6 @@
 
 package org.tigris.subversion.svnclientadapter.commandline;
 
-import java.util.Iterator;
 import java.util.StringTokenizer;
 
 import org.tigris.subversion.svnclientadapter.ISVNNotifyListener;
@@ -41,8 +40,8 @@ public class CmdLineNotificationHandler extends SVNNotificationHandler {
         StringTokenizer st = new StringTokenizer(e.getMessage(), Helper.NEWLINE);
         while (st.hasMoreTokens()) {
             String line = st.nextToken();
-            for (Iterator it = notifylisteners.iterator(); it.hasNext(); ) {
-                ISVNNotifyListener listener = (ISVNNotifyListener) it.next();
+            for (Object notifyListener : notifylisteners) {
+                ISVNNotifyListener listener = (ISVNNotifyListener) notifyListener;
                 listener.logError(line);
             }
         }

@@ -27,12 +27,12 @@ import org.tigris.subversion.svnclientadapter.utils.StringUtils;
 
 /**
  * We could have used URL, using custom protocols (svn, svn+ssl)
- * (@see http://developer.java.sun.com/developer/onlineTraining/protocolhandlers/)
+ * (@see <a href="http://developer.java.sun.com/developer/onlineTraining/protocolhandlers/">Protocol Handlers</a>)
  * but this is not really necessary as we don't want to open a connection
  * directly with this class.
  * We just want a string which represent a SVN url which can be used with our JNI
  * methods.
- * </p>
+ * <p>
  * An SVNUrl is immutable.
  *
  * @author Cï¿½dric Chabanois
@@ -76,7 +76,7 @@ public class SVNUrl {
     }
 
     /**
-     * Asnwer a new SVNUrl with added segments.
+     * Answer a new SVNUrl with added segments.
      *
      * @param path a String of path segment(s) to ba appended to receiver
      * @return new SVNUrl
@@ -84,7 +84,7 @@ public class SVNUrl {
     public SVNUrl appendPath(String path) {
         String[] segmentsToAdd = StringUtils.split(path, SEGMENT_SEPARATOR);
         //Skip the starting slash
-        if ((segmentsToAdd.length > 0) && (segmentsToAdd[0].equals(""))) {
+        if ((segmentsToAdd.length > 0) && (segmentsToAdd[0].isEmpty())) {
             String[] newSegmentsToAdd = new String[segmentsToAdd.length - 1];
             System.arraycopy(segmentsToAdd, 1, newSegmentsToAdd, 0, segmentsToAdd.length - 1);
             segmentsToAdd = newSegmentsToAdd;
@@ -99,15 +99,15 @@ public class SVNUrl {
     /**
      * Parses and validates the given Subversion URL string, extracting its components:
      * protocol, host, port, and path segments.
-     * </p>
+     * <p>
      * The expected format is:
      * {@code scheme://host[:port]/path}
      * where {@code scheme} is one of {@code http}, {@code https}, {@code svn}, {@code svn+ssh}, or {@code file}.
-     * </p>
+     * <p>
      * For {@code file://} URLs, the host component may be empty and port is set to -1.
      * For other protocols, the method attempts to extract the host and port; if no port is specified,
      * the default port for the protocol is assigned.
-     * </p>
+     * <p>
      * The path part is split into segments using '/' as a separator.
      *
      * @param svnUrl the full Subversion URL to parse
@@ -134,7 +134,7 @@ public class SVNUrl {
             throw new MalformedURLException("Invalid svn url: " + svnUrl);
         }
         parsed = parsed.substring(i + 3);
-        if (parsed.length() == 0) {
+        if (parsed.isEmpty()) {
             throw new MalformedURLException("Invalid svn url: " + svnUrl);
         }
 
@@ -204,7 +204,7 @@ public class SVNUrl {
      */
     private String get() {
         //Be sofisticated and compute the StringBuffer size up-front.
-        StringBuffer buffer = new StringBuffer(calculateUrlLength());
+        StringBuilder buffer = new StringBuilder(calculateUrlLength());
         buffer.append(getProtocol());
         buffer.append("://");
         buffer.append(getHost());
@@ -213,9 +213,9 @@ public class SVNUrl {
             buffer.append(getPort());
         }
 
-        for (int i = 0; i < segments.length; i++) {
+        for (String segment : segments) {
             buffer.append(SEGMENT_SEPARATOR);
-            buffer.append(segments[i]);
+            buffer.append(segment);
         }
         return buffer.toString();
     }
@@ -232,9 +232,9 @@ public class SVNUrl {
             result++; //Add one for ":"
             result += String.valueOf(getPort()).length();
         }
-        for (int i = 0; i < segments.length; i++) {
+        for (String segment : segments) {
             result++; // Add 1 for separator
-            result += segments[i].length();
+            result += segment.length();
         }
         return result;
     }
@@ -293,7 +293,7 @@ public class SVNUrl {
      * @return the parent url or null if no parent
      */
     public SVNUrl getParent() {
-        if ((segments.length == 0) || ((segments.length == 1) && ((host == null) || (host.length() == 0)))) {
+        if ((segments.length == 0) || ((segments.length == 1) && ((host == null) || (host.isEmpty())))) {
             return null;
         }
         String[] parentSegments = new String[segments.length - 1];
@@ -306,7 +306,7 @@ public class SVNUrl {
      */
     public boolean equals(Object target) {
         // this method is not very accurate because :
-        // url before repository is not always case sensitive
+        // url before repository is not always case-sensitive
         if (this == target) {
             return true;
         }
@@ -332,7 +332,9 @@ public class SVNUrl {
         // to handle other classes OK.  I tested with @ + and Unicode characters.  It leaves
         // the @ and + alone and converts Unicode to %nn.  It is possible there are other
         // characters we need to replace here besides space.
-        String s = get().replace(" ", "%20").replace("[", "%5B").replace("]", "%5D");
+        String s = get().replace(" ", "%20")
+                .replace("[", "%5B")
+                .replace("]", "%5D");
         try {
             URI u = new URI(s);
             return u.toASCIIString();

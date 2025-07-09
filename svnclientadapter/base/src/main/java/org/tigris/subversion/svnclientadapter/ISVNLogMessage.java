@@ -21,7 +21,6 @@ package org.tigris.subversion.svnclientadapter;
 
 import java.util.Date;
 
-
 /**
  * An interface defining a single subversion commit with log message,
  * author, date and paths changed within the commit.
@@ -29,24 +28,24 @@ import java.util.Date;
  * @author Philip Schatz <a href="mailto:schatzp@purdue.edu">schatzp@purdue.edu</a>
  */
 public interface ISVNLogMessage {
-    public final String AUTHOR = "svn:author";
-    public final String MESSAGE = "svn:log";
-    public final String DATE = "svn:date";
-    public final String TIME_MICROS = "svnclientadapter:timemicros";
+    String AUTHOR = "svn:author";
+    String MESSAGE = "svn:log";
+    String DATE = "svn:date";
+    String TIME_MICROS = "svnclientadapter:timemicros";
 
     /**
      * Returns the revision number.
      *
      * @return the revision number
      */
-    public abstract SVNRevision.Number getRevision();
+    SVNRevision.Number getRevision();
 
     /**
      * Returns the author of the commit.
      *
      * @return the author of the commit
      */
-    public abstract String getAuthor();
+    String getAuthor();
 
     /**
      * Returns the time of the commit.
@@ -54,7 +53,7 @@ public interface ISVNLogMessage {
      * @return the time of the commit measured in the number of
      *         microseconds since 00:00:00 January 1, 1970 UTC
      */
-    public abstract long getTimeMicros();
+    long getTimeMicros();
 
     /**
      * Returns the time of the commit.
@@ -62,28 +61,28 @@ public interface ISVNLogMessage {
      * @return the time of the commit measured in the number of
      *         milliseconds since 00:00:00 January 1, 1970 UTC
      */
-    public abstract long getTimeMillis();
+    long getTimeMillis();
 
     /**
      * Returns the date of the commit.
      *
      * @return the date of the commit
      */
-    public abstract Date getDate();
+    Date getDate();
 
     /**
      * Return the log message text.
      *
      * @return the log message text
      */
-    public abstract String getMessage();
+    String getMessage();
 
     /**
      * Returns the changes items by this commit.
      *
      * @return the changes items by this commit
      */
-    public abstract ISVNLogMessageChangePath[] getChangedPaths();
+    ISVNLogMessageChangePath[] getChangedPaths();
 
     /**
      * Returns the number of child log messages.  When merge-sensitive
@@ -92,7 +91,7 @@ public interface ISVNLogMessage {
      * @return the number of revisions merged by this commit
      */
 
-    public abstract long getNumberOfChildren();
+    long getNumberOfChildren();
 
     /**
      * Returns the child log messages.  When merge-sensitive
@@ -100,16 +99,15 @@ public interface ISVNLogMessage {
      *
      * @return the revisions merged by this commit
      */
-    public abstract ISVNLogMessage[] getChildMessages();
-
+    ISVNLogMessage[] getChildMessages();
 
     /**
      * Add a child logMessage to an existing message.
      */
-    public abstract void addChild(ISVNLogMessage msg);
+    void addChild(ISVNLogMessage msg);
 
     /**
      * Does this logMessage have any children.
      */
-    public abstract boolean hasChildren();
+    boolean hasChildren();
 }

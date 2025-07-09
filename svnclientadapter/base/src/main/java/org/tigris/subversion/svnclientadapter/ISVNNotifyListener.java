@@ -23,7 +23,7 @@ import java.io.File;
 
 
 /**
- * A callback interface used for receiving notifications of a progress of
+ * A callback interface used for receiving notifications of the progress of
  * a subversion command invocation.
  *
  * @author Cédric Chabanois <a
@@ -34,7 +34,7 @@ public interface ISVNNotifyListener {
     /**
      * An enumeration class representing the supported subversion commands/actions.
      */
-    public static final class Command {
+    final class Command {
         public static final int UNDEFINED = 0;
         public static final int ADD = 1;
         public static final int CHECKOUT = 2;
@@ -76,28 +76,28 @@ public interface ISVNNotifyListener {
      *
      * @param command one of {@link Command}.* constants
      */
-    public void setCommand(int command);
+    void setCommand(int command);
 
     /**
      * called at the beginning of the command.
      *
      * @param commandLine log command line
      */
-    public void logCommandLine(String commandLine);
+    void logCommandLine(String commandLine);
 
     /**
      * called multiple times during the execution of a command.
      *
      * @param message log message
      */
-    public void logMessage(String message);
+    void logMessage(String message);
 
     /**
      * called when an error happen during a command.
      *
      * @param message error message
      */
-    public void logError(String message);
+    void logError(String message);
 
     /**
      * Called when a command has completed to report
@@ -107,14 +107,14 @@ public interface ISVNNotifyListener {
      * @param revision revision
      * @param path     path to folder which revision is reported (either root, or some of svn:externals)
      */
-    public void logRevision(long revision, String path);
+    void logRevision(long revision, String path);
 
     /**
      * called when a command has completed.
      *
      * @param message log message
      */
-    public void logCompleted(String message);
+    void logCompleted(String message);
 
     /**
      * called when a subversion action happen on a file (add, delete, update ...).
@@ -122,6 +122,6 @@ public interface ISVNNotifyListener {
      * @param path the canonical path of the file or dir
      * @param kind file or dir or unknown
      */
-    public void onNotify(File path, SVNNodeKind kind);
+    void onNotify(File path, SVNNodeKind kind);
 
 }
