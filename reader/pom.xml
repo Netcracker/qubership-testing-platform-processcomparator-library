@@ -15,10 +15,6 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.qubership.automation</groupId>-->
-<!--            <artifactId>ITF-DBWorker</artifactId>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
@@ -88,7 +84,7 @@
             <artifactId>commons-io</artifactId>
         </dependency>
         <dependency>
-            <groupId>apache</groupId>
+            <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
         </dependency>
         <dependency>
