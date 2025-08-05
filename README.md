@@ -1,4 +1,4 @@
-# Process Comparator
+# Qubership Testing Platform Process Comparator Library
 
 **Process Comparator** is a REST service used in conjunction with the **BulkValidator** user interface. It does not include a standalone command-line interface and currently has no dedicated web pages.
 
