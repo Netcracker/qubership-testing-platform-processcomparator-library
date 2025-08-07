@@ -18,7 +18,7 @@ package org.qubership.automation.pc.core.enums;
 
 /**
  * Defines the type of data being compared.
- * </p>
+ * <p>
  * Used to indicate the structure or role of the data in the comparison process.
  * <ul>
  *   <li>{@code PROCESS} – Classic Process Comparator Data Model.</li>

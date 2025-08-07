@@ -40,6 +40,13 @@ public class SvnOutputParser {
 
     private static final String NEWLINE = "\n\r";
 
+    /**
+     * Default constructor.
+     */
+    public SvnOutputParser() {
+        super();
+    }
+
     // See see subversion/clients/cmdline/notify.c for possible outputs
     // we depend on javahl because it would be a waste to duplicate the notification actions 
     private SvnActionRE[] svnActionsRE = new SvnActionRE[]{
@@ -126,8 +133,8 @@ public class SvnOutputParser {
     /**
      * Parses the output produced by an SVN command-line operation and notifies
      * registered listeners about the interpreted SVN actions.
-     * </p>
-     * The given output may contain multiple lines, each corresponding to a different action.
+     *
+     * <p>The given output may contain multiple lines, each corresponding to a different action.
      * Each line is matched against a list of known regular expressions representing
      * various SVN actions. If a match is found, the corresponding listeners are notified.
      * If no match is found, the line is logged as a warning.</p>

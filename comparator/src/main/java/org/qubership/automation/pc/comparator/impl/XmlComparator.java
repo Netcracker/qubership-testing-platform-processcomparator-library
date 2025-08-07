@@ -72,7 +72,7 @@ import org.xmlunit.diff.Difference;
 /**
  * Comparator for detailed XML comparison with support for XPath exclusions,
  * sorting, value masking using regular expressions, and customizable diff output formatting.
- * </p>
+ * <p>
  * Supports a wide range of configuration parameters to tune comparison behavior,
  * including whitespace ignoring, attribute/value matching, node exclusion, and
  * advanced key-based node pairing.

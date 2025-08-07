@@ -28,7 +28,6 @@ import org.qubership.automation.pc.core.helpers.TextHelpers;
 
 /**
  * A comparator implementation for validating and comparing task lists line by line.
- * </p>
  * This comparator supports different comparison modes, including:
  * <ul>
  *   <li>Hash-based equality for exact string matches.</li>
@@ -36,14 +35,12 @@ import org.qubership.automation.pc.core.helpers.TextHelpers;
  *   <li>Support for one-to-one or multiple expected-to-actual task matches.</li>
  *   <li>Order checking with detection of broken step indexes.</li>
  * </ul>
- * </p>
  * The comparison behavior is controlled by configuration parameters:
  * <ul>
  *   <li>{@code ignoreIdentical} – skips identical matches if enabled.</li>
  *   <li>{@code TaskAsRegexp} – interprets expected tasks as regular expressions.</li>
  *   <li>{@code multipleMatch} – allows multiple expected entries to match a single actual entry.</li>
  * </ul>
- * </p>
  * The comparator returns a list of {@link DiffMessage} objects describing all found differences.
  */
 public class TaskListComparator extends AbstractComparator {

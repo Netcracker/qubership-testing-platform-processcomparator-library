@@ -22,7 +22,7 @@ import java.util.Map;
 
 /**
  * Utility class for retrieving predefined response messages by status or error code.
- * </p>
+ * <p>
  * Used throughout the system to provide consistent and localized feedback for exceptions,
  * validation issues, and various components like Readers, Comparators, and Highlighters.
  * Supports message templates with variable substitution via {@code String.format()}.

@@ -18,7 +18,7 @@ package org.qubership.automation.pc.core.exceptions;
 
 /**
  * Exception class for handling errors that occur during value conversion operations.
- * </p>
+ * <p>
  * Thrown when a value cannot be converted between types or formats as expected.
  * Includes support for detailed messages, root causes, and optional status codes.
  */

@@ -18,7 +18,7 @@ package org.qubership.automation.pc.compareresult;
 
 /**
  * Represents the result type of comparison operation or data evaluation step.
- * </p>
+ * <p>
  * Used to classify the outcome of individual comparisons or processing results.
  * <ul>
  *   <li>{@code HIDDEN} – Internal use only; set in XML highlighter to align MISSED/EXTRA nodes.</li>

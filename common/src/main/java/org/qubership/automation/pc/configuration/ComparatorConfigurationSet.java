@@ -28,7 +28,7 @@ import org.qubership.automation.pc.configuration.parameters.Parameters;
 
 /**
  * Represents a set of configuration rules and parameters used in the data comparison process.
- * </p>
+ * <p>
  * This class supports:
  * <ul>
  *     <li>Global comparison parameters
@@ -36,7 +36,7 @@ import org.qubership.automation.pc.configuration.parameters.Parameters;
  *     <li>Step-specific rules via the {@link Rule} class, allowing fine-grained control over step comparisons.</li>
  *     <li>Support for merging configurations from multiple sources.</li>
  * </ul>
- * </p>
+ * <p>
  * Grouped parameters can be extracted using the {@code groupParameters()} method, which transforms grouped keys
  * into flat structure for further processing.
  * The merging logic ensures consistent rule extension and parameter consolidation.

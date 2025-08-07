@@ -23,7 +23,7 @@ import java.io.OutputStream;
 
 /**
  * Executes an external system command as a separate process.
- * </p>
+ * <p>
  * This class allows setting the command and its parameters, redirecting standard
  * output and error streams, and waiting for the process to complete.
  * Some parts of this class are inspired by SVNKit.

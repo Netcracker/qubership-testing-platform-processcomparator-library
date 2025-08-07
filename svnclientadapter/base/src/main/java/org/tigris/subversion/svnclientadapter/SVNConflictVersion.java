@@ -16,12 +16,27 @@
 
 package org.tigris.subversion.svnclientadapter;
 
+/**
+ * Represents a specific version of a conflicted item in a Subversion repository.
+ * <p>
+ * This class contains details such as the repository URL, revision, path within the repository,
+ * and the node kind (file, directory, etc).
+ */
 public class SVNConflictVersion {
+
     private String reposURL;
     private long pegRevision;
     private String pathInRepos;
     private int nodeKind;
 
+    /**
+     * Constructs a new {@code SVNConflictVersion} instance.
+     *
+     * @param reposURL     the repository URL
+     * @param pegRevision  the peg revision of the version
+     * @param pathInRepos  the path within the repository
+     * @param nodeKind     the kind of node (e.g. file, directory)
+     */
     public SVNConflictVersion(String reposURL, long pegRevision, String pathInRepos, int nodeKind) {
         this.reposURL = reposURL;
         this.pegRevision = pegRevision;
@@ -29,22 +44,45 @@ public class SVNConflictVersion {
         this.nodeKind = nodeKind;
     }
 
+    /**
+     * @return the repository URL
+     */
     public String getReposURL() {
         return reposURL;
     }
 
+    /**
+     * Get revision number.
+     *
+     * @return the peg revision number
+     */
     public long getPegRevision() {
         return pegRevision;
     }
 
+    /**
+     * Get path within the repository.
+     *
+     * @return the path within the repository
+     */
     public String getPathInRepos() {
         return pathInRepos;
     }
 
+    /**
+     * Get the kind of node.
+     *
+     * @return the kind of node (see {@link NodeKind})
+     */
     public int getNodeKind() {
         return nodeKind;
     }
 
+    /**
+     * Returns a string representation of this {@code SVNConflictVersion}.
+     *
+     * @return a human-readable description of the conflict version
+     */
     public String toString() {
         StringBuffer sb = new StringBuffer("(");
         switch (nodeKind) {
@@ -61,13 +99,35 @@ public class SVNConflictVersion {
                 sb.append(nodeKind);
                 break;
         }
-        sb.append(") " + reposURL + "/" + pathInRepos + "@" + pegRevision);
+        sb.append(") ").append(reposURL).append("/").append(pathInRepos).append("@").append(pegRevision);
         return sb.toString();
     }
 
+    /**
+     * Constants representing the kind of a node involved in a conflict.
+     */
     public final class NodeKind {
+
+        /**
+         * Default constructor.
+         */
+        private NodeKind() {
+            super();
+        }
+
+        /**
+         * No node kind specified or unknown kind.
+         */
         public static final int none = 0;
+
+        /**
+         * The node is a file.
+         */
         public static final int file = 1;
+
+        /**
+         * The node is a directory.
+         */
         public static final int directory = 2;
     }
 

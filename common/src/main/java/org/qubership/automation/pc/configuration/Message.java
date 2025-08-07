@@ -20,7 +20,7 @@ import org.qubership.automation.pc.configuration.parameters.Parameters;
 
 /**
  * Represents a generic message structure with a name and associated parameters.
- * </p>
+ * <p>
  * This class is typically used to encapsulate a named message and a collection of key-value
  * parameters related to the message.
  *

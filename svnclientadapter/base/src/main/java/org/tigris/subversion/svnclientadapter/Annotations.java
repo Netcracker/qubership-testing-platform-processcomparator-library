@@ -27,12 +27,18 @@ import java.util.List;
 
 /**
  * Generic implementation of the {@link ISVNAnnotations} interface.
- * </p>
  * This class represents annotations (such as author, revision, and date) for each line of a file under version control.
  * Annotations are typically filled using the {@link #addAnnotation(Annotation)} method.
- * </p>
  */
 public class Annotations implements ISVNAnnotations {
+
+    /**
+     * Constructs an empty {@code Annotations} object with no lines annotated.
+     * Use {@link #addAnnotation(Annotation)} to populate annotations.
+     */
+    public Annotations() {
+        super();
+    }
 
     /**
      * List of annotation records, one per line.

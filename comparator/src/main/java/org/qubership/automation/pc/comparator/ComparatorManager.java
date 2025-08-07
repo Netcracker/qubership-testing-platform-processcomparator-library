@@ -57,11 +57,11 @@ import org.slf4j.MDC;
 
 /**
  * Core component responsible for orchestrating the data comparison process.
- * </p>
+ * <p>
  * Handles comparison logic for different data types (e.g., SIMPLE, PROCESS),
  * supports multithreaded execution for large datasets, and manages transformation,
  * filtering, and evaluation of comparison results.
- * </p>
+ * <p>
  * Provides entry points for comparing structured or unstructured data, calculating
  * summary results, and applying substitution and filtering rules.
  */

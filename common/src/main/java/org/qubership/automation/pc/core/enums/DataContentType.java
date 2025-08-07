@@ -18,7 +18,7 @@ package org.qubership.automation.pc.core.enums;
 
 /**
  * Specifies the format or structure of the data being compared.
- * </p>
+ * <p>
  * Indicates how the data should be interpreted, processed, or displayed.
  * <ul>
  *   <li>{@code PRIMITIVES} – Basic data types such as strings, numbers, booleans, etc.</li>

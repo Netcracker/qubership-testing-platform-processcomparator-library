@@ -19,8 +19,20 @@
 
 package org.tigris.subversion.svnclientadapter;
 
-
+/**
+ * Represents a source item for a Subversion copy operation.
+ * <p>
+ * A copy source consists of:
+ * <ul>
+ *   <li>A path or URL</li>
+ *   <li>A revision from which to copy</li>
+ *   <li>An optional peg revision used for resolving the path</li>
+ * </ul>
+ * This is used in APIs where multiple sources can be copied into a destination,
+ * possibly with history.
+ */
 public class SVNCopySource {
+
     /**
      * The source path or URL.
      */
@@ -42,7 +54,7 @@ public class SVNCopySource {
      * @param path        The source path or URL.
      * @param revision    The source revision.
      * @param pegRevision The peg revision.  Typically interpreted as
-     *                    {@link org.tigris.subversion.javahl.SVNRevision#HEAD} when <code>null</code>.
+     *                    {@link org.tigris.subversion.svnclientadapter.SVNRevision#HEAD} when <code>null</code>.
      */
     public SVNCopySource(String path, SVNRevision revision, SVNRevision pegRevision) {
         this.path = path;

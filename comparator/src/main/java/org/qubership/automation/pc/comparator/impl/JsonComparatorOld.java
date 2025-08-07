@@ -51,7 +51,7 @@ import com.networknt.schema.ValidationMessage;
 
 /**
  * JsonComparatorOld provides a flexible and extensible comparator for JSON data.
- * </p>
+ * <p>
  * This comparator supports a variety of comparison modes including:
  * <ul>
  *     <li>Ignoring array element order</li>
@@ -62,7 +62,7 @@ import com.networknt.schema.ValidationMessage;
  *     <li>Ignoring specified properties or entire objects</li>
  * </ul>
  *
- * </p>Configuration parameters include:
+ * <p>Configuration parameters include:
  * <ul>
  *     <li>{@code ignoreArraysOrder} — ignore order of array elements</li>
  *     <li>{@code objectPrimaryKey} — mapping of object paths to their primary key fields</li>
@@ -72,7 +72,7 @@ import com.networknt.schema.ValidationMessage;
  *     <li>{@code disableTypeCheckIfRegexp} — disables type check if ER uses regex</li>
  *     <li>{@code findERInAR} — checks if ER exists as substring inside AR</li>
  * </ul>
- * </p>
+ * <p>
  *
  * <p>This class is backward-compatible and intended primarily for legacy use.
  * New implementations are encouraged to use more modern comparators if available.</p>

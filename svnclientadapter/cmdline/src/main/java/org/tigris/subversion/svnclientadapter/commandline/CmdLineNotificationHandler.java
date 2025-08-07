@@ -32,6 +32,13 @@ import org.tigris.subversion.svnclientadapter.SVNNotificationHandler;
 public class CmdLineNotificationHandler extends SVNNotificationHandler {
 
     /**
+     * Default constructor.
+     */
+    public CmdLineNotificationHandler() {
+        super();
+    }
+
+    /**
      * Log the supplied command line exception as Error.
      *
      * @param e an exception to log

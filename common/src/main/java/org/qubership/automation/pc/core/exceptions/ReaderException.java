@@ -18,7 +18,7 @@ package org.qubership.automation.pc.core.exceptions;
 
 /**
  * Exception class for errors that occur during data reading operations.
- * </p>
+ * <p>
  * Thrown when a {@code Reader} implementation fails to retrieve or parse data correctly.
  * Supports custom messages, root causes, and advanced exception handling options.
  */

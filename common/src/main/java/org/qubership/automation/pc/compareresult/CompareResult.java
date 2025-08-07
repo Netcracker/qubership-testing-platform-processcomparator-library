@@ -25,7 +25,7 @@ import org.qubership.automation.pc.data.Data;
 
 /**
  * Represents the result of comparing two data objects.
- * </p>
+ * <p>
  * Contains:
  * <ul>
  *   <li>a unique identifier for the comparison result,</li>

@@ -38,6 +38,17 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+/**
+ * Parses and stores detailed status information extracted from
+ * the output of {@code svn status --xml}.
+ *
+ * <p>This class represents a single file or directory's status,
+ * including local and repository text/property statuses, conflict data,
+ * lock information, and revision metadata.</p>
+ *
+ * <p>Used internally to convert raw XML output into structured data
+ * for further processing within the SVN command-line adapter.</p>
+ */
 public class CmdLineStatusFromXml extends CmdLineXmlCommand {
 
     private SVNRevision.Number lastChangedRevision;
@@ -59,6 +70,11 @@ public class CmdLineStatusFromXml extends CmdLineXmlCommand {
     private Date lockCreationDate;
     private String lockComment;
 
+    /**
+     * Constructs a new {@code CmdLineStatusFromXml} for the given file path.
+     *
+     * @param path the path to the working copy file or directory for which status will be parsed
+     */
     protected CmdLineStatusFromXml(String path) {
         super();
         this.path = path;
@@ -400,7 +416,7 @@ public class CmdLineStatusFromXml extends CmdLineXmlCommand {
     /**
      * Parses the given XML output from `svn status --xml` and creates an array of {@link CmdLineStatusFromXml}
      * instances.
-     * </p>
+     * <p>
      * The method extracts information such as text status, property status, last commit info, lock details,
      * repository status, etc. It supports full status parsing including nested tags such as `commit` and `lock`.
      *

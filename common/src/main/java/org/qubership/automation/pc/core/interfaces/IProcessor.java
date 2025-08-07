@@ -18,7 +18,7 @@ package org.qubership.automation.pc.core.interfaces;
 
 /**
  * Marker or extension interface for processing components within the system.
- * </p>
+ * <p>
  * Intended to be implemented by classes that perform processing logic, such as
  * transformation, validation, or orchestration tasks.
  */

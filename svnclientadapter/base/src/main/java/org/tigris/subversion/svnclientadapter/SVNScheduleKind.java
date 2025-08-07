@@ -67,7 +67,7 @@ public class SVNScheduleKind {
 
     /**
      * Returns the {@link SVNScheduleKind} that corresponds to the given integer value.
-     * </p>
+     * <p>
      * This method is typically used to convert from a low-level representation (e.g., from native libraries)
      * to a high-level enum-like object in Java.
      * </p>
@@ -93,7 +93,7 @@ public class SVNScheduleKind {
 
     /**
      * Returns the {@link SVNScheduleKind} that corresponds to the given string value.
-     * </p>
+     * <p>
      * Matches the string representation as returned by {@link SVNScheduleKind#toString()}.
      * </p>
      *

@@ -38,8 +38,19 @@ import java.util.StringTokenizer;
  */
 abstract class CommandLine {
 
+    /**
+     * The name of the command-line executable (e.g., "svn" or "svnadmin").
+     */
     protected String commandName;
+
+    /**
+     * Notification handler used to log output and handle messages from command execution.
+     */
     protected CmdLineNotificationHandler notificationHandler;
+
+    /**
+     * The current running process instance for command execution.
+     */
     protected Process process;
 
     protected CommandLine(String commandName, CmdLineNotificationHandler notificationHandler) {
@@ -117,6 +128,8 @@ abstract class CommandLine {
      * Without this variable present, the windows' DNS resolver does not work.
      * <code>APR_ICONV_PATH</code> is required on windows platform for UTF-8 translation.
      * The <code>PATH</code> is there, well, just to be sure ;-)
+     *
+     * @return the environment variables to be passed to the subprocess
      */
     protected String[] getEnvironmentVariables() {
         final String path = CmdLineClientAdapter.getEnvironmentVariable("PATH");
@@ -194,7 +207,7 @@ abstract class CommandLine {
 
     /**
      * Pumps the standard output and error streams from a running process until both are fully read.
-     * </p>
+     * <p>
      * This method starts separate threads to asynchronously consume both the output and error
      * streams of the provided process. It blocks until both threads finish reading. All streams
      * are closed afterwards.
@@ -226,7 +239,7 @@ abstract class CommandLine {
 
     /**
      * Executes a Subversion command using the specified arguments and returns its standard output as a string.
-     * </p>
+     * <p>
      * The command is executed as an external process, and its output is read and returned. If the error
      * stream contains any output, a {@link CmdLineException} is thrown. Optionally coalesces lines of standard
      * output based on the {@code coalesceLines} flag.
@@ -268,6 +281,7 @@ abstract class CommandLine {
      * @param assumeUtf8   Whether the output of the command should be
      *                     treated as UTF-8 (as opposed to the JVM's default encoding).
      * @return String
+     * @throws CmdLineException if an error occurs during execution or if the error stream is not empty
      */
     protected byte[] execBytes(CmdArguments svnArguments, boolean assumeUtf8)
             throws CmdLineException {
@@ -308,7 +322,7 @@ abstract class CommandLine {
 
     /**
      * Executes a Subversion command with the specified arguments and discards any output.
-     * </p>
+     * <p>
      * This method runs the command-line process but does not return or process its output.
      * Any errors encountered during execution are captured and result in a {@link CmdLineException}.
      *
@@ -328,6 +342,7 @@ abstract class CommandLine {
      *                     binary.
      * @return the InputStream on commads result. Caller has to close it explicitelly().
      * @deprecated this does not sound as a good idea. Check if we're able to live without it.
+     * @throws CmdLineException if an error occurs during command execution
      */
     protected InputStream execInputStream(CmdArguments svnArguments)
             throws CmdLineException {
@@ -345,9 +360,9 @@ abstract class CommandLine {
     /**
      * Notifies the registered listeners with messages parsed from the SVN command output.
      *
-     * @summary Parses the provided SVN output line by line and notifies listeners.
-     *          All lines except the last one are treated as intermediate messages,
-     *          while the last line is treated as the final "completed" message.
+     * Parses the provided SVN output line by line and notifies listeners.
+     * All lines except the last one are treated as intermediate messages,
+     * while the last line is treated as the final "completed" message.
      *
      * @param svnOutput the full output string returned by the SVN command
      */
@@ -365,7 +380,9 @@ abstract class CommandLine {
         }
     }
 
-
+    /**
+     * Forcefully stops the current running process and closes all associated input/output streams.
+     */
     protected void stopProcess() {
         try {
             process.getInputStream().close();

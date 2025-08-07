@@ -24,12 +24,12 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * Represents a container for comparator configuration sets used during data comparison.
- * </p>
- * This class maintains a global configuration set and a list of additional
+ *
+ * <p>This class maintains a global configuration set and a list of additional
  * named configuration sets that can apply to specific comparison targets.
  * It provides utility methods to retrieve specific configurations and to merge multiple
- * configurations into a single unified set.
- * </p>
+ * configurations into a single unified set.</p>
+ *
  * The configuration sets encapsulate comparison rules, step-level overrides, and
  * parameter mappings that control how comparisons are performed between expected
  * and actual data structures.
@@ -72,10 +72,9 @@ public class ComparatorConfiguration {
 
     /**
      * Merges multiple {@link ComparatorConfigurationSet} instances into a single configuration set.
-     * </p>
-     * The merge is performed in the order of the provided sets. Starting with the first set, each
-     * subsequent set can add new parameters or overwrite existing ones from the previous sets.
-     * </p>
+     *
+     * <p>The merge is performed in the order of the provided sets. Starting with the first set, each
+     * subsequent set can add new parameters or overwrite existing ones from the previous sets.</p>
      *
      * @param sets an array of {@link ComparatorConfigurationSet} instances to merge. The order matters;
      *             later sets can override values from earlier ones.

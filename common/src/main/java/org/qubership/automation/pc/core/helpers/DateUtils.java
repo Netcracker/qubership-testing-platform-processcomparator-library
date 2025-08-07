@@ -24,7 +24,7 @@ import java.util.Locale;
 
 /**
  * Utility class for date and time conversion operations.
- * </p>
+ * <p>
  * Provides methods to format timestamps into strings and parse date strings into {@link Date} objects
  * using custom masks and locales.
  */

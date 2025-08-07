@@ -23,35 +23,50 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Abstract Factory for SVNClientAdapter. Real factories should extend this
- * class and register themselves with the method #registerAdapterFactory.
+ * Abstract Factory for creating instances of {@link ISVNClientAdapter}.
+ * <p>
+ * Concrete factories (e.g., for JavaHL, command-line) should extend this class
+ * and register themselves using {@link #registerAdapterFactory(SVNClientAdapterFactory)}.
+ * The first factory registered becomes the preferred client.
+ * </p>
  *
  * @author Cédric Chabanois
- *         <a href="mailto:cchabanois@ifrance.com">cchabanois@ifrance.com</a>
  * @author Panagiotis Korros
- *         <a href="mailto:pkorros@bigfoot.com">pkorros@bigfoot.com</a>
  */
 public abstract class SVNClientAdapterFactory {
 
     private static Map ourFactoriesMap;
 
-    // the first factory added is the preferred one
+    // The first factory added is the preferred one
     private static SVNClientAdapterFactory preferredFactory;
 
     /**
-     * Real Factories should implement these methods.
+     * Default constructor.
+     */
+    protected SVNClientAdapterFactory() {
+        // No-op
+    }
+
+    /**
+     * Creates a new instance of an SVN client adapter implementation.
+     *
+     * @return an implementation of {@link ISVNClientAdapter}
      */
     protected abstract ISVNClientAdapter createSvnClientImpl();
 
+    /**
+     * Returns the type identifier of the client implementation (e.g., "javahl", "cmdline").
+     *
+     * @return a string representing the client type
+     */
     protected abstract String getClientType();
 
     /**
-     * creates a new ISVNClientAdapter. You can create a javahl client or a
-     * command line client.
+     * Creates a new {@link ISVNClientAdapter} based on the specified client type.
+     * You can create a JavaHL client or a command-line client, depending on availability.
      *
-     * @param clientType    svn client type
-     * @return the client adapter that was requested or null if that client
-     *         adapter is not available or doesn't exist.
+     * @param clientType the SVN client type
+     * @return the requested client adapter, or {@code null} if not available
      */
     public static ISVNClientAdapter createSvnClient(String clientType) {
         if (ourFactoriesMap == null || !ourFactoriesMap.containsKey(clientType)) {
@@ -65,20 +80,20 @@ public abstract class SVNClientAdapterFactory {
     }
 
     /**
-     * tells if the given clientType is available or not.
+     * Checks whether the given client type is available.
      *
-     * @param clientType    svn client type
-     * @return true if the given clientType is available
+     * @param clientType the SVN client type
+     * @return {@code true} if the client type is available; {@code false} otherwise
      */
     public static boolean isSvnClientAvailable(String clientType) {
         return ourFactoriesMap != null && ourFactoriesMap.containsKey(clientType);
     }
 
     /**
-     * Get preferred SVNClient type.
+     * Gets the preferred SVN client type.
      *
-     * @return the best svn client interface
-     * @throws SVNClientException if subversion client interface not found
+     * @return the type identifier of the preferred SVN client
+     * @throws SVNClientException if no client has been registered
      */
     public static String getPreferredSvnClientType() throws SVNClientException {
         if (preferredFactory != null) {
@@ -88,11 +103,14 @@ public abstract class SVNClientAdapterFactory {
     }
 
     /**
-     * Extenders should register themselves with this method. First registered
-     * factory will be considered as the preferred one
+     * Registers a new {@link SVNClientAdapterFactory}.
+     * <p>
+     * The first registered factory becomes the preferred one. Subsequent
+     * registrations for the same type will throw an exception.
+     * </p>
      *
-     * @throws SVNClientException when factory with specified type is already
-     *                            registered.
+     * @param factory the factory to register
+     * @throws SVNClientException if a factory with the same type has already been registered
      */
     protected static void registerAdapterFactory(SVNClientAdapterFactory factory) throws SVNClientException {
         if (factory == null) {
@@ -111,5 +129,4 @@ public abstract class SVNClientAdapterFactory {
             throw new SVNClientException("factory for type " + type + " already registered");
         }
     }
-
 }

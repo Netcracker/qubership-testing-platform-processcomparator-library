@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Comparator implementation for primitive values such as strings, numbers, booleans, etc.
- * </p>
+ * <p>
  * Compares expected and actual values using type inference and supports both strict
  * equality and unordered list comparisons. Designed to handle flat, primitive data
  * typically encountered in CSV-like structures or parameter lists.

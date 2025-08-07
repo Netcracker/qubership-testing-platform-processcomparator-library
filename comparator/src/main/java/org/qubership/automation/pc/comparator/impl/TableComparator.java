@@ -51,7 +51,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Comparator implementation for validating tabular data (ER/AR tables).
- * </p>
+ * <p>
  * This comparator supports flexible rules for comparing tables using various strategies:
  * <ul>
  *     <li>POC-based checks for rule-driven validation.</li>
@@ -60,17 +60,17 @@ import lombok.extern.slf4j.Slf4j;
  *     <li>Support for options like ignoring case, treating cells as regular expressions,
  *         and skipping extra/missing rows or cells.</li>
  * </ul>
- * </p>
+ * <p>
  * Comparison behavior is dynamically configured using {@link Parameters} and
  * controlled via several pre-defined configuration flags.
- * </p>
+ * <p>
  * Depending on configuration, the comparator can:
  * <ul>
  *     <li>Apply value replacements in the actual result (AR) table.</li>
  *     <li>Resolve aliases in the expected result (ER) table.</li>
  *     <li>Use key-based filtering, custom column validation, and order enforcement.</li>
  * </ul>
- * </p>
+ * <p>
  * The comparator returns a list of {@link DiffMessage} objects indicating any
  * differences found between ER and AR tables.
  */

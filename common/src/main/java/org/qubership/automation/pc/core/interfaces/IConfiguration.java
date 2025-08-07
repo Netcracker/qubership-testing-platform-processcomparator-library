@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * Interface for accessing configuration parameters in a flexible and type-safe manner.
- * </p>
+ * <p>
  * Provides methods to check for the presence of parameters and retrieve their values
  * as strings, integers, longs, or booleans, with optional default values.
  */

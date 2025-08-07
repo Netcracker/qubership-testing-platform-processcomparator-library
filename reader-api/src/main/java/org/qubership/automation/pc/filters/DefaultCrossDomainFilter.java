@@ -28,13 +28,12 @@ import javax.ws.rs.ext.Provider;
  * <p>This filter enables web clients (such as JavaScript running in browsers)
  * to access the API even if it is hosted on a different domain.</p>
  *
- * <p>The filter allows the following:
+ * The filter allows the following:
  * <ul>
  *   <li>Any origin ("*") to access the resource</li>
  *   <li>HTTP methods: OPTIONS, GET, POST, PUT, DELETE</li>
  *   <li>Headers: Content-Type, Accept, Origin, Authorization</li>
  * </ul>
- * </p>
  *
  * <p>To use this filter, simply include it in your JAX-RS application;
  * the {@code @Provider} annotation ensures it is automatically registered.</p>

@@ -16,10 +16,26 @@
 
 package org.tigris.subversion.svnclientadapter;
 
+/**
+ * Represents a directory entry in a Subversion repository along with its associated lock information.
+ * <p>
+ * This interface is typically used in operations that list directory contents
+ * and want to include information about file locks.
+ */
 public interface ISVNDirEntryWithLock {
 
+    /**
+     * Returns the directory entry (metadata such as name, kind, revision, etc.).
+     *
+     * @return the {@link ISVNDirEntry} representing the directory or file
+     */
     public ISVNDirEntry getDirEntry();
 
+    /**
+     * Returns the lock information associated with the entry, if any.
+     *
+     * @return the {@link ISVNLock} object representing the lock, or {@code null} if the entry is not locked
+     */
     public ISVNLock getLock();
 
 }

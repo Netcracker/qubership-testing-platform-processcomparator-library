@@ -18,7 +18,7 @@ package org.qubership.automation.pc.core.exceptions;
 
 /**
  * Exception class for errors that occur during data storage operations.
- * </p>
+ * <p>
  * Thrown when saving, retrieving, or managing data in a storage system fails.
  * Supports detailed error messages, exception chaining, and advanced handling options.
  */

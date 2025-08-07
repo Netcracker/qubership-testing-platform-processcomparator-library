@@ -20,7 +20,7 @@ import java.util.Objects;
 
 /**
  * Represents a single message detailing a difference found during data comparison.
- * </p>
+ * <p>
  * Contains both raw and human-readable representations of expected and actual values,
  * as well as metadata such as comparison order and result type.
  * Can be used in reporting, highlighters, and integration with external systems.

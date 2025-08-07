@@ -18,7 +18,7 @@ package org.qubership.automation.pc.core.enums;
 
 /**
  * Defines the mode in which a reader operates.
- * </p>
+ * <p>
  * Determines how input data is interpreted or processed during reading.
  * <ul>
  *   <li>{@code SIMPLE} – Basic mode for reading standalone or flat data structures.</li>

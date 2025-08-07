@@ -19,7 +19,18 @@
 
 package org.tigris.subversion.svnclientadapter.utils;
 
+/**
+ * Defines depth constants for Subversion operations,
+ * representing how deep a command should recurse into a directory structure.
+ */
 public class Depth {
+
+    /**
+     * Private constructor to prevent instantiation of this utility class.
+     */
+    private Depth() {
+        // Utility class — no instances allowed.
+    }
 
     /**
      * Depth undetermined or ignored.
@@ -51,6 +62,12 @@ public class Depth {
      */
     public static final int infinity = 5;
 
+    /**
+     * Converts a boolean recurse flag to the corresponding depth constant.
+     *
+     * @param recurse if {@code true}, returns {@link #infinity}; otherwise returns {@link #files}
+     * @return one of the {@code Depth} constants representing recursion depth
+     */
     public static final int fromRecurse(boolean recurse) {
         if (recurse) {
             return infinity;

@@ -66,7 +66,7 @@ public class CmdLineClientAdapterFactory extends SVNClientAdapterFactory {
 
     /**
      * Initializes and registers the command-line client adapter implementation (version 1.2).
-     * </p>
+     * <p>
      * This method performs the following steps:
      * <ul>
      *     <li>Checks if the Subversion command-line client is available in the environment.</li>

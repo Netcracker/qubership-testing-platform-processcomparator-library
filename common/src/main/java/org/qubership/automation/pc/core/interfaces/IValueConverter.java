@@ -22,7 +22,7 @@ import org.qubership.automation.pc.core.exceptions.ValueConverterException;
 
 /**
  * Interface for value conversion operations.
- * </p>
+ * <p>
  * Implementations of this interface are responsible for converting an input string value
  * into a structured result ({@link IValueConverterValue}), possibly using additional parameters.
  *

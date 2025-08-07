@@ -18,9 +18,10 @@ package org.tigris.subversion.svnclientadapter;
 
 /**
  * The result returned by the callback API used to handle conflicts
- * encountered during merge/update/switch operations.
+ * encountered during merge, update, or switch operations.
  */
 public class SVNConflictResult {
+
     /**
      * Nothing done to resolve the conflict; conflict remains.
      */
@@ -62,18 +63,21 @@ public class SVNConflictResult {
     public static final int chooseMerged = 6;
 
     /**
-     * A value corresponding to the
-     * <code>svn_wc_conflict_choice_t</code> enum.
+     * A value corresponding to the {@code svn_wc_conflict_choice_t} enum.
      */
     private int choice;
 
     /**
-     * The path to the result of a merge, or <code>null</code>.
+     * The path to the result of a merge, or {@code null}.
      */
     private String mergedPath;
 
     /**
-     * Create a new conflict result instace.
+     * Constructs a new conflict result instance.
+     *
+     * @param choice     a value corresponding to {@code svn_wc_conflict_choice_t},
+     *                   such as {@link #chooseMine}, {@link #chooseTheirs}, etc.
+     * @param mergedPath the path to the merged file, or {@code null} if not applicable
      */
     public SVNConflictResult(int choice, String mergedPath) {
         this.choice = choice;
@@ -81,19 +85,18 @@ public class SVNConflictResult {
     }
 
     /**
-     * Get value corresponding to the <code>svn_wc_conflict_choice_t</code> enum.
+     * Returns the choice made to resolve the conflict.
      *
-     * @return A value corresponding to the
-     *         <code>svn_wc_conflict_choice_t</code> enum.
+     * @return a value corresponding to {@code svn_wc_conflict_choice_t}
      */
     public int getChoice() {
         return choice;
     }
 
     /**
-     * Get The path to the result of a merge, or <code>null</code>.
+     * Returns the path to the merged result file.
      *
-     * @return The path to the result of a merge, or <code>null</code>.
+     * @return the path to the merged file, or {@code null} if none
      */
     public String getMergedPath() {
         return mergedPath;

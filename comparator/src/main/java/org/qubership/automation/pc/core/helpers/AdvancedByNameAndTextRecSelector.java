@@ -43,11 +43,6 @@ import org.xmlunit.diff.ElementSelector;
  *     - advanced ElementQualifier which (1) cleaned from errors found in XMLUnit's
  *     RecursiveElementNameAndTextQualifier (2) could be configured with the
  *     'keyChild'-rules
- *     </p>
- *     Example of XML structure which will potentially be compared incorrectly:
- *     <node1><item><value>1111</value><key>AA</key></item>
- *     <item><value>2222</value><key>BB</key></item>
- *     <item><value>3333</value><key>CC</key></item> ... </node1>
  */
 public class AdvancedByNameAndTextRecSelector implements ElementSelector {
 

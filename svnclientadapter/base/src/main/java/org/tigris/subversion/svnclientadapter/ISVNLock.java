@@ -23,7 +23,6 @@ import java.util.Date;
 
 /**
  * Represents a lock on a Subversion-managed item, as returned by lock-related operations.
- * </p>
  * A lock is used to prevent concurrent modification of a versioned file, typically for
  * exclusive access workflows. This interface provides information about the lock owner,
  * lock token, and relevant timestamps.
@@ -46,7 +45,7 @@ public interface ISVNLock {
 
     /**
      * Returns the lock token associated with the locked item.
-     * </p>
+     * <p>
      * This token is required to release or refresh the lock and uniquely identifies the lock instance.
      *
      * @return the lock token.
@@ -69,7 +68,7 @@ public interface ISVNLock {
 
     /**
      * Returns the expiration date of the lock, if any.
-     * </p>
+     * <p>
      * If the lock does not expire automatically, this may return {@code null}.
      *
      * @return the lock expiration date, or {@code null} if the lock does not expire.

@@ -38,11 +38,17 @@ public interface ISVNClientAdapter {
      */
     public static final String REPOSITORY_FSTYPE_FSFS = "fsfs";
 
+    /**
+     * The default set of revision properties to retrieve in log operations.
+     * Includes author, date, and log message.
+     */
     public static final String[] DEFAULT_LOG_PROPERTIES = new String[]{"svn:author", "svn:date", "svn:log"};
 
 
     /**
      * Returns whether the client adapter implementation is threadsafe.
+     *
+     * @return {@code true} if the client adapter is threadsafe; {@code false} otherwise
      */
     public abstract boolean isThreadsafe();
 

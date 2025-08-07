@@ -16,6 +16,12 @@
 
 package org.tigris.subversion.svnclientadapter;
 
+/**
+ * Defines constants representing kinds of mergeinfo logs in Subversion.
+ * <p>
+ * These values are used to indicate whether a revision is eligible to be merged
+ * or has already been merged.
+ */
 public interface ISVNMergeinfoLogKind {
     /**
      * does not exist.

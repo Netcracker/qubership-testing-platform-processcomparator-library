@@ -61,9 +61,8 @@ import org.tigris.subversion.svnclientadapter.SVNStatusUnversioned;
 import org.tigris.subversion.svnclientadapter.SVNUrl;
 
 /**
- * </p>
- * Implements a <tt>ISVNClientAdapter</tt> using the
- * Command line client. This expects the <tt>svn</tt>
+ * <p>Implements a {@code ISVNClientAdapter} using the
+ * Command line client. This expects the svn
  * executible to be in the path.</p>
  *
  * @author Philip Schatz (schatz at tigris)
@@ -71,16 +70,30 @@ import org.tigris.subversion.svnclientadapter.SVNUrl;
  */
 public class CmdLineClientAdapter extends AbstractClientAdapter {
 
+    /** The notification handler for processing SVN command line output. */
     protected final CmdLineNotificationHandler notificationHandler;
+
+    /** The command-line interface to the SVN client. */
     protected final SvnCommandLine cmd;
+
+    /** The multi-argument command-line interface to the SVN client. */
     protected final SvnMultiArgCommandLine cmdMulti;
+
+    /** The command-line interface for administrative SVN operations. */
     protected final SvnAdminCommandLine svnAdminCmd;
+
+    /** Cached version of the SVN client, retrieved lazily. */
     protected String version = null;
 
     private static boolean availabilityCached = false;
     private static boolean available;
     private static String dirName;
 
+    /**
+     * Creates a new {@code CmdLineClientAdapter} with the specified notification handler.
+     *
+     * @param notificationHandler the notification handler to use
+     */
     public CmdLineClientAdapter(CmdLineNotificationHandler notificationHandler) {
         this(notificationHandler,
                 new SvnCommandLine("svn", notificationHandler),
@@ -88,6 +101,14 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
                 new SvnAdminCommandLine("svnadmin", notificationHandler));
     }
 
+    /**
+     * Creates a new {@code CmdLineClientAdapter} with full command-line clients specified.
+     *
+     * @param notificationHandler the notification handler
+     * @param cmd the command-line SVN client
+     * @param multiCmd the multi-argument command-line SVN client
+     * @param adminCmd the command-line SVN admin client
+     */
     protected CmdLineClientAdapter(CmdLineNotificationHandler notificationHandler,
                                    SvnCommandLine cmd,
                                    SvnMultiArgCommandLine multiCmd,
@@ -103,7 +124,11 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         return false;
     }
 
-    //Methods
+    /**
+     * Checks whether the SVN command-line client is available and supported.
+     *
+     * @return {@code true} if the SVN client is available and supported, {@code false} otherwise
+     */
     public static boolean isAvailable() {
         // availabilityCached flag must be reset if location of client changes
         if (!availabilityCached) {
@@ -128,13 +153,12 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
 
     /**
      * Retrieves the version of the installed SVN command-line client.
-     * </p>
-     * This method executes the {@code svn --version} command via the underlying
+     *
+     * <p>This method executes the {@code svn --version} command via the underlying
      * command-line interface and extracts the first line of the output, which typically contains
-     * the version information.
-     * </p>
-     * The output is cached after the first successful call to avoid repeated executions.
-     * </p>
+     * the version information.</p>
+     *
+     * <p>The output is cached after the first successful call to avoid repeated executions.</p>
      *
      * @return the SVN client version string, for example {@code "svn, version 1.14.1 (r1886195)"}
      * @throws SVNClientException if the version command fails to execute or its output cannot be parsed
@@ -896,6 +920,17 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
 
     }
 
+    /**
+     * Returns the array of {@link CmdLineStatusPart} for the given paths.
+     *
+     * @param paths the files to get status for
+     * @param descend whether to descend recursively
+     * @param getAll whether to get all statuses
+     * @param contactServer whether to contact the server
+     * @param ignoreExternals whether to ignore externals
+     * @return the status parts
+     * @throws CmdLineException if the command fails
+     */
     protected CmdLineStatusPart[] getCmdStatuses(File[] paths,
                                                  boolean descend,
                                                  boolean getAll,
@@ -909,6 +944,17 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         return getCmdStatuses(pathNames, descend, getAll, contactServer, ignoreExternals);
     }
 
+    /**
+     * Executes the SVN status command for the specified file paths.
+     *
+     * @param paths array of file or directory paths
+     * @param descend whether to descend into subdirectories
+     * @param getAll whether to retrieve all statuses (including unchanged files)
+     * @param contactServer whether to contact the repository for remote status
+     * @param ignoreExternals whether to ignore externals
+     * @return array of {@link CmdLineStatusPart} representing status of each path
+     * @throws CmdLineException if the SVN command fails
+     */
     protected CmdLineStatusPart[] getCmdStatuses(String[] paths,
                                                  boolean descend,
                                                  boolean getAll,
@@ -1310,14 +1356,32 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         }
     }
 
+    /**
+     * Converts an {@link SVNRevision} to its string representation.
+     *
+     * @param r the revision
+     * @return the string representation
+     */
     protected static String toString(SVNRevision r) {
         return (r == null) ? null : r.toString();
     }
 
+    /**
+     * Converts a {@link File} to its string path, adding an '@' if needed.
+     *
+     * @param f the file
+     * @return the string path
+     */
     protected static String toString(File f) {
         return (f == null) ? null : atSign(f.toString());
     }
 
+    /**
+     * Converts an array of files to a space-separated string of their paths.
+     *
+     * @param f the array of files
+     * @return the space-separated string representation
+     */
     protected static String toString(File[] f) {
         if (f == null) {
             return null;
@@ -1329,6 +1393,12 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         return buf.toString();
     }
 
+    /**
+     * Converts a {@link SVNUrl} to its string representation, applying '@' escaping if needed.
+     *
+     * @param u the SVN URL
+     * @return the string representation of the URL
+     */
     protected static String toString(SVNUrl u) {
         return (u == null) ? null : atSign(u.toString());
     }
@@ -1556,6 +1626,15 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         return byteArray;
     }
 
+    /**
+     * Gets the annotation information for the specified target and revisions.
+     *
+     * @param target the target file or URL
+     * @param revisionStart the start revision
+     * @param revisionEnd the end revision
+     * @return the annotations
+     * @throws SVNClientException if an error occurs
+     */
     protected ISVNAnnotations annotate(String target,
                                        SVNRevision revisionStart,
                                        SVNRevision revisionEnd)
@@ -1583,12 +1662,14 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * @see org.tigris.subversion.svnclientadapter.ISVNClientAdapter#blame(
-     * org.tigris.subversion.svnclientadapter.SVNUrl,
-     * org.tigris.subversion.svnclientadapter.SVNRevision,
-     * org.tigris.subversion.svnclientadapter.SVNRevision)
+    /**
+     * Retrieves the annotation (blame) information for the specified URL and revision range.
+     *
+     * @param url the SVN URL to annotate
+     * @param revisionStart the start revision for annotation (usually 1)
+     * @param revisionEnd the end revision for annotation (typically HEAD)
+     * @return annotation information containing author and revision data per line
+     * @throws SVNClientException if the command fails
      */
     public ISVNAnnotations annotate(SVNUrl url, SVNRevision revisionStart, SVNRevision revisionEnd)
             throws SVNClientException {
@@ -1643,9 +1724,12 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         return null;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see org.tigris.subversion.svnclientadapter.ISVNClientAdapter#getProperties(java.io.File)
+    /**
+     * Retrieves the properties of a file or directory from the working copy.
+     *
+     * @param path the file or directory
+     * @return array of SVN properties, or an empty array if none
+     * @throws SVNClientException if an error occurs while retrieving properties
      */
     public ISVNProperty[] getProperties(File path) throws SVNClientException {
         try {
@@ -1689,18 +1773,46 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         }
     }
 
+    /**
+     * Retrieves the properties of a remote URL at a specific revision and peg revision.
+     *
+     * @param url the SVN URL
+     * @param revision the operative revision
+     * @param peg the peg revision
+     * @return array of SVN properties
+     * @throws SVNClientException if an error occurs
+     */
     public ISVNProperty[] getProperties(SVNUrl url, SVNRevision revision,
                                         SVNRevision peg) throws SVNClientException {
         // TODO Auto-generated method stub
         return null;
     }
 
+    /**
+     * Retrieves the properties of a file or directory, optionally recursively.
+     *
+     * @param path the file or directory
+     * @param descend if true, retrieves properties recursively
+     * @return array of SVN properties
+     * @throws SVNClientException if an error occurs
+     */
     public ISVNProperty[] getProperties(File path, boolean descend)
             throws SVNClientException {
         // TODO Auto-generated method stub
         return null;
     }
 
+    /**
+     * Retrieves the properties of a remote SVN URL at a specific revision and peg revision,
+     * optionally recursively.
+     *
+     * @param url the remote SVN URL to query
+     * @param revision the operative revision to retrieve properties from
+     * @param peg the peg revision used to identify the object in history
+     * @param recurse if true, retrieves properties recursively for all children (if directory)
+     * @return an array of {@link ISVNProperty} objects, or {@code null} if not implemented
+     * @throws SVNClientException if an error occurs during retrieval
+     */
     public ISVNProperty[] getProperties(SVNUrl url, SVNRevision revision,
                                         SVNRevision peg, boolean recurse) throws SVNClientException {
         // TODO Auto-generated method stub
@@ -1709,12 +1821,11 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
 
     /**
      * Removes the 'conflicted' state from the specified file or directory in the working copy.
-     * </p>
-     * This method marks the given {@code path} as resolved, indicating that any conflicts
+     *
+     * <p>This method marks the given {@code path} as resolved, indicating that any conflicts
      * have been manually addressed by the user. It wraps the {@code svn resolve} command and
      * also explicitly notifies listeners of the change, since the SVN CLI does not emit notifications
-     * for this operation.
-     * </p>
+     * for this operation.</p>
      *
      * @param path the file or directory to mark as resolved
      * @throws SVNClientException if the resolve operation fails or the command cannot be executed
@@ -1805,9 +1916,12 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         }
     }
 
-    /* (non-Javadoc)
-     * @see org.tigris.subversion.svnclientadapter.ISVNClientAdapter#getInfo(
-     * org.tigris.subversion.svnclientadapter.SVNUrl[])
+    /**
+     * Retrieves SVN info for an array of URLs.
+     *
+     * @param urls array of SVN URLs
+     * @return SVN information describing each URL
+     * @throws SVNClientException if the command fails
      */
     public ISVNInfo getInfo(SVNUrl[] urls) throws SVNClientException {
         return getInfo(urls, null, null);
@@ -1873,8 +1987,15 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         cmd.setConfigDirectory(toString(dir));
     }
 
-    /* (non-Javadoc)
-     * @see org.tigris.subversion.svnclientadapter.ISVNClientAdapter#cleanup(java.io.File)
+    /**
+     * Runs the {@code svn cleanup} command on the specified working copy path.
+     *
+     * <p>This operation is used to clean up the working copy directory after
+     * an incomplete operation (e.g., interrupted checkout or update). It can also
+     * be useful when the working copy is locked or corrupted.</p>
+     *
+     * @param path the working copy directory or file to clean up
+     * @throws SVNClientException if the cleanup operation fails
      */
     public void cleanup(File path) throws SVNClientException {
         try {
@@ -1885,15 +2006,23 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         }
     }
 
-    /* (non-Javadoc)
-     * @see org.tigris.subversion.svnclientadapter.ISVNClientAdapter#merge(
-     * org.tigris.subversion.svnclientadapter.SVNUrl,
-     * org.tigris.subversion.svnclientadapter.SVNRevision,
-     * org.tigris.subversion.svnclientadapter.SVNUrl,
-     * org.tigris.subversion.svnclientadapter.SVNRevision,
-     * java.io.File,
-     * boolean, boolean,
-     * boolean, boolean)
+    /**
+     * Performs a two-URL merge between two different repository locations and applies the result to a local working copy.
+     *
+     * <p>This method is typically used to merge the differences between two branches or revisions
+     * into a local path. It corresponds to the command-line usage:
+     * {@code svn merge <source1>@<rev1> <source2>@<rev2> <localPath>}</p>
+     *
+     * @param path1 the first source URL (typically the older branch or revision)
+     * @param revision1 the revision of the first source URL
+     * @param path2 the second source URL (typically the newer branch or revision)
+     * @param revision2 the revision of the second source URL
+     * @param localPath the local working copy path where changes will be applied
+     * @param force whether to force the merge even if there are local modifications
+     * @param recurse whether to recurse into subdirectories (legacy; use depth in newer APIs)
+     * @param dryRun if true, performs a test merge without making actual changes
+     * @param ignoreAncestry whether to ignore merge history and treat sources as unrelated
+     * @throws SVNClientException if the merge operation fails
      */
     public void merge(SVNUrl path1, SVNRevision revision1, SVNUrl path2,
                       SVNRevision revision2, File localPath, boolean force,
@@ -1907,6 +2036,19 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         }
     }
 
+    /**
+     * Merges a list of revision ranges from a single source URL into a working copy.
+     *
+     * @param url the source branch URL
+     * @param pegRevision the peg revision that identifies the branch
+     * @param revisions array of revision ranges to merge
+     * @param localPath the local working copy path to merge into
+     * @param force whether to force the merge even if there are local changes
+     * @param depth the depth of the merge (e.g., files only, immediates, infinity)
+     * @param ignoreAncestry whether to ignore merge history and ancestry
+     * @param dryRun if true, performs a test run without making any changes
+     * @throws SVNClientException if an error occurs during the merge operation
+     */
     public void merge(SVNUrl url, SVNRevision pegRevision,
                       SVNRevisionRange[] revisions, File localPath, boolean force,
                       int depth, boolean ignoreAncestry, boolean dryRun)
@@ -1914,6 +2056,21 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         notImplementedYet();
     }
 
+    /**
+     * Merges specific revision ranges from a source URL into a working copy,
+     * with the option to record the merge without applying changes.
+     *
+     * @param url the source branch URL
+     * @param pegRevision the peg revision of the source URL
+     * @param revisions the revision ranges to merge
+     * @param localPath the target working copy path
+     * @param force if true, forces the merge even if conflicts or local changes exist
+     * @param depth the depth of the merge (e.g., files, immediates, infinity)
+     * @param ignoreAncestry if true, merge will not consider common ancestry
+     * @param dryRun if true, performs a test merge without making changes
+     * @param recordOnly if true, records the merge as if it happened, but makes no changes
+     * @throws SVNClientException if the merge fails
+     */
     public void merge(SVNUrl url, SVNRevision pegRevision,
                       SVNRevisionRange[] revisions, File localPath, boolean force,
                       int depth, boolean ignoreAncestry, boolean dryRun,
@@ -1923,6 +2080,21 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
 
     }
 
+    /**
+     * Performs a two-source merge between two URLs and merges the differences into the local path.
+     *
+     * @param path1 the first source URL (usually the older branch)
+     * @param revision1 the revision of the first source
+     * @param path2 the second source URL (usually the newer branch)
+     * @param revision2 the revision of the second source
+     * @param localPath the working copy path to merge into
+     * @param force if true, forces the merge even with local modifications
+     * @param depth the depth of the merge operation
+     * @param dryRun if true, simulates the merge without applying any changes
+     * @param ignoreAncestry whether to ignore merge history when comparing sources
+     * @param recordOnly if true, records merge metadata without performing a file-level merge
+     * @throws SVNClientException if the merge operation fails
+     */
     public void merge(SVNUrl path1, SVNRevision revision1, SVNUrl path2,
                       SVNRevision revision2, File localPath, boolean force, int depth,
                       boolean dryRun, boolean ignoreAncestry, boolean recordOnly)
@@ -1931,8 +2103,13 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         notImplementedYet();
     }
 
-    /* (non-Javadoc)
-     * @see org.tigris.subversion.svnclientadapter.ISVNClientAdapter#lock(SVNUrl[], java.lang.String, boolean)
+    /**
+     * Locks the specified repository URLs with an optional comment.
+     *
+     * @param uris the repository URLs to lock
+     * @param comment the lock comment
+     * @param force if true, forces the lock
+     * @throws SVNClientException if locking fails
      */
     public void lock(SVNUrl[] uris, String comment, boolean force)
             throws SVNClientException {
@@ -1945,8 +2122,13 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         }
     }
 
-    /* (non-Javadoc)
-     * @see org.tigris.subversion.svnclientadapter.ISVNClientAdapter#lock(java.io.File[], java.lang.String, boolean)
+    /**
+     * Locks the specified files in the working copy with an optional comment.
+     *
+     * @param paths the files to lock
+     * @param comment the lock comment
+     * @param force if true, forces the lock
+     * @throws SVNClientException if locking fails
      */
     public void lock(File[] paths, String comment, boolean force)
             throws SVNClientException {
@@ -1966,8 +2148,12 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         }
     }
 
-    /* (non-Javadoc)
-     * @see org.tigris.subversion.svnclientadapter.ISVNClientAdapter#unlock(SVNUrl[], boolean)
+    /**
+     * Unlocks the specified repository URLs.
+     *
+     * @param uris the repository URLs to unlock
+     * @param force if true, forces unlock
+     * @throws SVNClientException if unlocking fails
      */
     public void unlock(SVNUrl[] uris, boolean force)
             throws SVNClientException {
@@ -1980,8 +2166,12 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         }
     }
 
-    /* (non-Javadoc)
-     * @see org.tigris.subversion.svnclientadapter.ISVNClientAdapter#unlock(java.lang.String[], boolean)
+    /**
+     * Unlocks the specified working copy files.
+     *
+     * @param paths the files to unlock
+     * @param force if true, forces unlock
+     * @throws SVNClientException if unlocking fails
      */
     public void unlock(File[] paths, boolean force) throws SVNClientException {
         String[] files = new String[paths.length];
@@ -2021,6 +2211,12 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         return getAdminDirectoryName().equals(name);
     }
 
+    /**
+     * Retrieves the environment variable with the given name.
+     *
+     * @param var the name of the environment variable
+     * @return the value of the environment variable, or {@code null} if not found
+     */
     public static String getEnvironmentVariable(String var) {
         try {
             // pre-Java 1.5 this throws an Error.  On Java 1.5 it
@@ -2037,6 +2233,12 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         }
     }
 
+    /**
+     * Gets all environment variables available in the system.
+     *
+     * @return the properties containing all environment variables
+     * @throws Throwable if retrieval fails
+     */
     public static Properties getEnvVars() throws Throwable {
         Process p = null;
         Properties envVars = new Properties();
@@ -2093,6 +2295,18 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         return null;
     }
 
+    /**
+     * Produces a summary of differences between revisions for the given local path.
+     *
+     * @param target the local working copy path
+     * @param pegRevision the peg revision
+     * @param startRevision the start revision
+     * @param endRevision the end revision
+     * @param depth the depth of traversal
+     * @param ignoreAncestry if true, ignores ancestry when calculating differences
+     * @return an array of {@link SVNDiffSummary} objects describing the changes
+     * @throws SVNClientException if an error occurs
+     */
     public SVNDiffSummary[] diffSummarize(File target,
                                           SVNRevision pegRevision,
                                           SVNRevision startRevision,
@@ -2104,6 +2318,17 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         return null;
     }
 
+    /**
+     * Produces a summary of differences between revisions for the given local path.
+     *
+     * @param target1 the local working copy path
+     * @param revision1 the start revision
+     * @param revision2 the reg revision
+     * @param depth the depth of traversal
+     * @param ignoreAncestry if true, ignores ancestry when calculating differences
+     * @return an array of {@link SVNDiffSummary} objects describing the changes
+     * @throws SVNClientException if an error occurs
+     */
     public SVNDiffSummary[] diffSummarize(File target1,
                                           SVNRevision revision1,
                                           SVNUrl target2,
@@ -2115,6 +2340,18 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         return null;
     }
 
+    /**
+     * Produces a summary of differences between revisions for the given local path.
+     *
+     * @param target the local working copy path
+     * @param pegRevision the peg revision
+     * @param startRevision the start revision
+     * @param endRevision the end revision
+     * @param depth the depth of traversal
+     * @param ignoreAncestry if true, ignores ancestry when calculating differences
+     * @return an array of {@link SVNDiffSummary} objects describing the changes
+     * @throws SVNClientException if an error occurs
+     */
     public SVNDiffSummary[] diffSummarize(SVNUrl target,
                                           SVNRevision pegRevision,
                                           SVNRevision startRevision,
@@ -2126,6 +2363,17 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         return null;
     }
 
+    /**
+     * Produces a summary of differences between revisions for the given local path.
+     *
+     * @param target1 the local working copy path
+     * @param revision1 the start revision
+     * @param revision2 the reg revision
+     * @param depth the depth of traversal
+     * @param ignoreAncestry if true, ignores ancestry when calculating differences
+     * @return an array of {@link SVNDiffSummary} objects describing the changes
+     * @throws SVNClientException if an error occurs
+     */
     public SVNDiffSummary[] diffSummarize(SVNUrl target1,
                                           SVNRevision revision1,
                                           SVNUrl target2,
@@ -2169,6 +2417,16 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
 
     }
 
+    /**
+     * Performs a reintegrate merge from the specified URL to the working copy.
+     *
+     * @param path the branch URL to reintegrate
+     * @param pegRevision the peg revision of the branch
+     * @param localPath the target local path
+     * @param force if true, forces the merge
+     * @param dryRun if true, simulates the merge
+     * @throws SVNClientException if the merge fails
+     */
     public void mergeReintegrate(SVNUrl path, SVNRevision pegRevision,
                                  File localPath, boolean force, boolean dryRun)
             throws SVNClientException {
@@ -2218,11 +2476,28 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
 
     }
 
+    /**
+     * Retrieves properties for a file or directory including inherited ones.
+     *
+     * @param path the file or directory path
+     * @return array of SVN properties including inherited ones
+     * @throws SVNClientException if retrieval fails
+     */
     public ISVNProperty[] getPropertiesIncludingInherited(File path) throws SVNClientException {
         // TODO Auto-generated method stub
         return null;
     }
 
+    /**
+     * Retrieves inherited properties with filtering and options.
+     *
+     * @param path the file or directory
+     * @param includeEmptyProperties whether to include empty properties
+     * @param includeClosestOnly if true, includes only the closest inherited properties
+     * @param filterProperties list of property names to include (null for all)
+     * @return array of inherited SVN properties
+     * @throws SVNClientException if an error occurs
+     */
     public ISVNProperty[] getPropertiesIncludingInherited(File path,
                                                           boolean includeEmptyProperties,
                                                           boolean includeClosestOnly,
@@ -2232,11 +2507,28 @@ public class CmdLineClientAdapter extends AbstractClientAdapter {
         return null;
     }
 
+    /**
+     * Retrieves inherited properties for the given repository URL.
+     *
+     * @param path the SVN URL
+     * @return array of inherited properties
+     * @throws SVNClientException if an error occurs
+     */
     public ISVNProperty[] getPropertiesIncludingInherited(SVNUrl path) throws SVNClientException {
         // TODO Auto-generated method stub
         return null;
     }
 
+    /**
+     * Retrieves inherited properties for the given URL with filtering options.
+     *
+     * @param path the SVN URL
+     * @param includeEmptyProperties whether to include empty properties
+     * @param includeClosestOnly if true, includes only the closest inherited properties
+     * @param filterProperties list of property names to include (null for all)
+     * @return array of inherited properties
+     * @throws SVNClientException if retrieval fails
+     */
     public ISVNProperty[] getPropertiesIncludingInherited(SVNUrl path,
                                                           boolean includeEmptyProperties,
                                                           boolean includeClosestOnly,

@@ -18,7 +18,7 @@ package org.qubership.automation.pc.core.exceptions;
 
 /**
  * Exception class for errors that occur during factory instantiation.
- * </p>
+ * <p>
  * Thrown when an object cannot be created through a factory due to misconfiguration,
  * missing dependencies, or other runtime issues. Supports custom messages, root causes,
  * and optional status codes for enhanced error reporting.

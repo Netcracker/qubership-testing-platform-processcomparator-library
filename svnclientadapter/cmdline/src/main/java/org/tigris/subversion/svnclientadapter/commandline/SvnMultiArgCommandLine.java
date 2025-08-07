@@ -32,6 +32,12 @@ import org.tigris.subversion.svnclientadapter.SVNRevision;
  */
 public class SvnMultiArgCommandLine extends SvnCommandLine {
 
+    /**
+     * List of revisions reported by Subversion commands that affect multiple targets.
+     * <p>
+     * This list is populated during parsing of SVN output and contains {@link Long}
+     * values representing revision numbers. It is later used by {@link #getRevisions()}.
+     */
     protected List revs = new ArrayList();
 
     SvnMultiArgCommandLine(String svnPath, CmdLineNotificationHandler notificationHandler) {

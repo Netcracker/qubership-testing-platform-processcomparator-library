@@ -33,14 +33,13 @@ import org.qubership.automation.pc.core.exceptions.ComparatorException;
  *     <li><b>replace</b> – Replace matches with predefined strings (applied <b>before</b> comparison)</li>
  * </ul>
  *
- * <h3>Usage</h3>
  * When action is "replace", the number of regular expressions must match the number of replacement strings.
  * Patterns may also include inline flags using the format {@code /flags:FLAG1|FLAG2}, such as:
  * <pre>{@code
  * "someRegex/flags:CASE_INSENSITIVE|MULTILINE"
  * }</pre>
  *
- * <h3>Supported Pattern Flags:</h3>
+ * Supported Pattern Flags:
  * <ul>
  *     <li>CANON_EQ</li>
  *     <li>CASE_INSENSITIVE</li>

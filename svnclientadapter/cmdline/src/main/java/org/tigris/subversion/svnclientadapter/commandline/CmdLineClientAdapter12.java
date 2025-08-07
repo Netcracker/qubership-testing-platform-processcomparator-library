@@ -38,7 +38,7 @@ public class CmdLineClientAdapter12 extends CmdLineClientAdapter {
 
     /**
      * Constructs a new {@code CmdLineClientAdapter12} using the specified notification handler.
-     * </p>
+     * <p>
      * This adapter provides support for Subversion 1.2 command-line interactions. It initializes
      * the necessary command-line wrappers for standard SVN operations, multi-argument handling,
      * and administrative operations using the provided {@code notificationHandler} for event callbacks.
@@ -52,6 +52,18 @@ public class CmdLineClientAdapter12 extends CmdLineClientAdapter {
                 new SvnAdminCommandLine("svnadmin", notificationHandler));
     }
 
+    /**
+     * Checks if the SVN command-line client is available and supported.
+     *
+     * <p>This method attempts to run the {@code svn --version} command using a temporary
+     * {@link SvnCommandLine} instance. If the command executes successfully, the method returns {@code true}.
+     * Otherwise, it returns {@code false}. The result is cached to avoid repeated executions.</p>
+     *
+     * <p><b>Note:</b> If the location of the SVN executable changes, the {@code availabilityCached}
+     * flag should be reset to force rechecking availability.</p>
+     *
+     * @return {@code true} if the SVN command-line client is available; {@code false} otherwise
+     */
     public static boolean isAvailable() {
         // availabilityCached flag must be reset if location of client changes
         if (!availabilityCached) {

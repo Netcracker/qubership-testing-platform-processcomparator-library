@@ -47,7 +47,7 @@ import org.xml.sax.SAXException;
 
 /**
  * Comparator for validating XML nodes against XPath and regular expression mappings.
- * </p>
+ * <p>
  * Designed to check if the values at specific XPath locations in the expected (ER)
  * and actual (AR) XML documents match defined regular expression patterns.
  * Useful for masked or template-based XML validation where exact value matches are not required.

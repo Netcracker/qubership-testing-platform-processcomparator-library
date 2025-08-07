@@ -46,11 +46,9 @@ import org.xml.sax.InputSource;
  * Comparator implementation for JMS-style string messages that separates and compares
  * parameters and body content. This comparator supports XPath-based value mapping
  * with regular expression validation.
- * </p>
  * The class parses incoming `Data` objects into parameters and body sections, validates
  * body content using configured XPath and RegExp rules, and records all mismatches
  * as {@link DiffMessage} entries.
- * </p>
  * <p>Supported configuration parameters:</p>
  * <ul>
  *   <li><b>mapping_xpath</b>: newline-separated list of XPath expressions.</li>

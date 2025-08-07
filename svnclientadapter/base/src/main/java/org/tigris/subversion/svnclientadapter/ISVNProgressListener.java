@@ -16,8 +16,19 @@
 
 package org.tigris.subversion.svnclientadapter;
 
+/**
+ * A listener interface for receiving progress updates during the execution
+ * of Subversion operations (e.g. checkout, update, commit).
+ * <p>
+ * Implementations of this interface can be used to monitor long-running
+ * commands by receiving {@link SVNProgressEvent} callbacks.
+ */
 public interface ISVNProgressListener {
 
-    public void onProgress(SVNProgressEvent progressEvent);
-
+    /**
+     * Called to notify the listener of a progress event during an SVN operation.
+     *
+     * @param progressEvent the progress event providing details about the current operation progress
+     */
+    void onProgress(SVNProgressEvent progressEvent);
 }

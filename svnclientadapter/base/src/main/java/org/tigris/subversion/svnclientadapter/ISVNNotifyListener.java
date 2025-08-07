@@ -32,42 +32,120 @@ import java.io.File;
 public interface ISVNNotifyListener {
 
     /**
-     * An enumeration class representing the supported subversion commands/actions.
+     * Represents the types of Subversion commands that may trigger notifications.
+     * <p>
+     * Each constant corresponds to a specific SVN operation (e.g., commit, update, merge),
+     * used in the {@link ISVNNotifyListener#setCommand(int)} method.
      */
     final class Command {
+
+        /**
+         * Private constructor to prevent instantiation of this utility class.
+         */
+        private Command() {
+            // No instances allowed
+        }
+
+        /** Undefined command. */
         public static final int UNDEFINED = 0;
+
+        /** Add operation. */
         public static final int ADD = 1;
+
+        /** Checkout operation. */
         public static final int CHECKOUT = 2;
+
+        /** Commit operation. */
         public static final int COMMIT = 3;
+
+        /** Update operation. */
         public static final int UPDATE = 4;
+
+        /** Move operation. */
         public static final int MOVE = 5;
+
+        /** Copy operation. */
         public static final int COPY = 6;
+
+        /** Remove (delete) operation. */
         public static final int REMOVE = 7;
+
+        /** Export operation. */
         public static final int EXPORT = 8;
+
+        /** Import operation. */
         public static final int IMPORT = 9;
+
+        /** Create directory operation. */
         public static final int MKDIR = 10;
+
+        /** List directory contents. */
         public static final int LS = 11;
+
+        /** Status operation. */
         public static final int STATUS = 12;
+
+        /** Log operation. */
         public static final int LOG = 13;
+
+        /** Set property operation. */
         public static final int PROPSET = 14;
+
+        /** Delete property operation. */
         public static final int PROPDEL = 15;
+
+        /** Revert operation. */
         public static final int REVERT = 16;
+
+        /** Diff operation. */
         public static final int DIFF = 17;
+
+        /** Cat (output file content) operation. */
         public static final int CAT = 18;
+
+        /** Info operation. */
         public static final int INFO = 19;
+
+        /** Get property operation. */
         public static final int PROPGET = 20;
+
+        /** List properties operation. */
         public static final int PROPLIST = 21;
+
+        /** Resolved operation. */
         public static final int RESOLVED = 22;
+
+        /** Create repository operation. */
         public static final int CREATE_REPOSITORY = 23;
+
+        /** Cleanup working copy operation. */
         public static final int CLEANUP = 24;
+
+        /** Annotate (blame) operation. */
         public static final int ANNOTATE = 25;
+
+        /** Switch operation. */
         public static final int SWITCH = 26;
+
+        /** Merge operation. */
         public static final int MERGE = 27;
+
+        /** Lock operation. */
         public static final int LOCK = 28;
+
+        /** Unlock operation. */
         public static final int UNLOCK = 29;
+
+        /** Relocate working copy. */
         public static final int RELOCATE = 30;
+
+        /** Resolve conflicts operation. */
         public static final int RESOLVE = 31;
+
+        /** Retrieve merge info operation. */
         public static final int MERGEINFO = 32;
+
+        /** Upgrade working copy format. */
         public static final int UPGRADE = 33;
     }
 

@@ -26,7 +26,6 @@ import com.google.gson.JsonParser;
 
 /**
  * A specialized list for holding {@link Table} objects, with utility methods for JSON deserialization.
- * </p>
  * This class extends {@link ArrayList} to represent a collection of tables and provides support for
  * creating such a list from various JSON formats. It supports:
  * <ul>
@@ -34,7 +33,6 @@ import com.google.gson.JsonParser;
  *   <li>An object with a {@code "tables"} array field</li>
  *   <li>An object with {@code "headers"} and {@code "rows"} fields representing a single table</li>
  * </ul>
- * </p>
  * This flexibility ensures compatibility with legacy and variant JSON formats (e.g. SQL query results).
  */
 public class TablesList extends ArrayList<Table> {

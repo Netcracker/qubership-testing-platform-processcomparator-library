@@ -18,7 +18,7 @@ package org.qubership.automation.pc.core.exceptions;
 
 /**
  * Exception class for handling errors related to the Comparator Manager.
- * </p>
+ * <p>
  * Used to wrap and propagate various exceptions that may occur during the comparison process.
  * Supports detailed error messages, root causes, and optional HTTP-style status codes.
  */

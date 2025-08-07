@@ -18,7 +18,7 @@ package org.qubership.automation.pc.core.exceptions;
 
 /**
  * Exception class indicating that a requested reader could not be found.
- * </p>
+ * <p>
  * Thrown when the system attempts to load or access a reader by type or name,
  * but no matching implementation is available. Supports detailed error messages
  * and exception chaining for diagnostics.

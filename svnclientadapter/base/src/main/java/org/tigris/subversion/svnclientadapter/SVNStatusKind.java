@@ -130,7 +130,7 @@ public class SVNStatusKind {
 
     /**
      * Returns the integer representation of this status kind.
-     * </p>
+     * <p>
      * This value corresponds to the internal identifier used by the Subversion implementation.
      * </p>
      *
@@ -160,7 +160,7 @@ public class SVNStatusKind {
 
     /**
      * Returns the {@link SVNStatusKind} corresponding to the given integer value.
-     * </p>
+     * <p>
      * The integer must match one of the known internal constants for status kinds,
      * such as {@code normal}, {@code added}, {@code deleted}, etc.
      * </p>
@@ -205,7 +205,7 @@ public class SVNStatusKind {
 
     /**
      * Converts a string representation of a Subversion status to its corresponding {@link SVNStatusKind} enum.
-     * </p>
+     * <p>
      * Supported status kinds include:
      * <ul>
      *   <li>{@code "none"} or {@code "non-svn"} — not versioned</li>

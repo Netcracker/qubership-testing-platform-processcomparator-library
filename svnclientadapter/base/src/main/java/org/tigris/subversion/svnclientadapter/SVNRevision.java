@@ -33,7 +33,14 @@ import org.tigris.subversion.svnclientadapter.utils.SafeSimpleDateFormat;
  */
 public class SVNRevision {
     // See chapter 3 section 3.3 of the SVN book for valid date strings
+    /**
+     * Default date format used to serialize revision dates.
+     */
     protected static final SafeSimpleDateFormat dateFormat = new SafeSimpleDateFormat("yyyyMMdd'T'HHmmssZ");
+
+    /**
+     * Type of the revision (see {@link Kind}).
+     */
     protected int revKind;
 
     public SVNRevision(int kind) {
@@ -83,88 +90,166 @@ public class SVNRevision {
         return revKind;
     }
 
+    /**
+     * Constant representing the latest repository revision.
+     */
     public static final SVNRevision HEAD = new SVNRevision(Kind.head);
+
+    /**
+     * Constant representing an unspecified revision.
+     */
     public static final SVNRevision START = new SVNRevision(Kind.unspecified);
+
+    /**
+     * Constant representing the committed revision.
+     */
     public static final SVNRevision COMMITTED = new SVNRevision(Kind.committed);
+
+    /**
+     * Constant representing the previous revision.
+     */
     public static final SVNRevision PREVIOUS = new SVNRevision(Kind.previous);
+
+    /**
+     * Constant representing the base revision from .svn/entries.
+     */
     public static final SVNRevision BASE = new SVNRevision(Kind.base);
+
+    /**
+     * Constant representing the working copy revision (with local mods).
+     */
     public static final SVNRevision WORKING = new SVNRevision(Kind.working);
+
+    /**
+     * Invalid revision number constant (-1).
+     */
     public static final int SVN_INVALID_REVNUM = -1;
+
+    /**
+     * Constant representing an invalid revision object.
+     */
     public static final SVNRevision.Number INVALID_REVISION = new SVNRevision.Number(SVN_INVALID_REVNUM);
 
-
+    /**
+     * Represents a numeric revision (e.g., revision number 1234).
+     */
     public static class Number extends SVNRevision implements Comparable {
+        /**
+         * The numeric revision number.
+         */
         protected long revNumber;
 
+        /**
+         * Constructs a new {@code Number} revision.
+         *
+         * @param number the revision number
+         */
         public Number(long number) {
             super(Kind.number);
             revNumber = number;
         }
 
+        /**
+         * Returns the numeric revision number.
+         *
+         * @return the revision number
+         */
         public long getNumber() {
             return revNumber;
         }
 
+        /**
+         * Returns string representation of the revision number.
+         *
+         * @return the revision number as a string
+         */
         public String toString() {
             return Long.toString(revNumber);
         }
 
+        /**
+         * Checks equality with another object.
+         *
+         * @param target the object to compare to
+         * @return true if both are of type {@code Number} and have the same revision
+         */
         public boolean equals(Object target) {
-            if (!super.equals(target)) {
-                return false;
-            }
-
-            return ((SVNRevision.Number) target).revNumber == revNumber;
+            return super.equals(target) && ((Number) target).revNumber == revNumber;
         }
 
+        /**
+         * Returns a hash code based on the revision number.
+         *
+         * @return the hash code
+         */
         public int hashCode() {
             return (int) revNumber;
         }
 
+        /**
+         * Compares this revision number to another.
+         *
+         * @param target the target object to compare with
+         * @return -1, 0, or 1 depending on comparison
+         */
         public int compareTo(Object target) {
             SVNRevision.Number compare = (SVNRevision.Number) target;
-            if (revNumber > compare.getNumber()) {
-                return 1;
-            }
-            if (compare.getNumber() > revNumber) {
-                return -1;
-            }
-            return 0;
+            return Long.compare(revNumber, compare.getNumber());
         }
     }
 
+    /**
+     * Represents a revision specified by date.
+     */
     public static class DateSpec extends SVNRevision {
+
+        /**
+         * The revision date.
+         */
         protected Date revDate;
 
+        /**
+         * Constructs a new {@code DateSpec} revision.
+         *
+         * @param date the date specifying the revision
+         */
         public DateSpec(Date date) {
             super(Kind.date);
             revDate = date;
         }
 
+        /**
+         * Returns the date of this revision.
+         *
+         * @return the revision date
+         */
         public Date getDate() {
             return revDate;
         }
 
-        /* (non-Javadoc)
-         * @see java.lang.Object#toString()
+        /**
+         * Returns the string representation of the revision date.
+         *
+         * @return the formatted date string
          */
         public String toString() {
             return '{' + dateFormat.format(revDate) + '}';
         }
 
-        /* (non-Javadoc)
-         * @see java.lang.Object#equals(java.lang.Object)
+        /**
+         * Checks if this revision equals another object.
+         *
+         * @param target the object to compare to
+         * @return true if both are of type {@code DateSpec} and dates match
          */
         public boolean equals(Object target) {
-            if (!super.equals(target)) {
-                return false;
-            }
-
-            return ((SVNRevision.DateSpec) target).revDate.equals(revDate);
+            return super.equals(target) && ((DateSpec) target).revDate.equals(revDate);
         }
 
-        /* (non-Javadoc)
-         * @see java.lang.Object#hashCode()
+        /**
+         * Returns hash code based on revision date.
+         *
+         * @return the hash code
          */
         public int hashCode() {
             return revDate.hashCode();
@@ -174,9 +259,7 @@ public class SVNRevision {
 
     /**
      * Various ways of specifying revisions.
-     * </p>
-     * Various ways of specifying revisions.
-     * </p>
+     * <p>
      * Note:
      * In contexts where local mods are relevant, the `working' kind
      * refers to the uncommitted "working" revision, which may be modified
@@ -228,16 +311,17 @@ public class SVNRevision {
 
     /**
      * Parses a revision string and returns the corresponding {@link SVNRevision} instance.
-     * </p>
-     * The {@code revision} parameter can represent:
+     *
+     * <p>The {@code revision} parameter can represent:
      * <ul>
-     *   <li>A revision keyword (case-insensitive):</li>
-     *   <ul>
-     *     <li>{@code HEAD} – the latest revision in the repository</li>
-     *     <li>{@code BASE} – the base revision of the item's working copy</li>
-     *     <li>{@code COMMITED} – the revision in which the item was last committed</li>
-     *     <li>{@code PREV} – the revision prior to the item's last committed revision</li>
-     *   </ul>
+     *   <li>A revision keyword (case-insensitive):
+     *     <ul>
+     *       <li>{@code HEAD} – the latest revision in the repository</li>
+     *       <li>{@code BASE} – the base revision of the item's working copy</li>
+     *       <li>{@code COMMITED} – the revision in which the item was last committed</li>
+     *       <li>{@code PREV} – the revision prior to the item's last committed revision</li>
+     *     </ul>
+     *   </li>
      *   <li>A positive integer representing a revision number</li>
      *   <li>A date string in the format defined by {@code dateFormat}</li>
      * </ul>
@@ -291,8 +375,8 @@ public class SVNRevision {
 
     /**
      * Parses a revision string using the default US date format {@code MM/dd/yyyy hh:mm a}.
-     * </p>
-     * See {@link #getRevision(String, SimpleDateFormat)} for supported formats.
+     *
+     * <p>See {@link #getRevision(String, SimpleDateFormat)} for supported formats.</p>
      *
      * @param revision the revision string to parse
      * @return a corresponding {@link SVNRevision} object

@@ -21,9 +21,9 @@ package org.tigris.subversion.svnclientadapter;
 
 /**
  * The description of a merge conflict, encountered during
- * merge/update/switch operations.
- * </p>
- * copied from JavaHL ConflictDescriptor
+ * merge, update, or switch operations.
+ * <p>
+ * This class was copied and adapted from JavaHL's {@code ConflictDescriptor}.
  */
 public class SVNConflictDescriptor {
     private String path;
@@ -37,19 +37,17 @@ public class SVNConflictDescriptor {
 
     /**
      * Node kind variable.
-     *
-     * @see org.tigris.subversion.javahl.NodeKind
      */
     private int nodeKind;
 
     private String propertyName;
-
     private boolean isBinary;
     private String mimeType;
 
     private int action;
     private int reason;
     private int operation;
+
     private SVNConflictVersion srcLeftVersion;
     private SVNConflictVersion srcRightVersion;
 
@@ -62,6 +60,25 @@ public class SVNConflictDescriptor {
     private String myPath;
     private String mergedPath;
 
+    /**
+     * Constructs a full conflict descriptor.
+     *
+     * @param path            the path of the conflicted item
+     * @param conflictKind    the kind of conflict
+     * @param nodeKind        the kind of node involved
+     * @param propertyName    name of the conflicting property (if applicable)
+     * @param isBinary        whether the file is binary
+     * @param mimeType        MIME type of the item
+     * @param action          conflict action (see {@link Action})
+     * @param reason          reason for conflict (see {@link Reason})
+     * @param operation       operation causing the conflict (see {@link Operation})
+     * @param srcLeftVersion  source version (left)
+     * @param srcRightVersion source version (right)
+     * @param basePath        path to the base file
+     * @param theirPath       path to "their" version
+     * @param myPath          path to "my" version
+     * @param mergedPath      path to merged result
+     */
     public SVNConflictDescriptor(String path, int conflictKind, int nodeKind,
                                  String propertyName, boolean isBinary,
                                  String mimeType, int action, int reason, int operation,
@@ -85,6 +102,16 @@ public class SVNConflictDescriptor {
         this.mergedPath = mergedPath;
     }
 
+    /**
+     * Constructs a minimal conflict descriptor.
+     *
+     * @param path            path of the conflicted item
+     * @param action          conflict action
+     * @param reason          reason for conflict
+     * @param operation       operation that caused the conflict
+     * @param srcLeftVersion  left source version
+     * @param srcRightVersion right source version
+     */
     public SVNConflictDescriptor(String path,
                                  int action,
                                  int reason,
@@ -99,38 +126,83 @@ public class SVNConflictDescriptor {
         this.srcRightVersion = srcRightVersion;
     }
 
+    /**
+     * Returns the path to the conflicted item.
+     *
+     * @return path to the conflicted item
+     */
     public String getPath() {
         return path;
     }
 
+    /**
+     * Returns the kind of conflict.
+     *
+     * @return the kind of conflict (see {@link Kind})
+     */
     public int getConflictKind() {
         return conflictKind;
     }
 
+    /**
+     * Returns the kind of node (e.g. file or directory).
+     *
+     * @return the node kind
+     */
     public int getNodeKind() {
         return nodeKind;
     }
 
+    /**
+     * Returns the name of the conflicting property, if any.
+     *
+     * @return the property name or {@code null}
+     */
     public String getPropertyName() {
         return propertyName;
     }
 
+    /**
+     * Checks if the conflicted file is binary.
+     *
+     * @return {@code true} if binary, {@code false} otherwise
+     */
     public boolean isBinary() {
         return isBinary;
     }
 
+    /**
+     * Returns the MIME type of the conflicted item.
+     *
+     * @return MIME type string
+     */
     public String getMimeType() {
         return mimeType;
     }
 
+    /**
+     * Returns the action that caused the conflict.
+     *
+     * @return conflict action (see {@link Action})
+     */
     public int getAction() {
         return action;
     }
 
+    /**
+     * Returns the reason why the conflict occurred.
+     *
+     * @return conflict reason (see {@link Reason})
+     */
     public int getReason() {
         return reason;
     }
 
+    /**
+     * Checks whether the conflict is a tree conflict.
+     *
+     * @return {@code true} if tree conflict, {@code false} otherwise
+     */
     public boolean isTreeConflict() {
         return reason == SVNConflictDescriptor.Reason.deleted
                 || reason == SVNConflictDescriptor.Reason.moved_away
@@ -138,73 +210,120 @@ public class SVNConflictDescriptor {
                 || reason == SVNConflictDescriptor.Reason.obstructed;
     }
 
+    /**
+     * Returns the operation that caused the conflict.
+     *
+     * @return the conflict operation (see {@link Operation})
+     */
     public int getOperation() {
         return operation;
     }
 
+    /**
+     * Returns the left (their) version involved in the conflict.
+     *
+     * @return the left version
+     */
     public SVNConflictVersion getSrcLeftVersion() {
         return srcLeftVersion;
     }
 
+    /**
+     * Returns the right (my) version involved in the conflict.
+     *
+     * @return the right version
+     */
     public SVNConflictVersion getSrcRightVersion() {
         return srcRightVersion;
     }
 
+    /**
+     * Returns the path to the base file (if available).
+     *
+     * @return path to base file or {@code null}
+     */
     public String getBasePath() {
         return basePath;
     }
 
+    /**
+     * Returns the path to the "their" version of the file.
+     *
+     * @return path to their version
+     */
     public String getTheirPath() {
         return theirPath;
     }
 
+    /**
+     * Returns the path to the "my" version of the file.
+     *
+     * @return path to my version
+     */
     public String getMyPath() {
         return myPath;
     }
 
+    /**
+     * Returns the path to the merged file.
+     *
+     * @return path to merged result
+     */
     public String getMergedPath() {
         return mergedPath;
     }
 
     /**
-     * From JavaHL.
+     * Represents the type of a conflict (e.g., text or property).
      */
     public final class Kind {
-        /**
-         * Attempting to change text or props.
-         */
-        public static final int text = 0;
 
         /**
-         * Attempting to add object.
+         * Default constructor.
          */
+        public Kind () {
+            super();
+        }
+
+        /** Text conflict (e.g. line-based difference) */
+        public static final int text = 0;
+
+        /** Property conflict */
         public static final int property = 1;
     }
 
     /**
-     * From JavaHL.
+     * Constants for conflict actions.
      */
     public final class Action {
+
         /**
-         * Attempting to change text or props.
+         * Default constructor.
          */
+        public Action (){
+            super();
+        }
+
+        /** Edit attempt */
         public static final int edit = 0;
-
-        /**
-         * Attempting to add object.
-         */
+        /** Add attempt */
         public static final int add = 1;
-
-        /**
-         * Attempting to delete object.
-         */
+        /** Delete attempt */
         public static final int delete = 2;
     }
 
     /**
-     * From JavaHL.
+     * Constants for reasons that conflicts occur.
      */
     public final class Reason {
+
+        /**
+         * Default constructor.
+         */
+        public Reason (){
+            super();
+        }
+
         /**
          * Local edits are already present.
          */
@@ -251,10 +370,28 @@ public class SVNConflictDescriptor {
         public static final int moved_here = 8;
     }
 
+    /**
+     * Constants representing operations during which conflicts occurred.
+     */
     public final class Operation {
+
+        /**
+         * Default constructor.
+         */
+        public Operation (){
+            super();
+        }
+
+        /** No operation specified. */
         public static final int _none = 0;
+
+        /** Conflict occurred during an update operation. */
         public static final int _update = 1;
+
+        /** Conflict occurred during a switch operation. */
         public static final int _switch = 2;
+
+        /** Conflict occurred during a merge operation. */
         public static final int _merge = 3;
     }
 }

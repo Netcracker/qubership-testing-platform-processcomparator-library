@@ -25,47 +25,62 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * Notification handler :
- * It sends notifications to all listeners.
+ * Abstract base class for sending notifications to registered {@link ISVNNotifyListener}s.
+ * <p>
+ * Provides basic logging, error reporting, and change notification mechanisms
+ * for SVN client operations.
  */
 public abstract class SVNNotificationHandler {
-    protected Set notifylisteners = new HashSet();
+
+    /** Set of registered notification listeners. */
+    protected Set<ISVNNotifyListener> notifylisteners = new HashSet<>();
+
+    /** Current SVN command code being executed. */
     protected int command;
+
+    /** Flag indicating whether logging is currently enabled. */
     protected boolean logEnabled = true;
+
+    /** Base directory used for resolving relative paths. */
     protected File baseDir = new File(".");
 
     /**
      * Registers a new {@link ISVNNotifyListener} to receive notification events.
      *
-     * @param listener the listener to be added; must not be {@code null}
+     * @param listener the listener to add
      */
     public void add(ISVNNotifyListener listener) {
         notifylisteners.add(listener);
     }
 
     /**
-     * Unregisters an existing {@link ISVNNotifyListener} so it no longer receives notification events.
+     * Unregisters an existing {@link ISVNNotifyListener}.
      *
-     * @param listener the listener to be removed; must not be {@code null}
+     * @param listener the listener to remove
      */
     public void remove(ISVNNotifyListener listener) {
         notifylisteners.remove(listener);
     }
 
     /**
-     * restore logging.
+     * Enables logging of messages to listeners.
      */
     public void enableLog() {
         logEnabled = true;
     }
 
     /**
-     * disable all logging.
+     * Disables logging of messages to listeners.
      */
     public void disableLog() {
         logEnabled = false;
     }
 
+    /**
+     * Logs a message to all listeners if logging is enabled.
+     *
+     * @param message the message to log
+     */
     public void logMessage(String message) {
         if (logEnabled) {
             for (Iterator it = notifylisteners.iterator(); it.hasNext(); ) {
@@ -75,6 +90,11 @@ public abstract class SVNNotificationHandler {
         }
     }
 
+    /**
+     * Logs an error message to all listeners if logging is enabled.
+     *
+     * @param message the error message to log
+     */
     public void logError(String message) {
         if (logEnabled) {
             for (Iterator it = notifylisteners.iterator(); it.hasNext(); ) {
@@ -84,6 +104,12 @@ public abstract class SVNNotificationHandler {
         }
     }
 
+    /**
+     * Logs a revision number and path to all listeners if logging is enabled.
+     *
+     * @param revision the revision number
+     * @param path     the related path
+     */
     public void logRevision(long revision, String path) {
         if (logEnabled) {
             for (Iterator it = notifylisteners.iterator(); it.hasNext(); ) {
@@ -93,6 +119,11 @@ public abstract class SVNNotificationHandler {
         }
     }
 
+    /**
+     * Logs a completion message to all listeners if logging is enabled.
+     *
+     * @param message the completion message
+     */
     public void logCompleted(String message) {
         if (logEnabled) {
             for (Iterator it = notifylisteners.iterator(); it.hasNext(); ) {
@@ -103,9 +134,9 @@ public abstract class SVNNotificationHandler {
     }
 
     /**
-     * Sets the current SVN command being executed and notifies all registered listeners.
+     * Sets the current SVN command and notifies all listeners.
      *
-     * @param command the command identifier to set
+     * @param command the command ID
      */
     public void setCommand(int command) {
         this.command = command;
@@ -116,10 +147,10 @@ public abstract class SVNNotificationHandler {
     }
 
     /**
-     * Logs the command line that is about to be executed, if logging is enabled
-     * and the command is not skipped. Notifies all registered listeners.
+     * Logs the command line being executed if logging is enabled
+     * and the command is not in the skip list.
      *
-     * @param commandLine the command line to log
+     * @param commandLine the command line string
      */
     public void logCommandLine(String commandLine) {
         if (logEnabled && !skipCommand()) {
@@ -131,8 +162,7 @@ public abstract class SVNNotificationHandler {
     }
 
     /**
-     * Logs an exception thrown by a method of the client adapter. If logging is enabled,
-     * this method traverses the cause chain and logs each message.
+     * Logs an exception and its cause chain to all listeners.
      *
      * @param clientException the exception to log
      */
@@ -150,7 +180,7 @@ public abstract class SVNNotificationHandler {
      * Sets the base directory used for resolving relative paths.
      * If {@code baseDir} is {@code null}, the base directory will be auto-detected.
      *
-     * @param baseDir the base directory to use, or {@code null} to auto-detect
+     * @param baseDir the base directory, or {@code null} to reset to current directory
      */
     public void setBaseDir(File baseDir) {
         if (baseDir != null) {
@@ -160,10 +190,19 @@ public abstract class SVNNotificationHandler {
         }
     }
 
+    /**
+     * Resets the base directory to the current directory.
+     */
     public void setBaseDir() {
         this.baseDir = new File(".");
     }
 
+    /**
+     * Resolves a path into an absolute {@link File}, relative to {@link #baseDir}.
+     *
+     * @param path the path to resolve
+     * @return the absolute file, or {@code null} if input is null
+     */
     private File getAbsoluteFile(String path) {
         if (path == null) {
             return null;
@@ -175,6 +214,12 @@ public abstract class SVNNotificationHandler {
         return f;
     }
 
+    /**
+     * Notifies all listeners that the specified path has changed.
+     * The node kind is determined automatically from the file system.
+     *
+     * @param path the changed path
+     */
     public void notifyListenersOfChange(String path) {
         if (path == null) {
             return;
@@ -202,6 +247,12 @@ public abstract class SVNNotificationHandler {
 
     }
 
+    /**
+     * Notifies all listeners that the specified path has changed with known {@link SVNNodeKind}.
+     *
+     * @param path the changed path
+     * @param kind the node kind
+     */
     public void notifyListenersOfChange(String path, SVNNodeKind kind) {
         if (path == null) {
             return;
@@ -220,21 +271,19 @@ public abstract class SVNNotificationHandler {
     }
 
     /**
-     * For certain commands we just want to skip the logging of the
-     * command line.
+     * Determines whether the current command should skip logging the command line.
+     *
+     * @return {@code true} if the command should be skipped from logging;
+     *         {@code false} otherwise
      */
     protected boolean skipCommand() {
-        if (command == ISVNNotifyListener.Command.CAT
+        return command == ISVNNotifyListener.Command.CAT
                 || command == ISVNNotifyListener.Command.INFO
                 || command == ISVNNotifyListener.Command.LOG
                 || command == ISVNNotifyListener.Command.LS
                 || command == ISVNNotifyListener.Command.PROPGET
                 || command == ISVNNotifyListener.Command.PROPLIST
-                || command == ISVNNotifyListener.Command.STATUS) {
-            return true;
-        } else {
-            return false;
-        }
+                || command == ISVNNotifyListener.Command.STATUS;
     }
 
 }

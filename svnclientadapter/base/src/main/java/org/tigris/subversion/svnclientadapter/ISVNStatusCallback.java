@@ -16,8 +16,19 @@
 
 package org.tigris.subversion.svnclientadapter;
 
+/**
+ * A callback interface for processing the results of an SVN status operation.
+ * <p>
+ * Implementations of this interface receive status information for each path
+ * during a status traversal.
+ */
 public interface ISVNStatusCallback {
 
-    public void doStatus(String path, ISVNStatus status);
-
+    /**
+     * Called for each file or directory during a status operation.
+     *
+     * @param path   the file or directory path being reported
+     * @param status the status information for the path
+     */
+    void doStatus(String path, ISVNStatus status);
 }

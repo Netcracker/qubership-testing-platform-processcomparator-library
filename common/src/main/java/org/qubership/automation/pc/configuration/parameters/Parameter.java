@@ -19,10 +19,10 @@ package org.qubership.automation.pc.configuration.parameters;
 
 /**
  * Represents a single configuration parameter with a name and a value.
- * </p>
- * This class is used to encapsulate key-value pairs typically used in various
- * configuration contexts such as comparator rules, global settings, or step-level overrides.
- * </p>
+ *
+ * <p>This class is used to encapsulate key-value pairs typically used in various
+ * configuration contexts such as comparator rules, global settings, or step-level overrides.</p>
+ *
  * Instances of this class are typically collected into a list or map and
  * processed to influence the behavior of comparison logic.
  */

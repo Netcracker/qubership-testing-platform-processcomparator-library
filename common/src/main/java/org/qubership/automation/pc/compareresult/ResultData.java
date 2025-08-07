@@ -22,7 +22,7 @@ import org.qubership.automation.pc.data.Data;
 
 /**
  * Represents the result of comparing a single actual data element against the expected one.
- * </p>
+ * <p>
  * Contains the actual data, a list of differences, and a summary result indicating the outcome.
  * Used as part of a broader comparison result structure.
  */

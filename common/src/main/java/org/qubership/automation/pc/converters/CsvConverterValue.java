@@ -21,7 +21,7 @@ import org.qubership.automation.pc.core.interfaces.IValueConverterValue;
 
 /**
  * Implementation of {@link IValueConverterValue} for CSV-based table data.
- * </p>
+ * <p>
  * Represents a value with content type {@link DataContentType#TABLE} by default,
  * storing raw CSV content as a string and allowing type overrides if necessary.
  */

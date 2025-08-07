@@ -29,11 +29,11 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Factory class for providing {@link IComparator} implementations based on {@link DataContentType}.
- * </p>
+ * <p>
  * This class follows a singleton pattern to maintain a cache of comparator mappings and
  * instantiate them on demand. Comparators are mapped via their fully-qualified class names
  * and loaded dynamically using reflection.
- * </p>
+ * <p>
  * <strong>Supported DataContentTypes:</strong>
  * <ul>
  *   <li>PRIMITIVES → PrimitivesComparator</li>
@@ -47,10 +47,10 @@ import org.slf4j.LoggerFactory;
  *   <li>TABLE → TableComparator</li>
  *   <li>CSV → CsvComparator</li>
  * </ul>
- * </p>
+ * <p>
  * In case the comparator class is not found or cannot be instantiated, appropriate custom exceptions
  * are thrown: {@link ComparatorNotFoundException} and {@link FactoryInstatiationException}.
- * </p>
+ * <p>
  *
  * @see IComparator
  * @see DataContentType
