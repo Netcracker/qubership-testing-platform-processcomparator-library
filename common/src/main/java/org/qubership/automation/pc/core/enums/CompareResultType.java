@@ -18,7 +18,7 @@ package org.qubership.automation.pc.core.enums;
 
 /**
  * Defines the type of comparison result based on the context or data structure.
- * </p>
+ * <p>
  * Used to distinguish different comparison scenarios or levels of granularity.
  * <ul>
  *   <li>{@code SIMPLE} – Basic comparison of standalone values or entities.</li>

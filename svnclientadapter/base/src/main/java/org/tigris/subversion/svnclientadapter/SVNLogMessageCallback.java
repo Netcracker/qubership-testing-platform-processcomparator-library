@@ -20,12 +20,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-
+/**
+ * Implementation of {@link ISVNLogMessageCallback} that collects SVN log messages,
+ * preserving hierarchical (parent-child) relationships between messages.
+ * <p>
+ * This class is typically used when retrieving logs via SVN operations that may
+ * return messages with children, such as merge histories.
+ */
 public class SVNLogMessageCallback implements ISVNLogMessageCallback {
 
-    private List messages = new ArrayList();
-    private Stack stack = new Stack();
+    /** List of top-level log messages. */
+    private List<ISVNLogMessage> messages = new ArrayList<>();
 
+    /** Stack used to manage nested log messages. */
+    private Stack<ISVNLogMessage> stack = new Stack<>();
+
+    /**
+     * Handles a single SVN log message, building the parent-child hierarchy if needed.
+     * <p>
+     * If {@code msg} is {@code null}, the method pops the current message from the stack.
+     *
+     * @param msg the log message to process; may be {@code null}
+     */
     public void singleMessage(ISVNLogMessage msg) {
         if (msg == null) {
             if (!stack.empty()) {
@@ -44,6 +60,11 @@ public class SVNLogMessageCallback implements ISVNLogMessageCallback {
         }
     }
 
+    /**
+     * Returns all collected top-level log messages.
+     *
+     * @return an array of collected {@link ISVNLogMessage} objects
+     */
     public ISVNLogMessage[] getLogMessages() {
         ISVNLogMessage[] array = new ISVNLogMessage[messages.size()];
         return (ISVNLogMessage[]) messages.toArray(array);

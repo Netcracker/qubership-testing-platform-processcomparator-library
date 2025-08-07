@@ -20,7 +20,7 @@ import org.qubership.automation.pc.configuration.parameters.Parameters;
 
 /**
  * Base configuration class for all reader types.
- * </p>
+ * <p>
  * Holds global parameters that are shared across different data sources
  * or scripts within a reader implementation.
  */

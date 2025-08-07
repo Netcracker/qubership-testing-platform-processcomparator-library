@@ -18,7 +18,7 @@ package org.qubership.automation.pc.core.enums;
 
 /**
  * Specifies the type of data reader used to retrieve input for comparison.
- * </p>
+ * <p>
  * Each reader corresponds to a specific source or format of data.
  * <ul>
  *   <li>{@code SQLReader} – Reads data from a SQL database.</li>

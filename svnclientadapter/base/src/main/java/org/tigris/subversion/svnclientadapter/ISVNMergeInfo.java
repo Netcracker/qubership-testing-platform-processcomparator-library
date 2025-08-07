@@ -19,6 +19,12 @@
 
 package org.tigris.subversion.svnclientadapter;
 
+/**
+ * Represents Subversion merge information, typically stored in the {@code svn:mergeinfo} property.
+ * <p>
+ * This interface allows querying and updating merge sources and their associated revision ranges.
+ * It can also parse and load raw merge info property strings.
+ */
 public interface ISVNMergeInfo {
     /**
      * Add one or more SVNRevisionRange objects to merge info. If path is already

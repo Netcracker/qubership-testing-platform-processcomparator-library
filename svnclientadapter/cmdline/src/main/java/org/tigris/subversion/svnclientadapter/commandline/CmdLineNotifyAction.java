@@ -134,15 +134,15 @@ public interface CmdLineNotifyAction {
 
     /**
      * Indicates that a path has been successfully locked.
-     * </p>
-     * This event type is typically used in {@link ISVNNotifyListener} implementations to notify that a
+     * <p>
+     * This event type is typically used in ISVNNotifyListener implementations to notify that a
      * working copy path or repository URL has been locked for exclusive access.
      */
     public static final int locked = 21;
 
     /**
      * Indicates that a path has been successfully unlocked.
-     * </p>
+     * <p>
      * This event type is triggered after a successful removal of a lock from a path that was previously
      * locked via Subversion's locking mechanism.
      */
@@ -150,7 +150,7 @@ public interface CmdLineNotifyAction {
 
     /**
      * Indicates that an attempt to lock a path has failed.
-     * </p>
+     * <p>
      * This may occur due to permission issues, existing locks held by others, or network problems.
      * Provides a way to notify tools or UIs that the lock operation was not successful.
      */
@@ -158,7 +158,7 @@ public interface CmdLineNotifyAction {
 
     /**
      * Indicates that an attempt to unlock a path has failed.
-     * </p>
+     * <p>
      * Possible reasons include trying to unlock a path that is not locked, lack of permissions,
      * or repository access errors.
      */

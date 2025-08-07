@@ -43,18 +43,15 @@ import com.google.gson.JsonSyntaxException;
 /**
  * A servlet that handles HTTP requests for performing data comparison operations.
  *
- * <p>
- * This servlet supports both GET and POST methods and expects a JSON payload
+ * <p>This servlet supports both GET and POST methods and expects a JSON payload
  * containing comparator configuration and data packages. It delegates comparison
- * logic to the {@link ComparatorManager} and returns the result as a JSON response.
- * </p>
+ * logic to the {@link ComparatorManager} and returns the result as a JSON response.</p>
  *
- * <p>Expected request parameter: {@code content} - a JSON-formatted string that includes:
+ * Expected request parameter: {@code content} - a JSON-formatted string that includes:
  * <ul>
  *   <li>{@code comparatorConfiguration} (optional) - comparison settings</li>
  *   <li>{@code dataPackages} (required) - data to compare</li>
  * </ul>
- * </p>
  *
  * <p>Responses are returned in JSON format and include comparison results or error messages.</p>
  */

@@ -18,7 +18,7 @@ package org.qubership.automation.pc.core.exceptions;
 
 /**
  * Exception class for handling errors that occur during data comparison.
- * </p>
+ * <p>
  * Thrown when the comparator logic fails due to configuration issues,
  * data inconsistencies, or internal processing errors.
  * Supports detailed messages, root causes, and status codes for diagnostics.

@@ -23,7 +23,7 @@ import org.qubership.automation.pc.configuration.datasource.SQLDataSource;
 
 /**
  * Configuration class for ITF (Integration Test Framework) data readers.
- * </p>
+ * <p>
  * Extends {@link ReaderConfiguration} to include a list of SQL data sources
  * which are required to retrieve or process data for test execution.
  *

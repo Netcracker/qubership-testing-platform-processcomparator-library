@@ -18,7 +18,7 @@ package org.qubership.automation.pc.core.enums;
 
 /**
  * Represents the status of an action performed on a resource.
- * </p>
+ * <p>
  * Used to indicate whether an operation completed successfully or failed.
  * <ul>
  *   <li>{@code OK} – The action was successful.</li>

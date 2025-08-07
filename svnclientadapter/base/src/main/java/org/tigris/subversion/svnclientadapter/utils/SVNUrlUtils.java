@@ -25,7 +25,7 @@ import org.tigris.subversion.svnclientadapter.SVNUrl;
 
 /**
  * Utility class for common operations on {@link SVNUrl} instances.
- * </p>
+ * <p>
  * Provides methods to compute relative paths, determine shared URL roots,
  * and reconstruct SVN URLs from local working copy paths.
  * </p>

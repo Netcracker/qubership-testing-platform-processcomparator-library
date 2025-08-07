@@ -24,7 +24,7 @@ import org.qubership.automation.pc.data.Data;
 
 /**
  * Interface for managing in-memory or persistent data storage.
- * </p>
+ * <p>
  * Provides operations to retrieve, filter, add, and remove {@link Data} objects
  * based on internal identifiers or content type. Implementations may store data
  * in memory, databases, or other backends.

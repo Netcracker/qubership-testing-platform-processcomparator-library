@@ -21,7 +21,7 @@ package org.tigris.subversion.svnclientadapter.commandline;
 
 /**
  * Subversion notification interface.
- * </p>
+ * <p>
  * Implement this interface and implement the onNotify method
  * to provide a custom notification handler to the Modify
  * class.
@@ -31,7 +31,7 @@ package org.tigris.subversion.svnclientadapter.commandline;
 public interface CmdLineNotify {
     /**
      * Handler for Subversion notifications.
-     * </p>
+     * <p>
      * Override this function to allow Subversion to
      * send notifications
      *
@@ -56,6 +56,14 @@ public interface CmdLineNotify {
      * The values are defined in the interface NotifyAction for building reasons.
      */
     public static final class Action implements CmdLineNotifyAction {
+
+        /**
+         * Default constructor.
+         */
+        public Action() {
+            super();
+        }
+
         /**
          * Returns the textual representation for the action kind.
          *
@@ -73,6 +81,14 @@ public interface CmdLineNotify {
      * The values are defined in the interface NotifyStatus for building reasons.
      */
     public static final class Status implements CmdLineNotifyStatus {
+
+        /**
+         * Default constructor.
+         */
+        public Status() {
+            super();
+        }
+
         /**
          * Returns the textual representation for the notification type.
          *

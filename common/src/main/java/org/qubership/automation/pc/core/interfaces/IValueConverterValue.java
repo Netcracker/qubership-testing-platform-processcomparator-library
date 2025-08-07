@@ -20,7 +20,7 @@ import org.qubership.automation.pc.core.enums.DataContentType;
 
 /**
  * Interface representing a typed value used in value conversion operations.
- * </p>
+ * <p>
  * Provides methods to set and retrieve both the value and its associated {@link DataContentType}.
  * Used in converters to manage content transformations between different formats.
  */

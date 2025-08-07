@@ -26,7 +26,7 @@ import org.qubership.automation.pc.core.enums.DataContentType;
 
 /**
  * Configuration class for SQL-based data readers.
- * </p>
+ * <p>
  * Defines the data sources, input/output parameters, and SQL scripts used by the reader
  * to retrieve and process data from relational databases.
  */

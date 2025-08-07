@@ -18,7 +18,7 @@ package org.qubership.automation.pc.core.exceptions;
 
 /**
  * Exception class indicating that a required comparator was not found.
- * </p>
+ * <p>
  * Thrown when the system fails to locate a comparator implementation
  * for a specific data type, content type, or configuration.
  * Supports detailed error messages, causes, and optional status codes.

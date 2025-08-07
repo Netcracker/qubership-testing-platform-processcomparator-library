@@ -40,7 +40,6 @@ import org.qubership.automation.pc.models.Table;
  *   <li>{@code convertKeyValueToColumns()} – transforms key-value rows into a single row with named columns.</li>
  *   <li>{@code convertToKeyValue()} – transforms a single column-based row into multiple key-value rows.</li>
  * </ul>
- * </p>
  */
 public class SQLReaderResult extends Table implements Iterable {
 

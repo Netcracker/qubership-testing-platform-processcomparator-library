@@ -16,6 +16,13 @@
 
 package org.tigris.subversion.svnclientadapter;
 
+/**
+ * Defines a callback interface for resolving conflicts encountered during
+ * Subversion operations such as merge, update, or switch.
+ *
+ * <p>Implementations of this interface allow client applications to programmatically
+ * resolve file or property conflicts when they occur.</p>
+ */
 public interface ISVNConflictResolver {
     /**
      * The callback method invoked for each conflict during a
@@ -23,7 +30,7 @@ public interface ISVNConflictResolver {
      *
      * @param descrip A description of the conflict.
      * @return The result of any conflict resolution.
-     * @throws SubversionException If an error occurs.
+     * @throws SVNClientException If an error occurs.
      */
     public SVNConflictResult resolve(SVNConflictDescriptor descrip) throws SVNClientException;
 
@@ -31,6 +38,13 @@ public interface ISVNConflictResolver {
      * From JavaHL.
      */
     public final class Choice {
+
+        /**
+         * Default constructor.
+         */
+        public Choice() {
+            super();
+        }
         /**
          * User did nothing; conflict remains.
          */

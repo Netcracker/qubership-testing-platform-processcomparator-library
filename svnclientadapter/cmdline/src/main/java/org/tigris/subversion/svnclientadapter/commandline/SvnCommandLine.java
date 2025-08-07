@@ -26,9 +26,10 @@ import org.tigris.subversion.svnclientadapter.SVNRevision;
 import org.tigris.subversion.svnclientadapter.commandline.parser.SvnOutputParser;
 
 /**
- * </p>
+ * <p>
  * Performs the gruntwork of calling "svn". Is a bare-bones interface to using
- * the Subversion commandline client.</p>
+ * the Subversion commandline client.
+ * </p>
  *
  * @author Philip Schatz (schatz at tigris)
  * @author Cï¿½dric Chabanois (cchabanois at no-log.org)
@@ -36,11 +37,36 @@ import org.tigris.subversion.svnclientadapter.commandline.parser.SvnOutputParser
  */
 public class SvnCommandLine extends CommandLine {
 
+    /**
+     * Username used for authentication with the Subversion repository.
+     */
     protected String user;
+
+    /**
+     * Password used for authentication with the Subversion repository.
+     */
     protected String pass;
+
+    /**
+     * Parser for handling SVN command output and triggering notifications.
+     */
     protected SvnOutputParser svnOutputParser = new SvnOutputParser();
+
+    /**
+     * The revision number returned by the last executed SVN command.
+     * If no valid revision is returned, this is set to {@code SVNRevision.SVN_INVALID_REVNUM}.
+     */
     protected long rev = SVNRevision.SVN_INVALID_REVNUM;
+
+    /**
+     * Indicates whether the output of the SVN command should be parsed for notifications.
+     */
     protected boolean parseSvnOutput = false;
+
+    /**
+     * Optional path to a custom Subversion configuration directory.
+     * If {@code null}, the default user configuration directory is used.
+     */
     protected String configDir = null;
 
     //Constructors
@@ -50,8 +76,7 @@ public class SvnCommandLine extends CommandLine {
 
     /**
      * Returns a valid Subversion revision string.
-     *
-     * @summary Returns "HEAD" if the input revision is null or empty; otherwise, returns the original revision.
+     * Returns "HEAD" if the input revision is null or empty; otherwise, returns the original revision.
      *
      * @param revision The revision string to validate.
      * @return "HEAD" if the input is null or empty, otherwise the input revision.
@@ -1129,7 +1154,7 @@ public class SvnCommandLine extends CommandLine {
 
     /**
      * Calls the base implementation of output notification handling.
-     * </p>
+     * <p>
      * This method delegates to {@code super.notifyFromSvnOutput()} to process
      * generic logging messages like {@code logMessage()} and {@code logCompleted()}.
      * It resets the internal revision state prior to calling the parent logic.
@@ -1145,7 +1170,7 @@ public class SvnCommandLine extends CommandLine {
 
     /**
      * Sets the current SVN command and specifies how its output should be interpreted.
-     * </p>
+     * <p>
      * This method sets the current command being executed and determines whether
      * the SVN output should be parsed as notifications (e.g., {@code update}, {@code commit})
      * using {@code SvnOutputParser}, or treated as raw output (e.g., {@code list}, {@code cat}).

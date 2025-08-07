@@ -45,10 +45,25 @@ import org.xml.sax.InputSource;
  */
 public class CmdLineAnnotations extends Annotations {
 
+    /**
+     * Private constructor to enforce the use of factory methods.
+     */
     private CmdLineAnnotations() {
-        //Use factory method
+        // Use factory method
     }
 
+    /**
+     * Creates a {@code CmdLineAnnotations} object from SVN XML output and content stream.
+     *
+     * <p>This method parses the XML annotation output (from the SVN `--xml` option),
+     * extracts author, revision, and date per line, and matches it with actual file contents
+     * to form annotation entries.</p>
+     *
+     * @param annotations XML output as byte array
+     * @param contents    file contents as input stream
+     * @return parsed {@code CmdLineAnnotations} object
+     * @throws CmdLineException if any parsing or I/O error occurs
+     */
     public static CmdLineAnnotations createFromXml(byte[] annotations, InputStream contents) throws CmdLineException {
         CmdLineAnnotations result = new CmdLineAnnotations();
 
@@ -82,7 +97,7 @@ public class CmdLineAnnotations extends Annotations {
                     date = Helper.convertXMLDate(dateNode.getFirstChild().getNodeValue());
                 }
 
-                lines[lineNr - 1] = (new Annotation(revision.getNumber(), author, date, null));
+                lines[lineNr - 1] = new Annotation(revision.getNumber(), author, date, null);
             }
 
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(contents));
@@ -103,6 +118,16 @@ public class CmdLineAnnotations extends Annotations {
         return result;
     }
 
+    /**
+     * Creates {@code CmdLineAnnotations} from command line stdout output.
+     *
+     * <p>This method is used when the SVN client does not return XML but plain-text
+     * annotation output. It parses revision number, author, and line content from each line.</p>
+     *
+     * @param annotations   the full stdout output as a string
+     * @param lineSeparator line separator used in the output (e.g. {@code "\n"})
+     * @return a populated {@code CmdLineAnnotations} instance
+     */
     public static CmdLineAnnotations createFromStdOut(String annotations, String lineSeparator) {
         CmdLineAnnotations result = new CmdLineAnnotations();
         String[] lines = StringUtils.split(annotations, lineSeparator);
@@ -113,6 +138,8 @@ public class CmdLineAnnotations extends Annotations {
         }
         return result;
     }
+
+    // --- Private helpers (not required to document unless you want 100% completeness) ---
 
     private static long getRevisionFrom(String line) {
         String version = line.substring(0, 6).trim();
@@ -126,7 +153,7 @@ public class CmdLineAnnotations extends Annotations {
     }
 
     private static Date getChangedFrom(String line) {
-        //Client adapter does not support verbose output with dates
+        // Client adapter does not support verbose output with dates
         return null;
     }
 

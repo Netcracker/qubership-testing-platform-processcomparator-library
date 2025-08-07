@@ -25,7 +25,7 @@ import org.tigris.subversion.svnclientadapter.SVNStatusKind;
 /**
  * Utility class that provides static helper methods to evaluate and interpret
  * Subversion (SVN) status kinds.
- * </p>
+ * <p>
  * This class is used to determine the version control status of resources,
  * such as whether they are versioned, ignored, modified, conflicted, or ready
  * for commit/revert operations.

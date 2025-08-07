@@ -18,7 +18,7 @@ package org.qubership.automation.pc.core.exceptions;
 
 /**
  * Exception class for errors that occur within the Reader Manager component.
- * </p>
+ * <p>
  * Thrown when managing or coordinating data readers fails due to misconfiguration,
  * unavailable resources, or internal errors. Supports message customization,
  * root causes, and advanced exception handling features.

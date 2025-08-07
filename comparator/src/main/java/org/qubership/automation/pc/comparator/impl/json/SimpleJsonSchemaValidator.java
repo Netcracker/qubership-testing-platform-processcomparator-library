@@ -82,7 +82,7 @@ public final class SimpleJsonSchemaValidator {
 
     /**
      * validate the given json document against the given schema.
-     * </p>
+     * <p>
      * use this method if you have a json document and the matching schema
      *
      * @param json   the document to be validated
@@ -100,7 +100,7 @@ public final class SimpleJsonSchemaValidator {
      * validates the given document against the given schema;  both the document
      * and the schema will be converted to JSONObjects before further processing,
      * so the documents should be valid json as acceptable by JSONObject.
-     * </p>
+     * <p>
      * use this method if you have string representations of both the schema and
      * the document;
      *

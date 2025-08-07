@@ -25,7 +25,7 @@ import java.util.Arrays;
 
 /**
  * Object that describes a revision range.
- * </p>
+ * <p>
  * copied from JavaHL implementation
  */
 public class SVNRevisionRange implements Comparable, java.io.Serializable {
@@ -220,7 +220,7 @@ public class SVNRevisionRange implements Comparable, java.io.Serializable {
      * @param inclusiveFromRev if {@code true}, the lower bound (from) is inclusive;
      *                         otherwise, the check is strictly greater than {@code from}
      * @return {@code true} if {@code revision} lies within the range; {@code false} otherwise
-     *         </p>
+     *         <p>
      *         Note: If the upper bound of the range is {@link SVNRevision#HEAD},
      *         it is treated as unbounded on the upper end.
      */

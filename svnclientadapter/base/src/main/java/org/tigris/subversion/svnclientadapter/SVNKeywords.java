@@ -25,22 +25,37 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 /**
- * tells which keywords are enabled for a given resource.
+ * Represents the set of SVN keywords enabled for a particular resource.
+ * <p>
+ * SVN keywords are used for embedding metadata such as author, revision, and date into files.
  */
 public class SVNKeywords {
 
+    /** Keyword for the last changed date */
     public static final String LAST_CHANGED_DATE = "LastChangedDate";
+
+    /** Alias for {@link #LAST_CHANGED_DATE} */
     public static final String DATE = "Date";
 
+    /** Keyword for the last changed revision */
     public static final String LAST_CHANGED_REVISION = "LastChangedRevision";
+
+    /** Alias for {@link #LAST_CHANGED_REVISION} */
     public static final String REV = "Rev";
 
+    /** Keyword for the author of the last change */
     public static final String LAST_CHANGED_BY = "LastChangedBy";
+
+    /** Alias for {@link #LAST_CHANGED_BY} */
     public static final String AUTHOR = "Author";
 
+    /** Keyword for the HEAD URL of the repository */
     public static final String HEAD_URL = "HeadURL";
+
+    /** Alias for {@link #HEAD_URL} */
     public static final String URL = "URL";
 
+    /** Keyword for a summary of revision, date, author, and path */
     public static final String ID = "Id";
 
     private boolean lastChangedDate = false;
@@ -49,10 +64,18 @@ public class SVNKeywords {
     private boolean headUrl = false;
     private boolean id = false;
 
+    /**
+     * Creates an empty {@code SVNKeywords} instance with all keywords disabled.
+     */
     public SVNKeywords() {
 
     }
 
+    /**
+     * Constructs an instance by parsing a space-separated list of enabled keywords.
+     *
+     * @param keywords the space-separated list of keyword names (can be {@code null})
+     */
     public SVNKeywords(String keywords) {
         if (keywords == null) {
             return;
@@ -61,31 +84,31 @@ public class SVNKeywords {
 
         while (st.hasMoreTokens()) {
             String keyword = st.nextToken();
-            // don't know if keywords are case sensitive or no
-            if ((keyword.equals(SVNKeywords.HEAD_URL))
-                    || (keyword.equals(SVNKeywords.URL))) {
+            if ((keyword.equals(SVNKeywords.HEAD_URL)) || (keyword.equals(SVNKeywords.URL))) {
                 headUrl = true;
             } else if (keyword.equals(SVNKeywords.ID)) {
                 id = true;
-            } else if ((keyword.equals(SVNKeywords.LAST_CHANGED_BY))
-                    || (keyword.equals(SVNKeywords.AUTHOR))) {
+            } else if ((keyword.equals(SVNKeywords.LAST_CHANGED_BY)) || (keyword.equals(SVNKeywords.AUTHOR))) {
                 lastChangedBy = true;
-            } else if ((keyword.equals(SVNKeywords.LAST_CHANGED_DATE))
-                    || (keyword.equals(SVNKeywords.DATE))) {
+            } else if ((keyword.equals(SVNKeywords.LAST_CHANGED_DATE)) || (keyword.equals(SVNKeywords.DATE))) {
                 lastChangedDate = true;
-            } else if ((keyword.equals(SVNKeywords.LAST_CHANGED_REVISION))
-                    || (keyword.equals(SVNKeywords.REV))) {
+            } else if ((keyword.equals(SVNKeywords.LAST_CHANGED_REVISION)) || (keyword.equals(SVNKeywords.REV))) {
                 lastChangedRevision = true;
             }
         }
-
     }
 
-
-    public SVNKeywords(
-            boolean lastChangedDate, boolean lastChangedRevision,
-            boolean lastChangedBy, boolean headUrl, boolean id) {
-
+    /**
+     * Constructs an instance using explicit keyword flags.
+     *
+     * @param lastChangedDate     whether the last changed date keyword is enabled
+     * @param lastChangedRevision whether the last changed revision keyword is enabled
+     * @param lastChangedBy       whether the last changed by keyword is enabled
+     * @param headUrl             whether the head URL keyword is enabled
+     * @param id                  whether the ID keyword is enabled
+     */
+    public SVNKeywords(boolean lastChangedDate, boolean lastChangedRevision,
+                       boolean lastChangedBy, boolean headUrl, boolean id) {
         this.lastChangedDate = lastChangedDate;
         this.lastChangedRevision = lastChangedRevision;
         this.lastChangedBy = lastChangedBy;
@@ -93,30 +116,55 @@ public class SVNKeywords {
         this.id = id;
     }
 
+    /**
+     * Checks if the {@link #HEAD_URL} keyword is enabled.
+     *
+     * @return {@code true} if HEAD_URL is enabled; {@code false} otherwise
+     */
     public boolean isHeadUrl() {
         return headUrl;
     }
 
+    /**
+     * Checks if the {@link #ID} keyword is enabled.
+     *
+     * @return {@code true} if ID is enabled; {@code false} otherwise
+     */
     public boolean isId() {
         return id;
     }
 
+    /**
+     * Checks if the {@link #LAST_CHANGED_BY} keyword is enabled.
+     *
+     * @return {@code true} if LAST_CHANGED_BY is enabled; {@code false} otherwise
+     */
     public boolean isLastChangedBy() {
         return lastChangedBy;
     }
 
+    /**
+     * Checks if the {@link #LAST_CHANGED_DATE} keyword is enabled.
+     *
+     * @return {@code true} if LAST_CHANGED_DATE is enabled; {@code false} otherwise
+     */
     public boolean isLastChangedDate() {
         return lastChangedDate;
     }
 
+    /**
+     * Checks if the {@link #LAST_CHANGED_REVISION} keyword is enabled.
+     *
+     * @return {@code true} if LAST_CHANGED_REVISION is enabled; {@code false} otherwise
+     */
     public boolean isLastChangedRevision() {
         return lastChangedRevision;
     }
 
     /**
-     * Get list of keywords.
+     * Returns a list of the currently enabled SVN keywords.
      *
-     * @return the list of keywords
+     * @return a list of SVN keyword strings
      */
     public List getKeywordsList() {
         ArrayList list = new ArrayList();
@@ -138,6 +186,11 @@ public class SVNKeywords {
         return list;
     }
 
+    /**
+     * Returns a space-separated string of enabled keywords.
+     *
+     * @return a string listing the enabled keywords
+     */
     public String toString() {
         String result = "";
 
@@ -151,22 +204,47 @@ public class SVNKeywords {
         return result;
     }
 
+    /**
+     * Enables or disables the {@link #HEAD_URL} keyword.
+     *
+     * @param b {@code true} to enable; {@code false} to disable
+     */
     public void setHeadUrl(boolean b) {
         headUrl = b;
     }
 
+    /**
+     * Enables or disables the {@link #ID} keyword.
+     *
+     * @param b {@code true} to enable; {@code false} to disable
+     */
     public void setId(boolean b) {
         id = b;
     }
 
+    /**
+     * Enables or disables the {@link #LAST_CHANGED_BY} keyword.
+     *
+     * @param b {@code true} to enable; {@code false} to disable
+     */
     public void setLastChangedBy(boolean b) {
         lastChangedBy = b;
     }
 
+    /**
+     * Enables or disables the {@link #LAST_CHANGED_DATE} keyword.
+     *
+     * @param b {@code true} to enable; {@code false} to disable
+     */
     public void setLastChangedDate(boolean b) {
         lastChangedDate = b;
     }
 
+    /**
+     * Enables or disables the {@link #LAST_CHANGED_REVISION} keyword.
+     *
+     * @param b {@code true} to enable; {@code false} to disable
+     */
     public void setLastChangedRevision(boolean b) {
         lastChangedRevision = b;
     }

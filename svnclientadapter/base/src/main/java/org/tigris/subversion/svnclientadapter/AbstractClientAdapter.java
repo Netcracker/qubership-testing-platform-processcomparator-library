@@ -37,6 +37,14 @@ import java.util.StringTokenizer;
  */
 public abstract class AbstractClientAdapter implements ISVNClientAdapter {
 
+    /**
+     * Constructs a new AbstractClientAdapter.
+     * Subclasses may use this constructor to initialize the adapter.
+     */
+    protected AbstractClientAdapter() {
+        super();
+    }
+
     /* (non-Javadoc)
      * @see org.tigris.subversion.svnclientadapter.ISVNClientAdapter#setKeywords(java.io.File,
      * org.tigris.subversion.svnclientadapter.SVNKeywords, boolean)
@@ -306,6 +314,12 @@ public abstract class AbstractClientAdapter implements ISVNClientAdapter {
         // Default implementation does nothing
     }
 
+    /**
+     * Indicates whether the {@code status} command returns remote (repository) information
+     * in addition to local working copy status.
+     *
+     * @return {@code true} if remote status information is included; {@code false} otherwise
+     */
     public boolean statusReturnsRemoteInfo() {
         return false;
     }
@@ -316,6 +330,14 @@ public abstract class AbstractClientAdapter implements ISVNClientAdapter {
         return null;
     }
 
+    /**
+     * Throws an {@link SVNClientException} indicating that the method is not yet implemented.
+     * <p>
+     * This method serves as a placeholder for functionality that has not been developed.
+     * Subclasses should override the corresponding method instead of relying on this default.
+     *
+     * @throws SVNClientException always thrown to indicate the method is unimplemented
+     */
     protected void notImplementedYet() throws SVNClientException {
         throw new SVNClientException("Not implemented yet");
     }

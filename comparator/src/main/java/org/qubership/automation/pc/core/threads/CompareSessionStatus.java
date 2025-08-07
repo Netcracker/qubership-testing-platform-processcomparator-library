@@ -18,7 +18,7 @@ package org.qubership.automation.pc.core.threads;
 
 /**
  * Represents the various lifecycle states of a comparison session.
- * </p>
+ * <p>
  * These statuses are used to track and control the execution progress
  * of {@link CompareSession} instances during their lifecycle, such as:
  * <ul>

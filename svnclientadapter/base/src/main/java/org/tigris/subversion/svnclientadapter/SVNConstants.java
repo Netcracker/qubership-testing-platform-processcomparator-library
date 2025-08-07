@@ -25,6 +25,13 @@ package org.tigris.subversion.svnclientadapter;
 public class SVNConstants {
 
     /**
+     * Default constructor.
+     */
+    public SVNConstants() {
+        super();
+    }
+
+    /**
      * a "entries" workingCopy metadata directory name.
      */
     public static final String SVN_ENTRIES = "wc.db";

@@ -31,6 +31,13 @@ public class ReaderThread extends Thread {
     private final InputStream myInputStream;
     private final OutputStream myOutputStream;
 
+    /**
+     * Creates a new daemon thread that continuously reads from the given input stream
+     * and writes to the given output stream.
+     *
+     * @param is the input stream to read from (must not be {@code null})
+     * @param os the output stream to write to (must not be {@code null})
+     */
     public ReaderThread(InputStream is, OutputStream os) {
         myInputStream = is;
         myOutputStream = os;

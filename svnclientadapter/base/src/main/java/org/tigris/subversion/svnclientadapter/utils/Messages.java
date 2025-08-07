@@ -25,11 +25,18 @@ import java.util.ResourceBundle;
 
 /**
  * A utility class for retrieving and formatting localized messages from a resource bundle.
- * </p>
+ * <p>
  * Used to support internationalization (i18n) by binding parameters to message templates.
  * </p>
  */
 public class Messages {
+
+    /**
+     * Default constructor.
+     */
+    public Messages () {
+        super();
+    }
 
     /**
      * The name of the resource bundle file (without the .properties extension).

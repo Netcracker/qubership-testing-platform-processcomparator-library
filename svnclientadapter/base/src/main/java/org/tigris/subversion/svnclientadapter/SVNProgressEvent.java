@@ -16,22 +16,49 @@
 
 package org.tigris.subversion.svnclientadapter;
 
+/**
+ * Represents a progress event for long-running SVN operations.
+ * <p>
+ * This class is typically used to report the amount of progress made
+ * and the total amount of work expected, if known.
+ */
 public class SVNProgressEvent {
+
+    /** The current amount of progress. */
     private long progress;
+
+    /** The total amount of work expected, or {@link #UNKNOWN} if not known. */
     private long total;
 
+    /** Constant indicating that the total work is unknown. */
     public static final long UNKNOWN = -1;
 
+    /**
+     * Constructs a new SVNProgressEvent instance.
+     *
+     * @param progress the current progress made
+     * @param total    the total amount of work expected, or {@link #UNKNOWN} if unknown
+     */
     public SVNProgressEvent(long progress, long total) {
         super();
         this.progress = progress;
         this.total = total;
     }
 
+    /**
+     * Returns the current progress value.
+     *
+     * @return the amount of progress completed
+     */
     public long getProgress() {
         return progress;
     }
 
+    /**
+     * Returns the total amount of work expected.
+     *
+     * @return the total work, or {@link #UNKNOWN} if not known
+     */
     public long getTotal() {
         return total;
     }

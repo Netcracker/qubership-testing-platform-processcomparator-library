@@ -72,7 +72,7 @@ import com.jcraft.jsch.ChannelSftp;
  * and number rounding.
  * </p>
  *
- * <h3>Supported Configuration Parameters:</h3>
+ * Supported Configuration Parameters:
  * <ul>
  *     <li><b>FILEPATH</b> – path to the Excel file (required)</li>
  *     <li><b>SHEETNAME</b> – sheet name(s), comma-separated if multiple</li>
@@ -88,7 +88,7 @@ import com.jcraft.jsch.ChannelSftp;
  *
  * <p>The class also supports parameterized scripts using placeholders like <code>{parameter}</code>.</p>
  *
- * <h3>Main Features:</h3>
+ * Main Features:
  * <ul>
  *     <li>Reads Excel data based on provided configuration</li>
  *     <li>Merges tables from multiple sheets</li>

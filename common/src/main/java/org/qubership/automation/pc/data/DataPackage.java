@@ -23,7 +23,7 @@ import org.qubership.automation.pc.configuration.ComparatorConfiguration;
 
 /**
  * Represents a container for holding expected and actual data along with comparison configuration.
- * </p>
+ * <p>
  * This class is used in data comparison scenarios where a single expected result (ER) is
  * compared against one or more actual results (AR), using a given {@link ComparatorConfiguration}.
  *

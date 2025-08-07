@@ -20,11 +20,24 @@ import org.tigris.subversion.svnclientadapter.ISVNDirEntry;
 import org.tigris.subversion.svnclientadapter.ISVNDirEntryWithLock;
 import org.tigris.subversion.svnclientadapter.ISVNLock;
 
+/**
+ * Implementation of {@link ISVNDirEntryWithLock} that combines an SVN directory entry
+ * with an optional lock.
+ *
+ * <p>This class is used to represent a remote directory entry retrieved via the SVN
+ * command-line interface, along with its associated lock information if available.</p>
+ */
 public class CmdLineRemoteDirEntryWithLock implements ISVNDirEntryWithLock {
 
     private final ISVNDirEntry dirEntry;
     private final ISVNLock lock;
 
+    /**
+     * Constructs a new {@code CmdLineRemoteDirEntryWithLock} instance.
+     *
+     * @param dirEntry the directory entry information
+     * @param lock the lock information associated with the entry, or {@code null} if none
+     */
     public CmdLineRemoteDirEntryWithLock(ISVNDirEntry dirEntry, ISVNLock lock) {
         super();
         this.dirEntry = dirEntry;

@@ -24,7 +24,7 @@ import org.qubership.automation.pc.configuration.parameters.Parameters;
 
 /**
  * Represents a single processing rule used in test or data-driven automation flows.
- * </p>
+ * <p>
  * Each rule is associated with a specific step and can contain multiple {@link Message} entries,
  * each with its own set of parameters. A rule may also be marked as {@code skip}, meaning it should
  * be bypassed during execution.

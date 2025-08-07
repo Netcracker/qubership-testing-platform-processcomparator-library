@@ -22,9 +22,11 @@ package org.tigris.subversion.svnclientadapter;
 import java.util.EventObject;
 
 /**
- * The event passed to the
- * {@link DiffSummarizer#summarize} API in response to path
+ * The event passed to the API in response to path
  * differences reported by {@link ISVNClientAdapter#diffSummarize}.
+ * <p>
+ * Encapsulates information about the kind of change that occurred on a file or directory,
+ * whether its properties changed, and what type of node (file/dir) it is.
  */
 public class SVNDiffSummary extends EventObject {
     // Update the serialVersionUID when there is a incompatible change
@@ -88,7 +90,7 @@ public class SVNDiffSummary extends EventObject {
      * Get type of node which changed.
      *
      * @return The type of node which changed (corresponds to the
-     *         {@link NodeKind} enumeration).
+     *         NodeKind enumeration).
      */
     public int getNodeKind() {
         return this.nodeKind;
@@ -108,10 +110,18 @@ public class SVNDiffSummary extends EventObject {
      */
     public static class SVNDiffKind {
         // Corresponds to the svn_client_diff_summarize_kind_t enum.
-        public static SVNDiffKind NORMAL = new SVNDiffKind(0);
-        public static SVNDiffKind ADDED = new SVNDiffKind(1);
-        public static SVNDiffKind MODIFIED = new SVNDiffKind(2);
-        public static SVNDiffKind DELETED = new SVNDiffKind(3);
+
+        /** No change */
+        public static final SVNDiffKind NORMAL = new SVNDiffKind(0);
+
+        /** Item was added */
+        public static final SVNDiffKind ADDED = new SVNDiffKind(1);
+
+        /** Item was modified */
+        public static final SVNDiffKind MODIFIED = new SVNDiffKind(2);
+
+        /** Item was deleted */
+        public static final SVNDiffKind DELETED = new SVNDiffKind(3);
 
         private int kind;
 
@@ -122,6 +132,7 @@ public class SVNDiffSummary extends EventObject {
         /**
          * Get appropriate instance.
          *
+         * @param  diffKind - Diff kind
          * @return The appropriate instance.
          * @throws IllegalArgumentException If the diff kind is not
          *                                  recognized.

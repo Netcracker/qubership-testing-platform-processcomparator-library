@@ -38,7 +38,7 @@ import org.xmlunit.util.Linqy;
  * A custom implementation of the {@link NodeMatcher} interface that performs intelligent
  * matching between XML nodes based on a configurable sequence of {@link ElementSelector}s
  * and a {@link NodeTypeMatcher}.
- * </p>
+ * <p>
  * This matcher is capable of:
  * <ul>
  *   <li>Handling element comparison strategies such as matching by name, text, or custom logic.</li>
@@ -47,7 +47,7 @@ import org.xmlunit.util.Linqy;
  * </ul>
  * It supports advanced matching for XML diff/merge tools and is particularly suitable
  * for comparing complex XML documents where structural and semantic context matters.
- * </p>
+ * <p>
  * The matcher is designed to be extensible and reusable in XML comparison frameworks.
  */
 public class IntelliNodeMatcher implements NodeMatcher {

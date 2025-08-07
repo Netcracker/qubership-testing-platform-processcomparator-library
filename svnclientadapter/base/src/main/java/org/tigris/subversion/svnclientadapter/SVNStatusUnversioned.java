@@ -38,7 +38,7 @@ public class SVNStatusUnversioned implements ISVNStatus {
      * @param file       the file that is unversioned
      * @param isIgnored  {@code true} if the file is ignored (e.g. matches an ignore pattern),
      *                   {@code false} if it's simply unversioned
-     *                   </p>
+     *                   <p>
      *                   Note: a file may be both unversioned and ignored.
      *                   This flag indicates that the item is treated as ignored
      *                   by the Subversion client.

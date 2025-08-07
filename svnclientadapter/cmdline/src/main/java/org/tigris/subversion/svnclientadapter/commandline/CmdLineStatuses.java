@@ -115,16 +115,15 @@ public class CmdLineStatuses {
     }
 
     /**
-     * Post-process svn:externals statuses.
-     * commandline answer two sort of statuses on externals:
-     * - when ignoreExternals is set to true during call to status(),
-     * the returned status has textStatus set to EXTERNAL, but the url is null.<br>
-     * - when ignoreExternals is set to false during call to status(),
-     * besides the "external + null" status, the second status with url and all fields is returned too,
-     * but this one has textStatus NORMAL.
-     * </p>
-     * These methods unify both statuses to be complete and has textStatus external.
-     * In case the first sort (when ignoreExternals true), the url is retrieved by call the info()
+     * Post-processes `svn:externals` statuses to unify their representation.
+     *
+     * <p>The SVN command-line client may return multiple status entries for externals,
+     * including minimal ones with {@code textStatus=EXTERNAL} and null URLs, or complete ones with
+     * {@code textStatus=NORMAL} and a full set of data. This method adjusts all matching
+     * entries to consistently mark them as {@code EXTERNAL}.</p>
+     *
+     * @param statuses the array of {@link CmdLineStatusPart} to process
+     * @return the updated array of {@link CmdLineStatusPart} with unified external statuses
      */
     protected CmdLineStatusPart[] processExternalStatuses(CmdLineStatusPart[] statuses) {
         //Collect indexes of external statuses
@@ -153,14 +152,30 @@ public class CmdLineStatuses {
         return statuses;
     }
 
+    /**
+     * Returns the {@link ISVNStatus} at the specified index.
+     *
+     * @param i the index of the status to return
+     * @return the {@link ISVNStatus} at the specified index
+     */
     public ISVNStatus get(int i) {
         return cmdLineStatuses[i];
     }
 
+    /**
+     * Returns the number of status entries held by this object.
+     *
+     * @return the number of {@link ISVNStatus} objects
+     */
     public int size() {
         return cmdLineStatuses.length;
     }
 
+    /**
+     * Returns all status entries as an array.
+     *
+     * @return an array of {@link ISVNStatus} objects
+     */
     public ISVNStatus[] toArray() {
         return cmdLineStatuses;
     }

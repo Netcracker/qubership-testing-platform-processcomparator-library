@@ -22,11 +22,25 @@ package org.tigris.subversion.svnclientadapter.commandline;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+/**
+ * Base class providing utility methods for navigating and extracting data from XML DOM trees.
+ *
+ * <p>Primarily used to parse XML output from SVN command-line tools, this class offers simplified
+ * alternatives to XPath by walking the DOM manually to find named child or sibling elements.</p>
+ */
 public class CmdLineXmlCommand {
 
     /**
+     * Default constructor for {@code CmdLineXmlCommand}.
+     * <p>No special initialization is performed.</p>
+     */
+    public CmdLineXmlCommand() {
+        // No-op constructor
+    }
+
+    /**
      * Searches the children of the given parent node and returns the first element with the specified name.
-     * </p>
+     * <p>
      * This method is not a full XPath implementation, but rather a simple traversal of direct child elements.
      *
      * @param parent       the parent node whose children will be searched
@@ -40,6 +54,17 @@ public class CmdLineXmlCommand {
         return findNamedElementSibling(parent.getFirstChild(), elementName);
     }
 
+    /**
+     * Searches the siblings following the given node and returns the first {@link Element}
+     * with the specified name.
+     *
+     * <p>This method performs a simple linear search among sibling nodes,
+     * starting from {@code foundNode.getNextSibling()}.</p>
+     *
+     * @param foundNode    the node whose next siblings will be searched
+     * @param elementName  the name of the element to find
+     * @return the first {@link Element} with the specified name, or {@code null} if none is found
+     */
     protected static Element getNextNamedElement(Node foundNode, String elementName) {
         if (foundNode == null) {
             return null;

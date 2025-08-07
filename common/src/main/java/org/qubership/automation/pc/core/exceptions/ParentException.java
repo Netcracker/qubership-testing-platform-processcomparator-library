@@ -18,7 +18,7 @@ package org.qubership.automation.pc.core.exceptions;
 
 /**
  * Base class for custom exceptions with optional status code support.
- * </p>
+ * <p>
  * Provides standard exception constructors along with a customizable
  * {@code statusCode} field for enhanced error reporting and integration with APIs.
  * Intended to be extended by more specific exception types in the system.

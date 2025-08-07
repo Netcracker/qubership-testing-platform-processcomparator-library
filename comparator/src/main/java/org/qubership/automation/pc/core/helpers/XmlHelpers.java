@@ -41,7 +41,7 @@ import org.w3c.dom.Node;
 
 /**
  * Utility class for working with XML data structures and content transformations.
- * </p>
+ * <p>
  * Provides methods for cleaning, parsing, and transforming XML strings;
  * extracting XPath expressions; and building in-memory XSL transformers.
  * Designed for use in comparison tools, highlighters, and XML-aware processing logic.

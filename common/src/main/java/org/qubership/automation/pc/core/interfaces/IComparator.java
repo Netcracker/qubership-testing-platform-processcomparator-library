@@ -25,7 +25,7 @@ import org.qubership.automation.pc.data.Data;
 
 /**
  * Interface defining a contract for comparing two data inputs (expected vs actual).
- * </p>
+ * <p>
  * Implementations of this interface perform comparisons using structured or raw data,
  * returning a list of {@link DiffMessage} objects that describe the differences.
  * Supports both base64-encoded and plain data formats.

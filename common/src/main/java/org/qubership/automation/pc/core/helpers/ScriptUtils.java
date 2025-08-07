@@ -30,11 +30,11 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Utility class for processing and substituting macros (placeholders) in text scripts.
- * </p>
- * This class supports identifying macros (e.g., placeholders like <code>{param}</code>)
+ *
+ * <p>This class supports identifying macros (e.g., placeholders like <code>{param}</code>)
  * within SQL or other text-based scripts, and replacing them with values provided either via
- * a list of {@link InputParameter} or a map of parameter names and values.
- * </p>
+ * a list of {@link InputParameter} or a map of parameter names and values.</p>
+ *
  * It supports features such as:
  * <ul>
  *   <li>Default values for macros</li>
@@ -42,9 +42,9 @@ import org.slf4j.LoggerFactory;
  *   <li>Customizable regular expressions for macro detection</li>
  *   <li>Wildcard-based matching for parameterized script mappings</li>
  * </ul>
- * </p>
- * Designed for integration in systems requiring dynamic script parameterization, such as SQL query builders.
- * </p>
+ *
+ * <p>Designed for integration in systems requiring dynamic script parameterization, such as SQL query builders.</p>
+ *
  * This class is stateless and only exposes static utility methods.
  */
 public class ScriptUtils {

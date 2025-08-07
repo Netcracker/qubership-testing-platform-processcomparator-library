@@ -29,7 +29,7 @@ import org.tigris.subversion.svnclientadapter.utils.StringUtils;
  * directories are sometimes relative (with svn commit for ex). However it is
  * not relative to current directory but relative to the common parent of the
  * current directory and the working copy target
- * </p>
+ * <p>
  * ex : if working copy is at /home/cedric/programmation/sources/test and
  * current dir is /home/cedric/projects/subversion/subclipse
  * </p>
@@ -42,9 +42,16 @@ import org.tigris.subversion.svnclientadapter.utils.StringUtils;
 public class SVNBaseDir {
 
     /**
+     * Default constructor.
+     */
+    public SVNBaseDir () {
+        super();
+    }
+
+    /**
      * Returns the deepest common ancestor directory between two files, or {@code null}
      * if there is no common directory.
-     * </p>
+     * <p>
      * If both files are the same, returns the file itself.
      * If the files reside on different root paths (e.g., different drives on Windows),
      * returns {@code null}.
@@ -113,7 +120,7 @@ public class SVNBaseDir {
 
     /**
      * Determines the base directory for a single file.
-     * </p>
+     * <p>
      * This is effectively a convenience method that calls {@link #getBaseDir(File[])}
      * with a single-element array.
      *
@@ -126,7 +133,7 @@ public class SVNBaseDir {
 
     /**
      * Determines the base directory common to a set of files.
-     * </p>
+     * <p>
      * The base directory is the shared directory between the set of files and the
      * current working directory.
      *
@@ -143,7 +150,7 @@ public class SVNBaseDir {
 
     /**
      * Computes the root directory common to all specified files.
-     * </p>
+     * <p>
      * The root directory is defined as the deepest shared ancestor directory
      * among all files in the array.
      *

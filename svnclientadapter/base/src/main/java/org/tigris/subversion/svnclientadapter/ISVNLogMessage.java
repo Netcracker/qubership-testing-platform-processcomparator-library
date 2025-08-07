@@ -28,9 +28,24 @@ import java.util.Date;
  * @author Philip Schatz <a href="mailto:schatzp@purdue.edu">schatzp@purdue.edu</a>
  */
 public interface ISVNLogMessage {
+    /**
+     * The standard Subversion property name for the commit author.
+     */
     String AUTHOR = "svn:author";
+
+    /**
+     * The standard Subversion property name for the commit log message.
+     */
     String MESSAGE = "svn:log";
+
+    /**
+     * The standard Subversion property name for the commit date.
+     */
     String DATE = "svn:date";
+
+    /**
+     * Custom property name used by svnclientadapter to store commit time in microseconds.
+     */
     String TIME_MICROS = "svnclientadapter:timemicros";
 
     /**
@@ -103,11 +118,15 @@ public interface ISVNLogMessage {
 
     /**
      * Add a child logMessage to an existing message.
+     *
+     * @param msg - child log message
      */
     void addChild(ISVNLogMessage msg);
 
     /**
-     * Does this logMessage have any children.
+     * Indicates whether this log message has any child log messages.
+     *
+     * @return {@code true} if the log message has children; {@code false} otherwise
      */
     boolean hasChildren();
 }

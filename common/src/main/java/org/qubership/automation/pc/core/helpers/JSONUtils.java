@@ -26,7 +26,7 @@ import com.google.gson.JsonObject;
 
 /**
  * Utility class for working with JSON data and JSONPath representations.
- * </p>
+ * <p>
  * Provides methods to construct status messages in JSON format,
  * convert object paths to JSONPath strings, and simplify JSONPath expressions.
  */

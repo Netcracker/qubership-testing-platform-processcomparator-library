@@ -24,7 +24,7 @@ import java.util.List;
 
 /**
  * A helper class for various string operations.
- * </p>
+ * <p>
  * This class provides utility methods for splitting strings and removing
  * characters from the beginning of a string. It is designed to be compatible
  * with older Java versions such as JDK 1.3, where some modern methods (like
@@ -34,11 +34,17 @@ import java.util.List;
 public class StringUtils {
 
     /**
+     * Private constructor to prevent instantiation.
+     */
+    private StringUtils() {
+        // Utility class; no instances allowed
+    }
+
+    /**
      * Splits a string into an array of substrings using the specified character
      * as a delimiter.
-     * </p>
+     * <p>
      * This method does not use {@code String.split} and is compatible with JDK 1.3+.
-     * </p>
      *
      * @param str       the input string to split; must not be {@code null}
      * @param separator the character to use as the delimiter
@@ -88,11 +94,10 @@ public class StringUtils {
 
     /**
      * Strips any of a set of characters from the start of a string.
-     * </p>
+     * <p>
      * A {@code null} input string returns {@code null}. An empty string ("")
      * returns the empty string. If the {@code stripChars} string is {@code null},
      * then whitespace is stripped as defined by {@link Character#isWhitespace(char)}.
-     * </p>
      *
      * <pre>
      * StringUtils.stripStart(null, *)          = null
@@ -129,4 +134,3 @@ public class StringUtils {
         return str.substring(start);
     }
 }
-

@@ -28,7 +28,7 @@ import org.qubership.automation.pc.core.interfaces.IValueConverterValue;
 
 /**
  * Central class for executing value converters by name and parameters.
- * </p>
+ * <p>
  * Maintains a registry of available converter implementations and provides methods
  * to parse action strings, instantiate the corresponding converter, and invoke its logic.
  * Designed as a singleton-style utility with internal caching and dynamic class loading.

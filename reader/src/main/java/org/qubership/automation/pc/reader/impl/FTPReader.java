@@ -53,8 +53,8 @@ import com.jcraft.jsch.SftpException;
  * {@code FTPReader} is a reader class for retrieving data from a remote FTP/SFTP server.
  * It supports reading individual files or multiple files by mask from specified directories.
  * The class implements the {@link IReader} interface and extends {@link AbstractFileReader}.
- * </p>
- * <h3>Main Features:</h3>
+ * <p>
+ * Main Features:
  * <ul>
  *   <li>Supports SFTP connections using username/password authentication</li>
  *   <li>Downloads files from remote servers based on path and optional filename mask</li>
@@ -62,13 +62,13 @@ import com.jcraft.jsch.SftpException;
  *   <li>Supports parameterized script processing via {@code ScriptUtils}</li>
  * </ul>
  *
- * <h3>Usage Modes:</h3>
+ * Usage Modes:
  * <ul>
  *   <li>{@code readSimple()} – executes file reading using static configuration</li>
  *   <li>{@code readProcess()} – allows use of input parameters and multiple steps</li>
  * </ul>
  *
- * <h3>Expected Parameters:</h3>
+ * Expected Parameters:
  * Parameters are extracted from {@link SQLReaderConfiguration} and associated {@link SQLDataSource} entries.
  * <ul>
  *   <li><b>connectionString</b>: Host and optional port, e.g. "ftp.example.com:22"</li>
@@ -79,11 +79,10 @@ import com.jcraft.jsch.SftpException;
  *   <li><b>convert</b>: Optional conversion instruction for postprocessing file content</li>
  * </ul>
  *
- * <h3>Connection Testing:</h3>
+ * Connection Testing:
  * The {@code testConnection()} method can be used to verify if the connection is successful
  * based on provided parameters.
- * </p>
- * <h3>Notes:</h3>
+ * Notes:
  * <ul>
  *   <li>Connection is established over SFTP (port 22 by default)</li>
  *   <li>Files are read as UTF-8 text with null characters removed</li>

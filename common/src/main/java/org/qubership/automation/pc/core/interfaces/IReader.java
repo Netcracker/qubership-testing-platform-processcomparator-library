@@ -24,7 +24,7 @@ import org.qubership.automation.pc.data.DataList;
 
 /**
  * Interface defining a contract for reading input data from various sources.
- * </p>
+ * <p>
  * Implementations are responsible for retrieving and structuring data
  * in formats suitable for comparison or processing.
  */

@@ -22,17 +22,17 @@ package org.tigris.subversion.svnclientadapter;
 /**
  * This interface is used to receive every log message for the log
  * messages found by a ISVNClientAdapter.getLogMessages call.
- * </p>
+ * <p>
  * All log messages are returned in a list, which is terminated by an
  * invocation of this callback with the message set to NULL.
- * </p>
+ * <p>
  * If the includeMergedRevisions parameter to ISVNClientAdapter.getLogMessages
  * is true, then messages returned through this callback may have the
  * hasChildren parameter set.  This parameter indicates that a separate list,
  * which includes messages for merged revisions, will immediately follow.
  * This list is also terminated with NULL, after which the
  * previous log message list continues.
- * </p>
+ * <p>
  * Log message lists may be nested arbitrarily deep, depending on the ancestry
  * of the requested paths.
  */
