@@ -203,19 +203,15 @@ public class BuildColoredXMLTest {
         String originalErAr = "<array>\n" +
                 "    <d z=\"2\" a=\"1\">must be fourth</d>\n" +
                 "    <c>must be third</c>\n" +
-                "    <b>must be second\n" +
-                "        <innerElements>\n" +
+                "    <b>must be second<innerElements>\n" +
                 "            <s>2.2</s>\n" +
-                "            <g>2.1</g>\n" +
-                "        </innerElements>\n" +
-                "    </b>\n" +
+                "            <g>2.1</g></innerElements></b>\n" +
                 "    <a>must be first</a>\n" +
                 "</array>";
         String expectedHighlightedErAr = "<div style=\"margin-left: 0px\">$$$root$$$</div>" +
                 "<div style=\"margin-left: 15px\"><div class=\"NORMAL\">&lt;array&gt;</div></div>" +
                 "<div style=\"margin-left: 30px\"><div class=\"NORMAL\">&lt;a&gt;must be first&lt;/a&gt;</div></div>" +
-                "<div style=\"margin-left: 30px\"><div class=\"NORMAL\">&lt;b&gt;         must be second         " +
-                "         </div></div>" +
+                "<div style=\"margin-left: 30px\"><div class=\"NORMAL\">&lt;b&gt;                 must be second                  </div></div>" +
                 "<div style=\"margin-left: 45px\"><div class=\"NORMAL\">&lt;innerElements&gt;</div></div>" +
                 "<div style=\"margin-left: 60px\"><div class=\"NORMAL\">&lt;g&gt;2.1&lt;/g&gt;</div></div>" +
                 "<div style=\"margin-left: 60px\"><div class=\"NORMAL\">&lt;s&gt;2.2&lt;/s&gt;</div></div>" +

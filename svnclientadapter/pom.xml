@@ -5,12 +5,12 @@
     <parent>
         <artifactId>ProcessComparator2</artifactId>
         <groupId>org.qubership.automation.pc</groupId>
-        <version>2.5.95-SNAPSHOT</version>
+        <version>2.5.96-SNAPSHOT</version>
     </parent>
 
     <groupId>org.qubership.automation.svnclientadapter</groupId>
     <artifactId>multi</artifactId>
-    <version>2.5.95-SNAPSHOT</version>
+    <version>2.5.96-SNAPSHOT</version>
     <name>PC SVN Client Adapter</name>
     <url>https://github.com/subclipse/svnclientadapter</url>
     <packaging>pom</packaging>	
@@ -35,15 +35,15 @@
             </plugin>
         </plugins>
     </build>
-    <distributionManagement>
+    <!--<distributionManagement>
         <repository>
             <id>central</id>
             <name>Maven Central</name>
             <url>https://repo1.maven.org/maven2/</url>
         </repository>
-    </distributionManagement>
-    <repositories>
-        <repository>
+    </distributionManagement>-->
+    <!--<repositories>-->
+        <!--<repository>
             <id>oss.sonatype.org</id>
             <url>https://central.sonatype.com</url>
             <releases>
@@ -52,10 +52,10 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
-        </repository>
+        </repository>-->
 
         <!-- Maven Central repository for SNAPSHOT versions-->
-        <repository>
+        <!--<repository>
             <id>oss.sonatype.org-snapshot</id>
             <url>https://central.sonatype.com/repository/maven-snapshots</url>
             <releases>
@@ -64,10 +64,10 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
-        </repository>
+        </repository>-->
 
         <!-- GitHub packages repository for both release and SNAPSHOT versions -->
-        <repository>
+        <!--<repository>
             <id>github</id>
             <url>https://maven.pkg.github.com/netcracker/*</url>
             <releases>
@@ -76,6 +76,6 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
-        </repository>
-    </repositories>
+        </repository>-->
+    <!--</repositories>-->
 </project>
