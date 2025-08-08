@@ -152,8 +152,8 @@ public class FullTextComparator extends AbstractComparator {
                         if (!regexpCompiled.matcher(arList.get(j)).matches()) {
                             if (!rule.action.equals("ignore")) {
                                 differences.add(new DiffMessage(0, "",
-                                                TextHelpers.formatdiffCoords(j, 1),
-                                                ResultType.MODIFIED,
+                                        TextHelpers.formatdiffCoords(j, 1),
+                                        ResultType.MODIFIED,
                                         "ar row# " + (j + 1) + "doesn't match regexp: " + regexp)
                                 );
                             }
@@ -262,9 +262,9 @@ public class FullTextComparator extends AbstractComparator {
                             diff.setResult((checkForSuccess) ? ResultType.IDENTICAL : ResultType.MODIFIED);
                             diff.setDescription((checkForSuccess)
                                     ? "Success by '" + SUCCESS_IF_MATCH + "'-rule: " + ((isControl)
-                                    ? "er" : "ar") + " matches regexp. " + regexp
+                                    ? "ER" : "AR") + " matches regexp. " + regexp
                                     : "Fail by '" + FAIL_IF_MATCH + "'-rule: " + ((isControl)
-                                            ? "er" : "ar") + " matches regexp. " + regexp);
+                                    ? "ER" : "AR") + " matches regexp. " + regexp);
                             return diff;
                         }
                     } catch (StackOverflowError e) {
@@ -284,9 +284,9 @@ public class FullTextComparator extends AbstractComparator {
         diff.setResult((!checkForSuccess) ? ResultType.IDENTICAL : ResultType.MODIFIED);
         diff.setDescription((!checkForSuccess)
                 ? "Success by '" + FAIL_IF_MATCH + "'-rule: " + ((isControl)
-                ? "er" : "ar") + " doesn't match any regexp." :
+                ? "ER" : "AR") + " doesn't match any regexp." :
                 "Fail by '" + SUCCESS_IF_MATCH + "'-rule: " + ((isControl)
-                        ? "er" : "ar") + " doesn't match any regexp.");
+                        ? "ER" : "AR") + " doesn't match any regexp.");
         return diff;
     }
 
@@ -395,7 +395,7 @@ public class FullTextComparator extends AbstractComparator {
         int erLinesSize = infoOriginal.getLines().size();
         int arLinesSize = infoRevised.getLines().size();
         int counter
-                        = parentDiffCounter;
+                = parentDiffCounter;
         int erPosition = infoOriginal.getPosition();
         int arPosition = infoRevised.getPosition();
 

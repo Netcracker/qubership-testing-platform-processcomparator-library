@@ -59,8 +59,8 @@ public class HighlighterManager {
 
     public HighlighterResult highlightContextObject(JsonObject jsonObject) {
         HighlighterResult resultMap = new HighlighterResult();
-        if (!jsonObject.has("er")
-                || !jsonObject.has("ar")
+        if (!jsonObject.has("ER")
+                || !jsonObject.has("AR")
                 || !jsonObject.has("diffs")) {
             resultMap.setStatusCode("20000");
             resultMap.setStatusMessage("All fields (er[Base64 Encoded String], "
@@ -125,8 +125,8 @@ public class HighlighterManager {
         }
         resultMap = highlightContent(
                 differs,
-                jsonObject.get("er").getAsString(),
-                jsonObject.get("ar").getAsString(),
+                jsonObject.get("ER").getAsString(),
+                jsonObject.get("AR").getAsString(),
                 rules,
                 contentType,
                 true,
@@ -239,12 +239,12 @@ public class HighlighterManager {
     }
 
     private Map<String, String> checkContext(Map<String, String> resultMap, Map<String, List<String>> rules) {
-        if (resultMap.isEmpty() || !resultMap.containsKey("er") || !resultMap.containsKey("ar")) {
+        if (resultMap.isEmpty() || !resultMap.containsKey("ER") || !resultMap.containsKey("AR")) {
             return resultMap;
         } else {
             List<String> contextValues = rules.get(PARAMETER_NAME_CHECK_CONTEXT);
             if (contextValues != null) {
-                String ar = resultMap.get("ar");
+                String ar = resultMap.get("AR");
                 for (String contextValue : contextValues) {
                     String[] singleContextValues = contextValue.split("\n|\r|\r\n");
                     for (String str : singleContextValues) {

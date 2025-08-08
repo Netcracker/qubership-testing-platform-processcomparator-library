@@ -17,6 +17,7 @@
 package org.qubership.automation.pc.models;
 
 import com.google.gson.JsonArray;
+import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,7 +29,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class HighlighterResult {
 
+    @SerializedName("ER")
     private HighlighterNode er;
+    @SerializedName("AR")
     private HighlighterNode ar;
     private String trId;
     private String objectId;

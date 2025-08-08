@@ -194,7 +194,7 @@ public class JsonComparatorOld extends AbstractComparator {
                 }
             } catch (Exception ex) {
                 throw new ComparatorException("Error while parsing input message " + ((isActual)
-                        ? "ar" : "er") + ". Probably it is not valid JSON. " + ex.getMessage(), 20000);
+                        ? "AR" : "ER") + ". Probably it is not valid JSON. " + ex.getMessage(), 20000);
             }
             if (schemaContent.isEmpty()) {
                 // er/ar comparison

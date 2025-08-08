@@ -222,7 +222,7 @@ public class JsonComparatorTest extends AbstractComparatorTest{
     public void given_notIdenticalArrayAndErIncorrect_withoutParameters_resultComparatorException() throws ComparatorException {
         String er = "[{{,{\"activeFrom\":\"2019-02-28T11:38:09.082Z\"}]";
         String ar = "[{},{\"activeFrom\":\"2019-02-28T11:38:09.082Z\"}]";
-        String exceptionMessage = "Error while parsing input message er. Probably it is not valid JSON. Unexpected "
+        String exceptionMessage = "Error while parsing input message ER. Probably it is not valid JSON. Unexpected "
                 + "character ('{' (code 123)): was expecting double-quote to start field name\n"
                 + " at [Source: (String)\"[{{,{\"activeFrom\":\"2019-02-28T11:38:09.082Z\"}]\"; line: 1, column: 4]";
         Parameters parameters = new Parameters();
@@ -239,7 +239,7 @@ public class JsonComparatorTest extends AbstractComparatorTest{
     public void given_notIdenticalArrayAndArIncorrect_withoutParameters_resultComparatorException() throws ComparatorException {
         String er = "[{},{\"activeFrom\":\"2019-02-28T11:38:09.082Z\"}]";
         String ar = "[}},{\"activeFrom\":\"2019-02-28T11:38:09.082Z\"}]";
-        String exceptionMessage = "Error while parsing input message ar. Probably it is not valid JSON. Unexpected "
+        String exceptionMessage = "Error while parsing input message AR. Probably it is not valid JSON. Unexpected "
                 + "close marker '}': expected ']' (for Array starting at [Source: (String)\"[}},"
                 + "{\"activeFrom\":\"2019-02-28T11:38:09.082Z\"}]\"; line: 1, column: 1])\n"
                 + " at [Source: (String)\"[}},{\"activeFrom\":\"2019-02-28T11:38:09.082Z\"}]\"; line: 1, column: 3]";
@@ -2910,7 +2910,7 @@ public class JsonComparatorTest extends AbstractComparatorTest{
         List<DiffMessage> diffMessages = Arrays.asList(
                 new DiffMessage(1, "/name/0/obj", "/name/0/obj",
                         MODIFIED, "Node values are different."),
-        new DiffMessage(3, "/name/1/obj", "/name/1/obj",
+                new DiffMessage(3, "/name/1/obj", "/name/1/obj",
                         SIMILAR, "Node values are different.")
         );
 

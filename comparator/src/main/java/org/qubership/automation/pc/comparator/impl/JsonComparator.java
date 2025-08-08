@@ -161,13 +161,13 @@ public class JsonComparator extends AbstractComparator {
                 //set explicit cost of boolean to run unit-tests
                 jsonNodeER = readByPath(er, parameterReadByPathValue, keysCaseInsensitive)
                         .orElseThrow(()
-                                -> new ComparatorException(String.format(messageForExceptionIfPathNotExist, "er",
+                                -> new ComparatorException(String.format(messageForExceptionIfPathNotExist, "ER",
                                 parameterReadByPathValue.get(0)), 20000));
                 result = validateBySimpleSchema(jsonNodeER.toString(), jsonNodeAR.toString());
             } else {
                 jsonNodeER = readByPath(er, parameterReadByPathValue, keysCaseInsensitive)
                         .orElseThrow(()
-                                -> new ComparatorException(String.format(messageForExceptionIfPathNotExist, "er",
+                                -> new ComparatorException(String.format(messageForExceptionIfPathNotExist, "ER",
                                 parameterReadByPathValue.get(0)), 20000));
                 Map<String, String> mergedObjectPrimaryKey = mergeObjectPrimaryKeysVersion(parameters);
                 if (keysCaseInsensitive
@@ -175,9 +175,9 @@ public class JsonComparator extends AbstractComparator {
                         && !mergedObjectPrimaryKey.isEmpty()) {
                     mergedObjectPrimaryKey = mergedObjectPrimaryKey.entrySet().stream()
                             .collect(Collectors.toMap(
-                                entry -> entry.getKey().toLowerCase(),
-                                entry -> entry.getValue().toLowerCase())
-                    );
+                                    entry -> entry.getKey().toLowerCase(),
+                                    entry -> entry.getValue().toLowerCase())
+                            );
                 }
                 JsonNode comparisonResult = jsonDiffTuned.asJson(jsonNodeER, jsonNodeAR,
                         PARAMETER_IGNORE_ARRAY_ELEMENTS_ORDER.getValue(parameters),
@@ -212,7 +212,7 @@ public class JsonComparator extends AbstractComparator {
         } catch (IOException ex) {
             throw new ComparatorException(
                     String.format("Error while parsing input message %s. Probably it is not valid JSON. %s",
-                            jsonNodeAR == null ? "ar" : "er", ex.getMessage()), 20000);
+                            jsonNodeAR == null ? "AR" : "ER", ex.getMessage()), 20000);
         }
         log.debug("[Json comparator] changeDiffResults");
         changeDiffResults(parameters, result, jsonNodeER, jsonNodeAR);
@@ -268,7 +268,7 @@ public class JsonComparator extends AbstractComparator {
         } catch (IOException ex) {
             throw new ComparatorException(
                     String.format("Error while parsing input message %s. Probably it is not valid JSON. %s",
-                            erWithoutWhitespaces == null ? "er" : "ar", ex.getMessage()), 20000);
+                            erWithoutWhitespaces == null ? "ER" : "AR", ex.getMessage()), 20000);
         }
         if (!StringUtils.contains(arWithoutWhitespaces, erWithoutWhitespaces)) {
             result.add(new DiffMessage(1, er, ar, ResultType.FAILED));
@@ -281,7 +281,7 @@ public class JsonComparator extends AbstractComparator {
 
         String trimContent = trimJson(content);
         String jsonPath = Objects.isNull(parameterReadByPathValue) || parameterReadByPathValue.isEmpty()
-                        ? "" : parameterReadByPathValue.get(0);
+                ? "" : parameterReadByPathValue.get(0);
         return JsonComparatorUtils.readJsonNodeFromString(trimContent, jsonPath, keysCaseInsensitive);
     }
 
@@ -329,9 +329,9 @@ public class JsonComparator extends AbstractComparator {
         while (iterator.hasNext()) {
             ValidationMessage validationMessage = iterator.next();
             DiffMessage diffMessage = new DiffMessage().setExpected("")
-                        .setActual(jsonPathToTreePath(validationMessage.getPath()))
-                        .setDescription(validationMessage.getMessage())
-                        .setOrderId(count.incrementAndGet());
+                    .setActual(jsonPathToTreePath(validationMessage.getPath()))
+                    .setDescription(validationMessage.getMessage())
+                    .setOrderId(count.incrementAndGet());
             switch (validationMessage.getType()) {
                 case "additionalProperties":
                     diffMessage.setResult(ResultType.EXTRA);

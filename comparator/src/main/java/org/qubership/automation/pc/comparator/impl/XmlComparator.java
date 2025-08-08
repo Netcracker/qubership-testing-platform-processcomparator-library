@@ -398,12 +398,12 @@ public class XmlComparator extends AbstractComparator {
             try {
                 Document doc = bldr.parse(new InputSource(new StringReader(prepared)));
             } catch (SAXParseException ex) {
-                result.errorMessage = String.format(((isActual) ? "ar" : "er")
-                        + " has XML-format error(s): [line;column]=[%d;%d] - %s",
+                result.errorMessage = String.format(((isActual) ? "AR" : "ER")
+                                + " has XML-format error(s): [line;column]=[%d;%d] - %s",
                         ex.getLineNumber(), ex.getColumnNumber(), ex.getMessage());
             } catch (SAXException | IOException ex) {
                 result.errorMessage = "Error while checking XML format of "
-                        + ((isActual) ? "ar" : "er") + ": " + ex.getMessage();
+                        + ((isActual) ? "AR" : "ER") + ": " + ex.getMessage();
             }
         }
         if (!result.errorMessage.isEmpty()) {
@@ -421,7 +421,7 @@ public class XmlComparator extends AbstractComparator {
         // After all cleanups & XSLT-transformations (rules 'excludeXPath' and/or 'SortBy' can be invalid - why not?)
         // er and/or ar can become empty
         if (prepared.isEmpty()) {
-            result.errorMessage = ((isActual) ? "ar" : "er")
+            result.errorMessage = ((isActual) ? "AR" : "ER")
                     + " value is empty (After all cleanups & XSLT-transformations)!";
         }
 

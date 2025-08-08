@@ -109,7 +109,7 @@ public class BuildColoredTable {
         try {
             TablesList earTables = TablesList.getTableListFromJson(docEar);
             if (earTables == null || earTables.isEmpty()) {
-                throw new ComparatorException(((isActual) ? "ar" : "er")
+                throw new ComparatorException(((isActual) ? "AR" : "ER")
                         + " table is missed! Please check source configuration and/or input files.");
             }
             List<DifferencesTable> diffTables = new ArrayList<>();
@@ -174,7 +174,7 @@ public class BuildColoredTable {
             }
             return diffTables;
         } catch (Exception e) {
-            throw new ComparatorException("Error while highlighting " + (isActual ? "ar" : "er"), e);
+            throw new ComparatorException("Error while highlighting " + (isActual ? "AR" : "ER"), e);
         }
     }
 
@@ -315,8 +315,8 @@ public class BuildColoredTable {
     }
 
     private static void filterTableColumnsByCheckPocRule(List<DifferencesTable> tables,
-                                                  CheckPocRule rule,
-                                                  boolean isActualResult) {
+                                                         CheckPocRule rule,
+                                                         boolean isActualResult) {
         List<String> displayColumns = rule.getCheckPocSections().stream()
                 .flatMap(section -> (isActualResult
                         ? section.displayColumnAr.stream() : section.displayColumnEr.stream()))

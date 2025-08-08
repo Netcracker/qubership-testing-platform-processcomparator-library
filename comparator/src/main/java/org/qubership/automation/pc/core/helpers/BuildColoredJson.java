@@ -81,7 +81,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 public class BuildColoredJson {
 
     public static HighlighterResult highlightByRules(List<DiffMessage> differences, String er, String ar, Map<String,
-                List<String>> rules) throws ComparatorException {
+            List<String>> rules) throws ComparatorException {
         Parameters parameters = Objects.isNull(rules) ? new Parameters() : new Parameters(rules);
         DirtyJson erDirtyJson = new DirtyJson(er);
         DirtyJson arDirtyJson = new DirtyJson(ar);
@@ -181,7 +181,7 @@ public class BuildColoredJson {
             // That's why all LATER xpathes become incorrect
             boolean highlightRoot = false;
 
-             String rootResult = "";
+            String rootResult = "";
             String rootDescription = "";
             for (int diffIndex = diffs.size() - 1; diffIndex >= 0; diffIndex--) {
                 DiffMessage diff = diffs.get(diffIndex);
@@ -259,8 +259,8 @@ public class BuildColoredJson {
                                     break;
                                 default:
                                     ((ObjectNode) missedNodesParent).put(diff.getActualValue(),
-                                                    "_" + diffResult + "_" + " " + "_END_"
-                                                            + diffResult + "_\"" + ", \"" + titleWithDescription);
+                                            "_" + diffResult + "_" + " " + "_END_"
+                                                    + diffResult + "_\"" + ", \"" + titleWithDescription);
                             }
                             break;
                         }
@@ -276,10 +276,10 @@ public class BuildColoredJson {
                                 an.insert(i, "#StartArrayElementHighlight" + diffResult + "#");
                                 break;
                             default:
-                                 if (jn.isArray()) {
-                                     ((ArrayNode) jn).add(titleWithDescription);
-                                     ((ArrayNode) jn).add("#EndArrayHighlight#");
-                                     ((ArrayNode) jn).insert(0, "#StartArrayHighlight" + diffResult + "#");
+                                if (jn.isArray()) {
+                                    ((ArrayNode) jn).add(titleWithDescription);
+                                    ((ArrayNode) jn).add("#EndArrayHighlight#");
+                                    ((ArrayNode) jn).insert(0, "#StartArrayHighlight" + diffResult + "#");
                                 } else {
                                     ((ObjectNode) jsonNodeEar.at(pathToLastNode))
                                             .put(lastNodeInPath,"_" + diffResult + "_" + jn.toString() + "_END_"
@@ -348,7 +348,7 @@ public class BuildColoredJson {
             return "<?xml version=\"1.0\" encoding=\"UTF-8\"?><pre>" + finalOutput + "</pre>";
         } catch (IndexOutOfBoundsException | IOException e) {
             throw new ComparatorException("Error while parsing input message "
-                    + (isActualResult ? "ar" : "er") + ". Probably it is not valid JSON.", e);
+                    + (isActualResult ? "AR" : "ER") + ". Probably it is not valid JSON.", e);
         }
     }
 

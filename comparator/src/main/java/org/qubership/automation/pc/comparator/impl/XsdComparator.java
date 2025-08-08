@@ -95,7 +95,7 @@ public class XsdComparator extends AbstractComparator {
         try {
             validator.validate(xmlFile);
         } catch (IOException e) {
-            throw new ComparatorException(String.format("Failed to validate xml (%s)!", isControl ? "er" : "ar"), e);
+            throw new ComparatorException(String.format("Failed to validate xml (%s)!", isControl ? "ER" : "AR"), e);
         } catch (SAXException e) {
             /* Commented; This exception is returned in diffmessage and will be reported throught highlighter */
             // throw new ComparatorException(String.format("Failed to validate xml (%s)!",isControl? "er":"ar"), e);
