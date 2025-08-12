@@ -81,8 +81,8 @@ public abstract class AbstractFileReader {
             child.setContentType((EnumUtils.isValidEnum(DataContentType.class, ext))
                     ? DataContentType.valueOf(ext) : DataContentType.PRIMITIVES);
             child.setContent(DataContentConverter.fromString(strResult));
-            data.setChildren(new ArrayList<Data>());
-            data.getChildren().add(child);
+            data.setChilds(new ArrayList<Data>());
+            data.getChilds().add(child);
         } else {
             data.setContentType((EnumUtils.isValidEnum(DataContentType.class, ext))
                     ? DataContentType.valueOf(ext) : DataContentType.PRIMITIVES);

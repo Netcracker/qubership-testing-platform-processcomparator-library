@@ -117,7 +117,7 @@ public class RESTReader implements IReader {
                 parentData.setDataType(DataType.PROCESS);
                 parentData.setTimeStamp(new Date());
                 parentData.setInternalId(UUID.randomUUID().toString());
-                parentData.setChildren(dataRecords);
+                parentData.setChilds(dataRecords);
                 dataList.setDatas(Arrays.asList(parentData));
                 resultList.add(dataList);
             } else {

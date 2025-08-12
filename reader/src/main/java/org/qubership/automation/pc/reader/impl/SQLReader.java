@@ -278,7 +278,7 @@ public class SQLReader implements IReader {
                         process.setDataType(DataType.PROCESS);
                         process.setTimeStamp(new Date());
                         process.setInternalId(UUID.randomUUID().toString());
-                        process.setChildren(new ArrayList<>());
+                        process.setChilds(new ArrayList<>());
                         int stepIndex = 0;
                         Map<String, Integer> stepsCount = new HashMap<>();
                         Boolean hasParentGroupStep = false;
@@ -295,7 +295,7 @@ public class SQLReader implements IReader {
                                     stepsCount.put(stepName, stepsCount.get(stepName) + 1);
                                     stepName = stepName + "/" + stepsCount.get(stepName);
                                 } else {
-                                    for (Data data : process.getChildren()) {
+                                    for (Data data : process.getChilds()) {
                                         if (data.getName().equals(stepName)) {
                                             step = data;
                                             hasParentGroupStep = true;
@@ -313,7 +313,7 @@ public class SQLReader implements IReader {
                                 step.setDataType(DataType.PROCESS_STEP);
                                 step.setInternalId(UUID.randomUUID().toString());
                                 step.setExternalId("0");
-                                step.setChildren(new ArrayList<>());
+                                step.setChilds(new ArrayList<>());
                             }
                             String originalStepName = (stepIsCounter)
                                     ? String.format(DEFAULT_STEP_NAME, stepIndex)
@@ -395,19 +395,19 @@ public class SQLReader implements IReader {
                                 stepParameter.setDataType(DataType.SIMPLE);
                                 stepParameter.setExternalId("0");
                                 stepParameter.setTimeStamp(new Date());
-                                step.getChildren().add(stepParameter);
+                                step.getChilds().add(stepParameter);
                             }
-                            if (firstChildAsParentValue && !step.getChildren().isEmpty()) {
-                                Data firstChild = step.getChildren().get(0);
+                            if (firstChildAsParentValue && !step.getChilds().isEmpty()) {
+                                Data firstChild = step.getChilds().get(0);
                                 firstChild.setName(step.getName());
                                 firstChild.setOrderNum(step.getOrderNum());
                                 firstChild.setExternalId(step.getExternalId());
                                 firstChild.setInternalId(step.getInternalId());
-                                firstChild.setChildren(new ArrayList<>());
+                                firstChild.setChilds(new ArrayList<>());
                                 step = firstChild;
                             }
                             if (!hasParentGroupStep) {
-                                process.getChildren().add(step);
+                                process.getChilds().add(step);
                             }
                         }
                         dataRecords.add(process);

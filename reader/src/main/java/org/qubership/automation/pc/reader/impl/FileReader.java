@@ -184,8 +184,8 @@ public class FileReader extends AbstractFileReader implements IReader {
                 process.setDataType(DataType.PROCESS);
                 process.setTimeStamp(new Date());
                 process.setInternalId(UUID.randomUUID().toString());
-                process.setChildren(new ArrayList<Data>());
-                process.getChildren().addAll(readFiles(isProcess,
+                process.setChilds(new ArrayList<Data>());
+                process.getChilds().addAll(readFiles(isProcess,
                         ScriptUtils
                                 .prepareParameterizedScript(fullPath, this.configuration.getInputParameters()),
                         ScriptUtils

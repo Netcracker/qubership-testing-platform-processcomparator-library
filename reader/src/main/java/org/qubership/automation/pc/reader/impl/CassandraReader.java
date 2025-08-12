@@ -206,7 +206,7 @@ public class CassandraReader implements IReader {
                                 process.setDataType(DataType.PROCESS);
                                 process.setTimeStamp(new Date());
                                 process.setInternalId(UUID.randomUUID().toString());
-                                process.setChildren(new ArrayList<Data>());
+                                process.setChilds(new ArrayList<Data>());
                                 int stepIndex = 0;
                                 Map<String, Integer> stepsCount = new HashMap<>();
                                 boolean stepIsCounter = (stepColumnName == null);
@@ -224,7 +224,7 @@ public class CassandraReader implements IReader {
                                             stepsCount.put(stepName, stepsCount.get(stepName) + 1);
                                             stepName = stepName + "/" + stepsCount.get(stepName);
                                         } else {
-                                            for (Data data : process.getChildren()) {
+                                            for (Data data : process.getChilds()) {
                                                 if (data.getName().equals(stepName)) {
                                                     step = data;
                                                     hasParentGroupStep = true;
@@ -242,7 +242,7 @@ public class CassandraReader implements IReader {
                                         step.setDataType(DataType.PROCESS_STEP);
                                         step.setInternalId(UUID.randomUUID().toString());
                                         step.setExternalId("0");
-                                        step.setChildren(new ArrayList<Data>());
+                                        step.setChilds(new ArrayList<Data>());
                                     }
                                     Map<String, String> fieldTypes = new HashMap<>();
                                     String maskedStepName = ScriptUtils
@@ -318,10 +318,10 @@ public class CassandraReader implements IReader {
                                         stepParameter.setDataType(DataType.SIMPLE);
                                         stepParameter.setExternalId("0");
                                         stepParameter.setTimeStamp(new Date());
-                                        step.getChildren().add(stepParameter);
+                                        step.getChilds().add(stepParameter);
                                     }
                                     if (!hasParentGroupStep) {
-                                        process.getChildren().add(step);
+                                        process.getChilds().add(step);
                                     }
                                 }
                                 dataRecords.add(process);

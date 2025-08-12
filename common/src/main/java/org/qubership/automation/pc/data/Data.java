@@ -68,7 +68,7 @@ public class Data {
     /**
      * Children.
      */
-    protected List<Data> children = new ArrayList<>();
+    protected List<Data> childs = new ArrayList<>();
 
     protected int orderNum;
 
@@ -140,12 +140,12 @@ public class Data {
         this.content = content;
     }
 
-    public List<Data> getChildren() {
-        return children;
+    public List<Data> getChilds() {
+        return childs;
     }
 
-    public void setChildren(List<Data> children) {
-        this.children = children;
+    public void setChilds(List<Data> childs) {
+        this.childs = childs;
     }
 
     public int getOrderNum() {
@@ -158,8 +158,8 @@ public class Data {
 
     //END: GETTERS AND SETTERS
     public boolean containsChildWithName(String name) {
-        if (this.children != null) {
-            for (Data child : this.children) {
+        if (this.childs != null) {
+            for (Data child : this.childs) {
                 if (child.getName().equals(name)) {
                     return true;
                 }
@@ -169,7 +169,7 @@ public class Data {
     }
 
     public Data getChildByName(String name) {
-        for (Data child : this.children) {
+        for (Data child : this.childs) {
             if (child.getName().equals(name)) {
                 return child;
             }
@@ -179,7 +179,7 @@ public class Data {
 
     public int getChildIndexByName(String name) {
         int counter = 0;
-        for (Data child : this.children) {
+        for (Data child : this.childs) {
             if (child.getName().equals(name)) {
                 return counter;
             }
@@ -190,8 +190,8 @@ public class Data {
 
     public int countOfChildsWhoseNameContains(String containsString) {
         int counter = 0;
-        if (this.children != null) {
-            for (Data child : this.children) {
+        if (this.childs != null) {
+            for (Data child : this.childs) {
                 if (child.getName().startsWith(containsString)) {
                     counter++;
                 }

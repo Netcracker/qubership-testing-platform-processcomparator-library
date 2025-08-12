@@ -200,7 +200,7 @@ public class DnRReader implements IReader {
         process.setDataType(DataType.PROCESS);
         process.setTimeStamp(new Date());
         process.setInternalId(UUID.randomUUID().toString());
-        process.setChildren(new ArrayList<Data>());
+        process.setChilds(new ArrayList<Data>());
         int stepIndex = 0;
         for (DnRBlock parentBlock : filteredParsedFile) {
             stepIndex++;
@@ -211,7 +211,7 @@ public class DnRReader implements IReader {
             step.setDataType(DataType.PROCESS_STEP);
             step.setInternalId(UUID.randomUUID().toString());
             step.setExternalId("0");
-            step.setChildren(new ArrayList<Data>());
+            step.setChilds(new ArrayList<Data>());
 
             Data stepParameter = new Data();
             stepParameter.setInternalId(UUID.randomUUID().toString());
@@ -225,8 +225,8 @@ public class DnRReader implements IReader {
             stepParameter.setDataType(DataType.SIMPLE);
             stepParameter.setExternalId("0");
             stepParameter.setTimeStamp(new Date());
-            step.getChildren().add(stepParameter);
-            process.getChildren().add(step);
+            step.getChilds().add(stepParameter);
+            process.getChilds().add(step);
         }
         List<Data> dataRecords = new ArrayList<>();
         dataRecords.add(process);

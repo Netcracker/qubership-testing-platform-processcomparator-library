@@ -334,13 +334,13 @@ public class ComparatorManager {
             arTestCaseResult.setType(CompareResultType.PROCESS);
             arTestCaseResult.setData(arTestCase);
             if (compareStepsCount) {
-                if (er.getChildren().size() != arTestCase.getChildren().size()) {
+                if (er.getChilds().size() != arTestCase.getChilds().size()) {
                     log.debug(ResponseMessages.msg(20107, arTestCase.getName()));
                     arTestCaseResult.setSummaryMessage(
                             new DiffMessage(
                                     0,
-                                    ResponseMessages.msg(10102, String.valueOf(er.getChildren().size())),
-                                    ResponseMessages.msg(10103, String.valueOf(arTestCase.getChildren().size())),
+                                    ResponseMessages.msg(10102, String.valueOf(er.getChilds().size())),
+                                    ResponseMessages.msg(10103, String.valueOf(arTestCase.getChilds().size())),
                                     ResultType.FAILED));
                     arTestCaseResult.setSummaryResult(ResultType.FAILED);
                     continue;
@@ -368,24 +368,24 @@ public class ComparatorManager {
                     stepResult.setSummaryResult(ResultType.ER_MISSED);
                     List<ResultData> arResultList = new ArrayList<>();
                     ResultData arResult = new ResultData();
-                    arResult.setAr(arTestCase.getChildren().get(stepMapItem.arStepIndex));
+                    arResult.setAr(arTestCase.getChilds().get(stepMapItem.arStepIndex));
                     arResultList.add(arResult);
                     stepResult.setAr(arResultList);
                     arTestCaseResult.getChilds().add(stepResult);
                     continue;
                 }
 
-                Data erStep = er.getChildren().get(stepMapItem.erStepIndex);
+                Data erStep = er.getChilds().get(stepMapItem.erStepIndex);
                 stepResult.setId(erStep.getExternalId());
 
                 if (stepMapItem.arStepName == null) {
                     stepResult.setSummaryResult(ResultType.AR_MISSED);
-                    stepResult.setData(er.getChildren().get(stepMapItem.erStepIndex));
+                    stepResult.setData(er.getChilds().get(stepMapItem.erStepIndex));
                     arTestCaseResult.getChilds().add(stepResult);
                     continue;
                 }
 
-                Data arStep = arTestCase.getChildren().get(stepMapItem.arStepIndex);
+                Data arStep = arTestCase.getChilds().get(stepMapItem.arStepIndex);
 
                 String stepKey = String.valueOf(stepMapItem.erStepIndex + 1);
                 Rule stepRule = tcConfSet.getStepRule(stepKey);
@@ -394,8 +394,8 @@ public class ComparatorManager {
                     stepResult.setData(erStep);
                 } else {
                     stepResult.setChilds(new ArrayList<CompareResult>());
-                    for (int paramIndex = 0; paramIndex < erStep.getChildren().size(); paramIndex++) {
-                        Data erParameter = erStep.getChildren().get(paramIndex);
+                    for (int paramIndex = 0; paramIndex < erStep.getChilds().size(); paramIndex++) {
+                        Data erParameter = erStep.getChilds().get(paramIndex);
                         Data arParameter = getParameterByName(erParameter.getName(), arStep);
                         CompareResult parameterResult = new CompareResult();
                         parameterResult.setType(CompareResultType.SIMPLE);
@@ -445,8 +445,8 @@ public class ComparatorManager {
 
     //process helper functions
     private Data getParameterByName(String parameterName, Data stepData) {
-        if (!stepData.getChildren().isEmpty()) {
-            for (Data parameter : stepData.getChildren()) {
+        if (!stepData.getChilds().isEmpty()) {
+            for (Data parameter : stepData.getChilds()) {
                 if (parameter.getName().equals(parameterName)) {
                     return parameter;
                 }
@@ -511,7 +511,7 @@ public class ComparatorManager {
         List<String> foundErSteps = new ArrayList<>();
         List<String> foundArSteps = new ArrayList<>();
         int counter = 0;
-        for (Data erChild : er.getChildren()) {
+        for (Data erChild : er.getChilds()) {
             StepMapItem stepMapItem = new StepMapItem();
             stepMapItem.setEr(erChild.getName(), counter);
             foundErSteps.add(stepMapItem.erStepName);
@@ -527,9 +527,9 @@ public class ComparatorManager {
             stepMap.add(stepMapItem);
             counter++;
         }
-        if (ar.getChildren().size() > er.getChildren().size()) {
+        if (ar.getChilds().size() > er.getChilds().size()) {
             counter = 0;
-            for (Data arChild : ar.getChildren()) {
+            for (Data arChild : ar.getChilds()) {
                 if (!foundArSteps.contains(arChild.getName())) {
                     StepMapItem stepMapItem = new StepMapItem(null, -1, arChild.getName(), counter);
                     stepMap.add(stepMapItem);

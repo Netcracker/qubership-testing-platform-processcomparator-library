@@ -109,7 +109,7 @@ public class VCSReader implements IReader {
                 Data parentData = new Data();
                 parentData.setTimeStamp(new Date());
                 parentData.setInternalId(UUID.randomUUID().toString());
-                parentData.setChildren(readedFiles);
+                parentData.setChilds(readedFiles);
                 parentData.setDataType(DataType.PROCESS);
                 dataRecords.add(parentData);
             } else {
