@@ -65,7 +65,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
  *
  * <p>
  * It supports advanced features such as customizable diff rules, partial highlighting,
- * and optional support for invalid or "dirty" JSON content that may contain trailing
+ * and optional support for invalid JSON content that may contain trailing
  * or leading non-JSON text.
  * </p>
  *
@@ -83,12 +83,12 @@ public class BuildColoredJson {
     public static HighlighterResult highlightByRules(List<DiffMessage> differences, String er, String ar, Map<String,
             List<String>> rules) throws ComparatorException {
         Parameters parameters = Objects.isNull(rules) ? new Parameters() : new Parameters(rules);
-        DirtyJson erDirtyJson = new DirtyJson(er);
-        DirtyJson arDirtyJson = new DirtyJson(ar);
-        String erMessage = (StringUtils.isBlank(er)) ? "" : processDifferences(differences, erDirtyJson.jsonText,
-                false, parameters);
-        String arMessage = (StringUtils.isBlank(ar)) ? "" : processDifferences(differences, arDirtyJson.jsonText,
-                true, parameters);
+        IntermediaryJsonText erIntermediaryJsonText = new IntermediaryJsonText(er);
+        IntermediaryJsonText arIntermediaryJsonText = new IntermediaryJsonText(ar);
+        String erMessage = (StringUtils.isBlank(er)) ?
+                "" : processDifferences(differences, erIntermediaryJsonText.jsonText, false, parameters);
+        String arMessage = (StringUtils.isBlank(ar)) ?
+                "" : processDifferences(differences, arIntermediaryJsonText.jsonText, true, parameters);
 
         HighlighterNode erNode = new HighlighterNode();
         HighlighterNode arNode = new HighlighterNode();
@@ -424,16 +424,16 @@ public class BuildColoredJson {
                 + "title=\"#DEFAULT_TITLE#Similar property or object#END_DEFAULT_TITLE#\">";
     }
 
-    private static class DirtyJson {
+    private static class IntermediaryJsonText {
 
         public String startText = "";
         public String jsonText = "";
         public String endText = "";
 
-        public DirtyJson() {
+        public IntermediaryJsonText() {
         }
 
-        public DirtyJson(String srcJson) {
+        public IntermediaryJsonText(String srcJson) {
             if (StringUtils.isBlank(srcJson)) {
                 this.jsonText = "{}";
             } else {
