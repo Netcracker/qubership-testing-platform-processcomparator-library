@@ -24,7 +24,6 @@
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
         <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
-        <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
         <!-- dependencies versions -->
         <org.apache.hive.version>3.1.2</org.apache.hive.version>
@@ -154,7 +153,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>${maven-source-plugin.version}</version>
+                        <version>3.3.1</version>
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
