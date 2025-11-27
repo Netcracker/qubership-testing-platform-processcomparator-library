@@ -19,7 +19,6 @@ package org.qubership.automation.pc.converters;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 
@@ -53,25 +52,22 @@ public class CsvConverter implements IValueConverter {
     private String delimiter = PROP_DELIMETER_DEFAULT;
     private boolean firstRowIsColumns = PROP_FIRST_ROW_IS_COLUMNS_DEFAULT;
     private String columnPrefix = "Column_";
-    private String tableName = "CSV";
-
 
     @Override
     public IValueConverterValue process(String inputValue,
                                         Map<String, String> parameters) throws ValueConverterException {
         readParameters(parameters);
+        String tableName = "CSV";
         Table resultTable = new Table(tableName);
         Reader readerIn = new StringReader(inputValue);
         try (CSVParser parser = new CSVParser(readerIn, configureCSVFormat())) {
             if (Objects.nonNull(parser.getHeaderMap())) {
                 resultTable.headers.addAll(parser.getHeaderMap().keySet());
             }
-            Iterator<CSVRecord> recordIterator = parser.iterator();
-            while (recordIterator.hasNext()) {
+            for (CSVRecord strings : parser) {
                 TableRow row = new TableRow();
-                Iterator<String> cellIterator = recordIterator.next().iterator();
-                while (cellIterator.hasNext()) {
-                    row.add(cellIterator.next());
+                for (String string : strings) {
+                    row.add(string);
                 }
                 resultTable.rows.add(row);
             }
@@ -103,8 +99,7 @@ public class CsvConverter implements IValueConverter {
     }
 
     private CSVFormat configureCSVFormat() {
-        CSVFormat formatter =  CSVFormat.DEFAULT
-                .withDelimiter(delimiter.charAt(0));
+        CSVFormat formatter =  CSVFormat.DEFAULT.withDelimiter(delimiter.charAt(0));
         if (firstRowIsColumns) {
             formatter = formatter.withFirstRecordAsHeader();
         }

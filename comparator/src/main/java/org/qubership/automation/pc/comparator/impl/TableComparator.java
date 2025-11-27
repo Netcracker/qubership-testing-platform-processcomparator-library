@@ -31,8 +31,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
-import org.apache.commons.lang.math.NumberUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.qubership.automation.pc.comparator.impl.table.CheckPocRule;
 import org.qubership.automation.pc.comparator.impl.table.CheckPocSection;
 import org.qubership.automation.pc.comparator.impl.table.CheckPocSectionType;
@@ -99,8 +99,8 @@ public class TableComparator extends AbstractComparator {
         String erContent = er;
         String arContent = ar;
 
-        // Currently (20/02/2017) there are no actions to do if er or ar are empty
-        // Thats why we simply return empty list of diffMessages in this case
+        // Currently (20/02/2017) there is nothing to do if ER and/or AR are empty.
+        // That's why we simply return empty list of diffMessages in this case.
         if (StringUtils.isBlank(er) && StringUtils.isBlank(ar)) {
             return new ArrayList<>();
         } else if (StringUtils.isBlank(er)) {
@@ -115,9 +115,9 @@ public class TableComparator extends AbstractComparator {
             if (!checkConfig.isEmpty()) {
                 return checkPoc(erContent, arContent, checkConfig);
             } else if (!checkColumnRules.isEmpty()) {
-                // This rule was added to provide SVp tool required functionality. If it's present in list of
-                // rules - others will be skipped
-                // and table will be processed differently (only ar, not designed to work with highlighter)
+                // This rule was added to provide SVP tool required functionality.
+                // If it's present in list of rules - others will be skipped
+                // and table will be processed different way (only AR, not designed to work with highlighter).
                 // Rule syntax <columnName>=<operation>=<expected_value> (Status=NOT_EQUALS=FAILED)
                 List<DiffMessage> diffs = new ArrayList<>();
                 for (CheckColumnRule rule : checkColumnRules) {
@@ -241,26 +241,26 @@ public class TableComparator extends AbstractComparator {
         int diffCounter = 1;
         try {
             List<DiffMessage> diffMessages = new ArrayList<>();
-            // Initialize ar table description & rows
+            // Initialize AR table description & rows
             TablesList arTables = TablesList.getTableListFromJson(jsonStringAR);
             if (arTables == null || arTables.isEmpty()) {
                 throw new ComparatorException("ar table is missed! "
                         + "Please check source configuration and/or input files.");
             }
-            //            else if (arTables.size() > 1) {
-            //                throw new ComparatorException("ar should contain only one table!
-            //                Please check source configuration and/or input files.");
-            //            }
+            //  else if (arTables.size() > 1) {
+            //      throw new ComparatorException("ar should contain only one table!
+            //      Please check source configuration and/or input files.");
+            //  }
 
             TablesList erTables = TablesList.getTableListFromJson(jsonStringER);
             if (erTables == null || erTables.isEmpty()) {
                 throw new ComparatorException("er tables are missed! "
                         + "Please check source configuration and/or input files.");
             }
-            //            else if (erTables.size() > 1) {
-            //                throw new ComparatorException("er should contain only one table!
-            //                Please check source configuration and/or input files.");
-            //            }
+            //  else if (erTables.size() > 1) {
+            //      throw new ComparatorException("er should contain only one table!
+            //      Please check source configuration and/or input files.");
+            //  }
             for (int a = 0; a < Math.min(arTables.size(), erTables.size()); a++) {
                 Table arTable = arTables.get(a);
                 Table erTable = erTables.get(a);
@@ -276,40 +276,46 @@ public class TableComparator extends AbstractComparator {
                         if (!equalsByRule(arRow.get(k), erRow.get(k))) {
                             // Cell values are different. Report error
                             diffMessages.add(new DiffMessage(diffCounter++,
-                                    "" + "/" + erTable.name + "/" + i + "/" + k + "/" + erTable.headers.get(k),
-                                    "" + "/" + arTable.name + "/" + i + "/" + k + "/" + arTable.headers.get(k),
+                                    "/" + erTable.name + "/" + i + "/" + k + "/" + erTable.headers.get(k),
+                                    "/" + arTable.name + "/" + i + "/" + k + "/" + arTable.headers.get(k),
                                     ResultType.MODIFIED,
                                     "Cell [" + i + ", " + k + "]: values are different"));
                         }
                     }
                     if (erRow.size() > arRow.size()) {
-                        // Report error about extra er cells - once for the entire er-row's tail
+                        // Report error about extra ER cells - once for the entire ER-row's tail
                         diffMessages.add(new DiffMessage(diffCounter++,
-                                "" + "/" + erTable.name + "/" + i + "/" + arRow.size() + "/"
+                                "/" + erTable.name + "/" + i + "/" + arRow.size() + "/"
                                         + erTable.headers.get(arRow.size()),
                                 "",
                                 ResultType.MISSED,
                                 "er row# " + i + " has extra cells."));
 
                     } else if (erRow.size() < arRow.size()) {
-                        // Report error about extra ar cells - once for the entire ar-row's tail
+                        // Report error about extra AR cells - once for the entire AR-row's tail
                         diffMessages.add(new DiffMessage(diffCounter++,
                                 "",
-                                "" + "/" + arTable.name + "/" + i + "/" + erRow.size() + "/"
+                                "/" + arTable.name + "/" + i + "/" + erRow.size() + "/"
                                         + arTable.headers.get(erRow.size()),
                                 ResultType.EXTRA,
                                 "ar row# " + i + " has extra cells."));
                     }
                 }
-                // Report error about extra ar rows - once for each extra row
+                // Report error about extra AR rows - once for each extra row
                 for (int i = erTable.rows.size(); i < arTable.rows.size(); i++) {
-                    diffMessages.add(new DiffMessage(diffCounter++, "", "" + "/" + arTable.name
-                            + "/" + i, ResultType.EXTRA, "ar row# " + i + " is extra."));
+                    diffMessages.add(new DiffMessage(diffCounter++,
+                            "",
+                            "/" + arTable.name + "/" + i,
+                            ResultType.EXTRA,
+                            "ar row# " + i + " is extra."));
                 }
-                // Report error about extra er rows - once for each extra row
+                // Report error about extra ER rows - once for each extra row
                 for (int i = arTable.rows.size(); i < erTable.rows.size(); i++) {
-                    diffMessages.add(new DiffMessage(diffCounter++, "" + "/" + erTable.name + "/"
-                            + i, "", ResultType.MISSED, "er row# " + i + " is missed."));
+                    diffMessages.add(new DiffMessage(diffCounter++,
+                            "/" + erTable.name + "/" + i,
+                            "",
+                            ResultType.MISSED,
+                            "er row# " + i + " is missed."));
                 }
             }
             processIgnoreMissedAndExtraRules(diffMessages);
@@ -352,8 +358,8 @@ public class TableComparator extends AbstractComparator {
                         List<Integer> colNumbers = new ArrayList<>();
                         if (!item.colName.isEmpty()) {
                             String[] colNames = item.colName.split(",");
-                            for (int m = 0; m < colNames.length; m++) {
-                                String s = colNames[m].trim();
+                            for (String colName : colNames) {
+                                String s = colName.trim();
                                 if (s.isEmpty()) {
                                     continue;
                                 }
@@ -381,7 +387,6 @@ public class TableComparator extends AbstractComparator {
                                     if (s.isEmpty()) {
                                         if (entry.replaceEmpty
                                                 && entry.replaceString.equals("$$$PC.TABLE.FIND_PREV$$$")) {
-                                            // [empty] = "$$$PC.TABLE.FIND_PREV$$$"
                                             s = arTable.rows.get(rowIndex - 1).get(columnIndex);
                                         } else if (entry.replaceEmpty) {
                                             s = entry.replaceString;
@@ -409,7 +414,7 @@ public class TableComparator extends AbstractComparator {
                         //filter er table
                         if (!item.filters.isEmpty()) {
                             //create a default map of row indexes where a massive index
-                            // = index in original er and value = index in filtered er
+                            // = index in original ER and value = index in filtered ER
                             filterErIndexes = IntStream.range(0,
                                     getTableByName(erTables, item.erTable).rows.size()).toArray();
                             aliasesFiltered = true;
@@ -440,13 +445,11 @@ public class TableComparator extends AbstractComparator {
                             Map<Integer, CheckPocSection.FilterSpecification> filterIds
                                     = getFiltersMap(item.filters, arTableHeaderIds);
 
-                            for (Map.Entry entry : filterIds.entrySet()) {
-                                CheckPocSection.FilterSpecification spec
-                                        = (CheckPocSection.FilterSpecification) entry.getValue();
+                            for (Map.Entry<Integer, CheckPocSection.FilterSpecification> entry : filterIds.entrySet()) {
+                                CheckPocSection.FilterSpecification spec = entry.getValue();
                                 if (spec.lov.size() == 1
                                         && spec.lov.get(0).startsWith("[") && spec.lov.get(0).endsWith("]")) {
-                                    List<String> localAliasValues = new ArrayList<>();
-                                    localAliasValues.addAll(getLookup(erTables, item.erTable,
+                                    List<String> localAliasValues = new ArrayList<>(getLookup(erTables, item.erTable,
                                             spec.lov.get(0).substring(1, spec.lov.get(0).length() - 1).trim(),
                                             new HashMap<>()));
                                     if (!localAliasValues.isEmpty()) {
@@ -486,13 +489,9 @@ public class TableComparator extends AbstractComparator {
                                                 new DiffMessage(
                                                         diffCounter++,
                                                         "",
-                                                        item.cfgName
-                                                                + "/"
-                                                                +
-                                                                arTable.name
-                                                                + "/"
-                                                                + i,
-                                                        ResultType.EXTRA, "ar row# " + i + " is extra."));
+                                                        item.cfgName + "/" + arTable.name + "/" + i,
+                                                        ResultType.EXTRA,
+                                                        "ar row# " + i + " is extra."));
                                     } else {
                                         matchingErRowNumbers.add(erRowIdx);
 
@@ -500,7 +499,6 @@ public class TableComparator extends AbstractComparator {
                                         for (Relation col : columnsList) {
                                             col.arColValue = arTable.rows.get(i).get(col.arColumnId);
                                             col.erColValue = checkTable.rows.get(erRowIdx).get(col.erColumnId);
-                                            //if( !col.arColValue.equals(col.erColValue) ) {
                                             if (!equalsByRule(col.arColValue, col.erColValue)) {
                                                 // Attribute values are different. Report error
                                                 String reportMessage = "";
@@ -539,7 +537,7 @@ public class TableComparator extends AbstractComparator {
                             // Last step of checking: if there are unmatched rows in checkTable - report error
                             if (matchingErRowNumbers.size() < checkTable.rows.size()) {
                                 for (int i = 0; i < checkTable.rows.size(); i++) {
-                                    if (!matchingErRowNumbers.contains((Integer) i)) {
+                                    if (!matchingErRowNumbers.contains(i)) {
                                         // report Error
                                         String reportMessage = "";
                                         int originalRowId = i;
@@ -629,10 +627,9 @@ public class TableComparator extends AbstractComparator {
 
     private int searchErRow(Table checkTable, List<Relation> relationList, List<Integer> matchingErRowNumbers) {
         for (int i = 0; i < checkTable.rows.size(); i++) {
-            if (!matchingErRowNumbers.contains((Integer) i)) {
+            if (!matchingErRowNumbers.contains(i)) {
                 boolean found = true;
                 for (Relation rel : relationList) {
-                    //if( !rel.arColValue.equals(checkTable.rows.get(i).get(rel.erColumnId)) ) {
                     if (!equalsByRule(rel.arColValue, checkTable.rows.get(i).get(rel.erColumnId))) {
                         found = false;
                         break;
@@ -682,10 +679,10 @@ public class TableComparator extends AbstractComparator {
     private Map<Integer, CheckPocSection.FilterSpecification> getFiltersMap(
             Map<String, CheckPocSection.FilterSpecification> filters, Map<String, Integer> headerIds) {
         Map<Integer, CheckPocSection.FilterSpecification> filterIds = new LinkedHashMap<>();
-        for (Map.Entry entry : filters.entrySet()) {
-            Integer i = headerIds.get(entry.getKey().toString());
+        for (Map.Entry<String, CheckPocSection.FilterSpecification> entry : filters.entrySet()) {
+            Integer i = headerIds.get(entry.getKey());
             if (i != null) {
-                CheckPocSection.FilterSpecification s = (CheckPocSection.FilterSpecification) entry.getValue();
+                CheckPocSection.FilterSpecification s = entry.getValue();
                 filterIds.put(i, s);
             }
         }
@@ -695,9 +692,9 @@ public class TableComparator extends AbstractComparator {
     private List<Relation> prepareRelations(Map<String, String> relations, Map<String, Integer> arHeaderIds,
                                             Map<String, Integer> erHeaderIds) {
         List<Relation> result = new ArrayList<>();
-        for (Map.Entry entry : relations.entrySet()) {
-            String arKey = entry.getKey().toString();
-            String erKey = entry.getValue().toString();
+        for (Map.Entry<String, String> entry : relations.entrySet()) {
+            String arKey = entry.getKey();
+            String erKey = entry.getValue();
             Relation rel = new Relation();
             rel.arColName = arKey;
             rel.erColName = erKey;
@@ -731,7 +728,6 @@ public class TableComparator extends AbstractComparator {
                                          Map<Integer, CheckPocSection.FilterSpecification> filterIds,
                                          boolean distinct) {
         List<String> result = new ArrayList<>();
-
         for (Table.TableRow row : lookupTable.rows) {
             if (!checkFilter(row, filterIds)) {
                 continue;
@@ -753,11 +749,9 @@ public class TableComparator extends AbstractComparator {
         if (filterIds.isEmpty()) {
             return true;
         } else {
-            for (Map.Entry entry : filterIds.entrySet()) {
-                //if( !row.get((Integer)entry.getKey()).equals(entry.getValue().toString() ) ) {
-                CheckPocSection.FilterSpecification filterSpec
-                        = (CheckPocSection.FilterSpecification) entry.getValue();
-                if (!inLovByRule(row.get((Integer) entry.getKey()), filterSpec.comparisonOperand, filterSpec.lov)) {
+            for (Map.Entry<Integer, CheckPocSection.FilterSpecification> entry : filterIds.entrySet()) {
+                CheckPocSection.FilterSpecification filterSpec = entry.getValue();
+                if (!inLovByRule(row.get(entry.getKey()), filterSpec.comparisonOperand, filterSpec.lov)) {
                     return false;
                 }
             }
@@ -852,15 +846,8 @@ public class TableComparator extends AbstractComparator {
                         }
                     }
                 }
-            } catch (ClassNotFoundException ex) {
-                // Do nothing!
-            } catch (InstantiationException ex) {
-                // Do nothing!
-            } catch (IllegalAccessException ex) {
-                // Do nothing!
-            } catch (IllegalArgumentException ex) {
-                // Do nothing!
-            } catch (InvocationTargetException ex) {
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                     IllegalArgumentException | InvocationTargetException ex) {
                 // Do nothing!
             }
         }
@@ -878,7 +865,7 @@ public class TableComparator extends AbstractComparator {
     private boolean checkLike(String str, String strTemplate) {
         final String regexpKeyword = "regexp:";
         if (strTemplate.startsWith(regexpKeyword)) {
-            String regexpSubstring = strTemplate.substring(regexpKeyword.length(), strTemplate.length());
+            String regexpSubstring = strTemplate.substring(regexpKeyword.length());
             return str.matches(regexpSubstring);
         } else {
             if (ignoreCase) {

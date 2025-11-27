@@ -16,25 +16,25 @@
 
 package org.qubership.automation.pc.comparator.impl;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.qubership.automation.pc.compareresult.ResultType.EXTRA;
 import static org.qubership.automation.pc.compareresult.ResultType.IDENTICAL;
 import static org.qubership.automation.pc.compareresult.ResultType.MISSED;
 import static org.qubership.automation.pc.compareresult.ResultType.MODIFIED;
 import static org.qubership.automation.pc.compareresult.ResultType.SIMILAR;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import org.qubership.automation.pc.comparator.enums.JsonComparatorParameters;
 import org.qubership.automation.pc.compareresult.DiffMessage;
 import org.qubership.automation.pc.compareresult.JsonDiffMessage;
@@ -47,7 +47,7 @@ public class JsonComparatorTest extends AbstractComparatorTest{
     private JsonComparator jsonComparator;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
         jsonComparator = new JsonComparator();
     }
 
@@ -96,14 +96,14 @@ public class JsonComparatorTest extends AbstractComparatorTest{
                 + "\"givenName\":\"Jennifer20190228063403569\"}}";
         Parameters parameters = new Parameters();
         List<DiffMessage> compare = jsonComparator.compare(er, ar, parameters);
-        long identicalCout = compare.stream()
+        long identicalCount = compare.stream()
                 .filter(diffMessage -> diffMessage.getResult() == IDENTICAL)
                 .filter(diffMessage -> diffMessage.getDescription().equals("Result is changed due to inline-regexp "
                         + "checking."))
                 .count();
-        long notIdenticalCout = compare.stream().filter(diffMessage -> diffMessage.getResult() != IDENTICAL).count();
-        assertEquals(identicalCout, 10);
-        assertEquals(notIdenticalCout, 0);
+        long notIdenticalCount = compare.stream().filter(diffMessage -> diffMessage.getResult() != IDENTICAL).count();
+        assertEquals(10, identicalCount);
+        assertEquals(0, notIdenticalCount);
     }
 
     @Test
@@ -219,7 +219,7 @@ public class JsonComparatorTest extends AbstractComparatorTest{
     }
 
     @Test
-    public void given_notIdenticalArrayAndErIncorrect_withoutParameters_resultComparatorException() throws ComparatorException {
+    public void given_notIdenticalArrayAndErIncorrect_withoutParameters_resultComparatorException() {
         String er = "[{{,{\"activeFrom\":\"2019-02-28T11:38:09.082Z\"}]";
         String ar = "[{},{\"activeFrom\":\"2019-02-28T11:38:09.082Z\"}]";
         String exceptionMessage = "Error while parsing input message ER. Probably it is not valid JSON. Unexpected "
@@ -236,7 +236,7 @@ public class JsonComparatorTest extends AbstractComparatorTest{
     }
 
     @Test
-    public void given_notIdenticalArrayAndArIncorrect_withoutParameters_resultComparatorException() throws ComparatorException {
+    public void given_notIdenticalArrayAndArIncorrect_withoutParameters_resultComparatorException() {
         String er = "[{},{\"activeFrom\":\"2019-02-28T11:38:09.082Z\"}]";
         String ar = "[}},{\"activeFrom\":\"2019-02-28T11:38:09.082Z\"}]";
         String exceptionMessage = "Error while parsing input message AR. Probably it is not valid JSON. Unexpected "
@@ -832,10 +832,8 @@ public class JsonComparatorTest extends AbstractComparatorTest{
         List<DiffMessage> compareResult = jsonComparator.compare(er, ar, parameters);
 
         assertEquals(1, compareResult.size());
-        assertTrue(compareResult.stream().map(DiffMessage::getExpectedValue)
-                .anyMatch(value -> "3".equals(value)));
-        assertTrue(compareResult.stream().map(DiffMessage::getActualValue)
-                .anyMatch(value -> "2".equals(value)));
+        assertTrue(compareResult.stream().map(DiffMessage::getExpectedValue).anyMatch("3"::equals));
+        assertTrue(compareResult.stream().map(DiffMessage::getActualValue).anyMatch("2"::equals));
     }
 
     @Test
@@ -2622,12 +2620,13 @@ public class JsonComparatorTest extends AbstractComparatorTest{
         Parameters params = new Parameters();
         params.put("keysCaseInsensitive", "true");
         params.put("ignoreArraysOrder", "true");
-        List<DiffMessage> diffs = Arrays.asList(
-                new DiffMessage(1, "/node2**/node_3/node?4/node5", "/node2**/node_3/node?4/node5", SIMILAR)
+        List<DiffMessage> diffs = Collections.singletonList(
+                new DiffMessage(1,
+                        "/node2**/node_3/node?4/node5",
+                        "/node2**/node_3/node?4/node5",
+                        SIMILAR)
         );
-
         List<DiffMessage> result = jsonComparator.compare(er, ar, params);
-
         compareJsonDiffs(diffs, result);
     }
 
@@ -2799,12 +2798,9 @@ public class JsonComparatorTest extends AbstractComparatorTest{
         params.put("keysCaseInsensitive", "true");
         params.put("ignoreValue", "$..oBJ");
 
-        List<DiffMessage> diffMessages = Arrays.asList(
-                new DiffMessage(1, "", "/name/1",
-                        EXTRA, "ar has extra node(s)."));
-
+        List<DiffMessage> diffMessages = Collections.singletonList(
+                new DiffMessage(1, "", "/name/1", EXTRA, "ar has extra node(s)."));
         List<DiffMessage> result = jsonComparator.compare(er, ar, params);
-
         compareJsonDiffs(diffMessages, result);
     }
 
@@ -2869,12 +2865,13 @@ public class JsonComparatorTest extends AbstractComparatorTest{
         params.put("keysCaseInsensitive", "true");
         params.put("readByPath", "$.RooT.['for readBYpath']");
 
-        List<DiffMessage> diffMessages = Arrays.asList(
-                new DiffMessage(1, "/0/status", "/0/status",
-                        SIMILAR, "Node values are different."));
-
+        List<DiffMessage> diffMessages = Collections.singletonList(
+                new DiffMessage(1,
+                        "/0/status",
+                        "/0/status",
+                        SIMILAR,
+                        "Node values are different."));
         List<DiffMessage> result = jsonComparator.compare(er, ar, params);
-
         compareJsonDiffs(diffMessages, result);
     }
 

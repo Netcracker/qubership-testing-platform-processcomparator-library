@@ -16,10 +16,10 @@
 
 package org.qubership.automation.pc.converters;
 
-import static org.qubership.automation.pc.converters.CsvConverter.PROP_DELIMETER;
-import static org.qubership.automation.pc.converters.CsvConverter.PROP_FIRST_ROW_IS_COLUMNS;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.qubership.automation.pc.converters.CsvConverter.PROP_DELIMETER;
+import static org.qubership.automation.pc.converters.CsvConverter.PROP_FIRST_ROW_IS_COLUMNS;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,13 +28,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
-
 import org.qubership.automation.pc.core.exceptions.ValueConverterException;
 import org.qubership.automation.pc.models.Table;
 
 public class CsvConverterTest {
 
-    private CsvConverter converter = new CsvConverter();
+    private final CsvConverter converter = new CsvConverter();
 
     @Test
     public void csvConverter_givenCsv_canConvert() throws ValueConverterException {

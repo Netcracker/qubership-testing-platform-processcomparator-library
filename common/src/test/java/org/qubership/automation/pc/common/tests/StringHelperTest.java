@@ -20,40 +20,37 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.apache.commons.io.FilenameUtils;
 import org.junit.jupiter.api.Test;
-
 import org.qubership.automation.pc.core.helpers.StringHelper;
 
 public class StringHelperTest {
 
     @Test
-    public void correctMask_appliedSuccesfully() {
+    public void correctMask_appliedSuccessfully() {
         String fileName = "abc_def_123_456";
         String mask = "abc_(.*)_123_(.*)";
         String expectedFileName = "abc_XXX_123_XXX";
-        assertEquals(StringHelper.maskName(fileName, mask), expectedFileName);
+        assertEquals(expectedFileName, StringHelper.maskName(fileName, mask));
     }
 
     @Test
     public void maskWithNoGroups_fileNameNotChanged() {
         String fileName = "abc_def_123_456";
         String mask = "abc_def*";
-        assertEquals(StringHelper.maskName(fileName, mask), fileName);
+        assertEquals(fileName, StringHelper.maskName(fileName, mask));
     }
 
     @Test
-    public void viasatExample_twoExtensions_maskApplied_oneExtensionCut() {
-        String fileName = "ATPOLA365123_2_1_6_20200305.xml.processed";
-        String mask = "ATPOLA365123.*?_(.*).xml.processed";
-        String expectedFileName = "ATPOLA365123_XXXXXXXXXXXXXX.xml";
+    public void customRequirement_twoExtensions_maskApplied_oneExtensionCut() {
+        String fileName = "some_prefix_2_1_6_20200305.xml.processed";
+        String mask = "some_prefix.*?_(.*).xml.processed";
+        String expectedFileName = "some_prefix_XXXXXXXXXXXXXX.xml";
         assertEquals(expectedFileName, FilenameUtils.getBaseName(StringHelper.maskName(fileName, mask)));
     }
 
     @Test
     public void trimToLength_stringShorterThanLen_returnFullString() {
         String str = "string";
-
         String result = StringHelper.trimToLength(str, 6);
-
         assertEquals(str, result);
     }
 
@@ -61,9 +58,7 @@ public class StringHelperTest {
     public void trimToLength_stringLongerThanLen_trimStrToLenAndAddCountOfTrimmedChars() {
         String str = "string";
         String expectedStr = "str...[+3]";
-
         String result = StringHelper.trimToLength(str, 3);
-
         assertEquals(expectedStr, result);
     }
 }
