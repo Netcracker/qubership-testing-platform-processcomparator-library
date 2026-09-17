@@ -1,5 +1,5 @@
 ---
-# The workflow to deploy snapshot artifact versions to Maven Central
+# The workflow to deploy snapshot artifact versions to GitHub Packages
 # Fill free to adjust java version and additional mvn command-line parameters
 # The workflow will trigger on pushes into branches different from main and release
 # Please make sure that the version in the pom.xml file has the SNAPSHOT postfix
@@ -25,15 +25,24 @@ permissions:
   contents: read
   packages: write
 
+env:
+  additional-mvn-args: ""
+
 jobs:
   mvn-snapshot-deploy:
-    uses: netcracker/qubership-workflow-hub/.github/workflows/re-maven-snapshot-deploy.yaml@v2.8.0
-    with:
-      java-version: "21"
-      additional-mvn-args: ""
-      target-store: "maven-central"
-    secrets:
-      maven-username: ${{ secrets.MAVEN_USER }}
-      maven-token: ${{ secrets.MAVEN_PASSWORD }}
-      gpg-passphrase: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
-      gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout code"
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Maven Docker build
+        id: maven_build
+        uses: netcracker/qubership-workflow-hub/actions/maven-snapshot-deploy@4ce44398bac0a6f82e55aeb4a753aada3530de5b # v2.7.1
+        with:
+          java-version: "21"
+          additional-mvn-args: ${{ env.additional-mvn-args }}
+          target-store: "github"
+          maven-username: ${{ github.ACTOR }}
+          maven-token: ${{ secrets.GITHUB_TOKEN }}
+          gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+          gpg-passphrase: ${{ secrets.GPG-PASSPHRASE }}
