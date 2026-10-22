@@ -1,13 +1,12 @@
 # SVNClientAdapter
 
-- Build Status: [https://travis-ci.org/subclipse/svnclientadapter](https://travis-ci.org/subclipse/svnclientadapter)
-- Check / Download the latest version: [https://bintray.com/subclipse/maven/svnclientadapter/_latestVersion](https://bintray.com/subclipse/maven/svnclientadapter/_latestVersion)  
+- Check / Download the latest version: [https://jfrog.com/](https://jfrog.com/)  
 
 SVNClientAdapter is a high-level Java API for Subversion.  You can write your code to the SVNClientAdapter Java interfaces and then at runtime run it with any of the three adapter implementations:
 
-1. [JavaHL](http://subversion.apache.org/docs/)
-2. [Packages](http://subversion.apache.org/packages.html) (including command-line)
-3. [SVNKit](http://svnkit.com)
+1. [JavaHL](https://subversion.apache.org/docs/)
+2. [Packages](https://subversion.apache.org/packages.html) (including command-line)
+3. [SVNKit](https://svnkit.com)
 
 The first two implementation require that the native Subversion packages and libraries are installed as the Java
 code will use those libraries.  In the case of JavaHL it talks to the native library via JNI and the command line
