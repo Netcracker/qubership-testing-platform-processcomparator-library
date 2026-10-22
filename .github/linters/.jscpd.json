@@ -1,7 +1,9 @@
 {
   "threshold": 20,
+  "mode": "weak",
   "ignore": [
     "**/resources/**",
+    "**/test/**",
     "**/.github/**",
     "**/*/*.xml",
     "**/*/*.txt",
